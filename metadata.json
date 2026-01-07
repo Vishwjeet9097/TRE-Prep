@@ -1,0 +1,5 @@
+{
+  "name": "ExamPro: AI-Powered Mock Practice Portal",
+  "description": "A high-performance educational platform that converts PDF question papers into interactive real-time mock exams using Gemini AI, featuring smart parsing, detailed history tracking, and an integrated exam toolkit.",
+  "requestFramePermissions": []
+}
