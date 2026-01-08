@@ -1,378 +1,354 @@
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Page, AppState, Exam, Attempt, Language } from './types';
-import Sidebar from './components/Sidebar';
-import ExamRoom from './components/ExamRoom';
+import React, { useState, useEffect } from 'react';
 import { 
-  FileUp, Plus, Clock, Award, BookOpen, AlertCircle, 
-  Trash2, Loader2, Menu, TrendingUp, Calendar, ChevronRight,
-  GraduationCap, Settings, ArrowRight, Languages, CheckCircle, X,
-  Info, History
+  LayoutDashboard, 
+  FileUp, 
+  History as HistoryIcon, 
+  Settings as SettingsIcon,
+  Plus,
+  BookOpen,
+  CheckCircle,
+  Clock,
+  LogOut,
+  ChevronRight,
+  Trash2,
+  AlertCircle,
+  ArrowLeft,
+  Timer,
+  Loader2,
+  Sparkles
 } from 'lucide-react';
-import { extractTextFromPdf } from './services/pdfProcessor';
-import { parseExamPaperToStaging, extractPaperMetadata } from './services/geminiService';
-import { databaseService } from './services/databaseService';
+import { StorageService } from './store';
+import { ExamPaper, ExamAttempt, Question, ParsingJob } from './types';
+import { parseExamPDF } from './services/geminiService';
 
-const BPSC_SUBJECTS = [
-  "Computer Science", "Geography", "History", "Political Science", 
-  "Economics", "Mathematics", "Physics", "Chemistry", "Biology", 
-  "Hindi", "English", "General Studies", "Social Science"
-];
+// --- Sub-components ---
+import Dashboard from './components/Dashboard';
+import ImportWizard from './components/ImportWizard';
+import ExamPanel from './components/ExamPanel';
+import ResultView from './components/ResultView';
+import HistoryView from './components/HistoryView';
+import AIChatAssistant from './components/AIChatAssistant';
 
-const TRE_YEARS = [
-  { label: "TRE 1.0 (2023)", value: "TRE 1" },
-  { label: "TRE 2.0 (2023)", value: "TRE 2" },
-  { label: "TRE 3.0 (2024)", value: "TRE 3" },
-  { label: "TRE 4.0 (Upcoming)", value: "TRE 4" }
-];
+type View = 'dashboard' | 'import' | 'exam' | 'result' | 'history' | 'settings';
 
 const App: React.FC = () => {
-  const [state, setState] = useState<AppState>(() => {
-    const saved = localStorage.getItem('exampro_v2_state');
-    return saved ? JSON.parse(saved) : {
-      exams: [],
-      history: [],
-      activePage: Page.DASHBOARD,
-      currentExam: null,
-      activeAttempt: null,
-      lastResult: null,
-      preferredLanguage: 'en'
-    };
-  });
-
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [error, setError] = useState<string | null>(null);
-  const [showLanguageModal, setShowLanguageModal] = useState(false);
-  const [showImportModal, setShowImportModal] = useState(false);
-  
-  const [importYear, setImportYear] = useState(TRE_YEARS[2].value);
-  const [importSubject, setImportSubject] = useState(BPSC_SUBJECTS[0]);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [currentView, setCurrentView] = useState<View>('dashboard');
+  const [selectedPaper, setSelectedPaper] = useState<ExamPaper | null>(null);
+  const [currentAttempt, setCurrentAttempt] = useState<ExamAttempt | null>(null);
+  const [papers, setPapers] = useState<ExamPaper[]>([]);
+  const [activeJobs, setActiveJobs] = useState<ParsingJob[]>([]);
+  const [reviewJob, setReviewJob] = useState<ParsingJob | null>(null);
+  const [resumeAttempt, setResumeAttempt] = useState<ExamAttempt | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [resultSource, setResultSource] = useState<'exam' | 'history'>('exam');
 
   useEffect(() => {
-    localStorage.setItem('exampro_v2_state', JSON.stringify(state));
-  }, [state]);
+    setPapers(StorageService.getPapers());
+    const draft = StorageService.getDraftAttempt();
+    if (draft) {
+      setResumeAttempt(draft);
+    }
+  }, [currentView]);
 
-  const handleFileUpload = async () => {
-    if (!selectedFile) return;
-
-    try {
-      setIsUploading(true);
-      setShowImportModal(false);
-      setError(null);
-      setUploadProgress(5);
-
-      // 1. Extract raw text from PDF (Progress 5-25)
-      const pagesText = await extractTextFromPdf(selectedFile, (p) => setUploadProgress(5 + (p * 0.2)));
-      
-      // 2. Extract initial metadata (Progress 25-35)
-      const metadata = await extractPaperMetadata(pagesText[0] + "\n" + (pagesText[1] || ""));
-      const maxQuestions = metadata.totalQuestions || 120;
-      setUploadProgress(35);
-
-      // 3. Batch processing of pages (Progress 35-90)
-      // Reduced BATCH_SIZE from 12 to 6 for better reliability and faster feedback
-      const BATCH_SIZE = 6;
-      const allParsedQuestions: any[] = [];
-      const numPages = pagesText.length;
-      const totalBatches = Math.ceil(numPages / BATCH_SIZE);
-
-      for (let i = 0; i < totalBatches; i++) {
-        const start = i * BATCH_SIZE;
-        const end = Math.min(start + BATCH_SIZE, numPages);
-        const batchChunks = pagesText.slice(start, end);
-        
-        // Brief delay to prevent rate limit spikes
-        if (i > 0) await new Promise(resolve => setTimeout(resolve, 500));
-
-        const stagedBatch = await parseExamPaperToStaging(batchChunks, maxQuestions);
-        
-        if (stagedBatch.questions && Array.isArray(stagedBatch.questions)) {
-          allParsedQuestions.push(...stagedBatch.questions);
-        }
-        
-        // Update progress more frequently
-        setUploadProgress(35 + (((i + 1) / totalBatches) * 55));
+  const handleStartExam = (paper: ExamPaper) => {
+    if (resumeAttempt && resumeAttempt.paperId === paper.id) {
+      if (confirm('A saved draft exists for this paper. Would you like to resume?')) {
+        setSelectedPaper(paper);
+        setCurrentView('exam');
+        return;
+      } else {
+        StorageService.clearDraftAttempt();
+        setResumeAttempt(null);
       }
+    }
+    
+    setSelectedPaper(paper);
+    setResumeAttempt(null);
+    setCurrentView('exam');
+  };
 
-      // 4. Consolidate and Deduplicate (Progress 90-95)
-      const uniqueQuestionsMap = new Map();
-      allParsedQuestions.forEach(q => {
-        if (!uniqueQuestionsMap.has(q.order) || (q.contentEn && q.contentEn.length > (uniqueQuestionsMap.get(q.order)?.contentEn?.length || 0))) {
-          uniqueQuestionsMap.set(q.order, q);
-        }
-      });
-      const finalQuestions = Array.from(uniqueQuestionsMap.values())
-        .sort((a, b) => a.order - b.order)
-        .filter(q => q.order > 0 && q.order <= maxQuestions);
-
-      const stagedData = {
-        metadata: { 
-          title: metadata.paperTitle, 
-          totalQuestions: finalQuestions.length, 
-          durationMinutes: metadata.durationMinutes 
-        },
-        questions: finalQuestions
-      };
-
-      const examMetadata = {
-        paperTitle: metadata.paperTitle,
-        examName: `BPSC Bihar T.R.E ${importYear}`,
-        year: parseInt(importYear.match(/\d+/)?.at(0) || "2024"),
-        type: importYear,
-        subject: importSubject
-      };
-
-      // 5. Final persistence (Progress 95-100)
-      const finalExam = await databaseService.persistStagedExam(stagedData, examMetadata);
-
-      setState(prev => ({ ...prev, exams: [finalExam, ...prev.exams] }));
-      setUploadProgress(100);
+  const handleExamFinish = (attempt: ExamAttempt) => {
+    try {
+      setIsLoading(true);
+      StorageService.saveAttempt(attempt);
+      setCurrentAttempt(attempt);
+      setResumeAttempt(null);
+      setResultSource('exam');
       
-      setTimeout(() => { 
-        setIsUploading(false); 
-        setSelectedFile(null); 
-        setUploadProgress(0);
-      }, 800);
-
-    } catch (err: any) {
-      console.error("Batch Import Failed:", err);
-      setError(err.message || "BPSC Extraction Logic failed.");
-      setIsUploading(false);
+      setTimeout(() => {
+        setCurrentView('result');
+        setIsLoading(false);
+      }, 500);
+    } catch (err) {
+      console.error("Failed to finish exam:", err);
+      setIsLoading(false);
+      alert("Failed to save results. Your progress is still in drafts.");
     }
   };
 
-  const startExam = (exam: Exam, lang: Language) => {
-    const newAttempt: Attempt = {
-      id: `att_${Date.now()}`,
-      examId: exam.id,
-      examTitle: exam.title,
-      startTime: Date.now(),
-      status: 'IN_PROGRESS',
-      userAnswers: []
-    };
-    setState(prev => ({ 
-      ...prev, 
-      currentExam: exam, 
-      activeAttempt: newAttempt, 
-      preferredLanguage: lang,
-      activePage: Page.INSTRUCTIONS 
-    }));
+  const handleViewAttemptDetail = (attempt: ExamAttempt) => {
+    const paper = papers.find(p => p.id === attempt.paperId);
+    if (paper) {
+      setSelectedPaper(paper);
+      setCurrentAttempt(attempt);
+      setResultSource('history');
+      setCurrentView('result');
+    }
   };
 
-  const finishExam = (attempt: Attempt) => {
-    if (!state.currentExam) return;
-    const results = databaseService.calculateScore(state.currentExam, attempt.userAnswers);
-    const completedAttempt: Attempt = {
-      ...attempt,
-      status: 'COMPLETED',
-      endTime: Date.now(),
-      ...results
+  const startBackgroundParsing = async (file: File, metadata: any) => {
+    const jobId = Math.random().toString(36).substr(2, 9);
+    const newJob: ParsingJob = {
+      id: jobId,
+      title: metadata.title || file.name.replace('.pdf', ''),
+      fileName: file.name,
+      status: 'parsing',
+      progress: 0,
+      progressMsg: 'Starting professional batch parse...',
+      metadata: {
+        examType: metadata.examType,
+        year: metadata.year,
+        subject: metadata.subject
+      }
     };
 
-    setState(prev => ({
-      ...prev,
-      history: [completedAttempt, ...prev.history],
-      lastResult: completedAttempt,
-      activePage: Page.RESULTS,
-      activeAttempt: null,
-      currentExam: null
-    }));
+    setActiveJobs(prev => [newJob, ...prev]);
+
+    try {
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64 = (reader.result as string).split(',')[1];
+        
+        try {
+          const questions = await parseExamPDF(base64, (msg) => {
+            setActiveJobs(prev => prev.map(j => 
+              j.id === jobId ? { 
+                ...j, 
+                progressMsg: msg, 
+                progress: Math.min(j.progress + 15, 95) // Incremental visual progress
+              } : j
+            ));
+          });
+
+          setActiveJobs(prev => prev.map(j => 
+            j.id === jobId ? { 
+              ...j, 
+              status: 'review', 
+              parsedQuestions: questions, 
+              progress: 100, 
+              progressMsg: `Success: ${questions.length} questions digitized.` 
+            } : j
+          ));
+        } catch (err) {
+          setActiveJobs(prev => prev.map(j => 
+            j.id === jobId ? { ...j, status: 'failed', progressMsg: 'Parsing failed. AI could not reassemble batches.' } : j
+          ));
+        }
+      };
+      reader.readAsDataURL(file);
+    } catch (err) {
+      setActiveJobs(prev => prev.map(j => 
+        j.id === jobId ? { ...j, status: 'failed', progressMsg: 'File read error.' } : j
+      ));
+    }
   };
 
-  const renderInstructions = () => (
-    <div className="min-h-screen bg-slate-50 p-10 flex items-center justify-center">
-      <div className="bg-white rounded-[2.5rem] shadow-2xl p-12 max-w-2xl w-full">
-        <h1 className="text-2xl font-black mb-6 uppercase">Ready to Begin?</h1>
-        <div className="space-y-4 mb-10">
-          <p className="text-slate-600 font-medium">Exam: <span className="text-slate-900 font-bold">{state.currentExam?.title}</span></p>
-          <p className="text-slate-600 font-medium">Language: <span className="text-indigo-600 font-bold uppercase">{state.preferredLanguage}</span></p>
-          <div className="h-px bg-slate-100 my-6" />
-          <ul className="space-y-3">
-             <li className="flex items-center gap-3 text-sm font-bold text-slate-500"><Clock className="w-4 h-4" /> {state.currentExam?.durationMinutes} Minutes</li>
-             <li className="flex items-center gap-3 text-sm font-bold text-slate-500"><Award className="w-4 h-4" /> {state.currentExam?.questions.length} Questions</li>
-             <li className="flex items-center gap-3 text-sm font-bold text-slate-500"><AlertCircle className="w-4 h-4" /> 0.25 Negative Marking</li>
-          </ul>
+  const handleReviewJob = (job: ParsingJob) => {
+    setReviewJob(job);
+    setCurrentView('import');
+  };
+
+  const handleFinishReview = () => {
+    if (reviewJob) {
+      setActiveJobs(prev => prev.filter(j => j.id !== reviewJob.id));
+      setReviewJob(null);
+    }
+    setCurrentView('dashboard');
+  };
+
+  const handleDeleteJob = (id: string) => {
+    setActiveJobs(prev => prev.filter(j => j.id !== id));
+  };
+
+  const renderContent = () => {
+    if (isLoading) {
+      return (
+        <div className="flex flex-col items-center justify-center h-full gap-4">
+          <Loader2 className="w-12 h-12 text-indigo-600 animate-spin" />
+          <h3 className="text-xl font-black text-slate-800 tracking-tight">Calculating Results...</h3>
         </div>
-        <button 
-          onClick={() => setState(prev => ({ ...prev, activePage: Page.EXAM_ROOM }))}
-          className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-black uppercase tracking-widest shadow-xl hover:bg-indigo-700 transition-all active:scale-95"
-        >
-          Confirm & Start Exam
-        </button>
-      </div>
-    </div>
-  );
+      );
+    }
 
-  if (state.activePage === Page.EXAM_ROOM && state.currentExam && state.activeAttempt) {
-    return (
-      <ExamRoom 
-        paper={state.currentExam} 
-        initialLanguage={state.preferredLanguage} 
-        onFinish={finishExam} 
-        onCancel={() => setState(prev => ({ ...prev, activePage: Page.DASHBOARD, currentExam: null, activeAttempt: null }))} 
-      />
-    );
-  }
+    switch (currentView) {
+      case 'dashboard':
+        return (
+          <Dashboard 
+            papers={papers} 
+            jobs={activeJobs}
+            onStartExam={handleStartExam} 
+            onImportClick={() => {
+              setReviewJob(null);
+              setCurrentView('import');
+            }} 
+            onDeletePaper={(id) => {
+              StorageService.deletePaper(id);
+              setPapers(StorageService.getPapers());
+            }} 
+            onReviewJob={handleReviewJob}
+            onDeleteJob={handleDeleteJob}
+          />
+        );
+      case 'import':
+        return (
+          <ImportWizard 
+            initialJob={reviewJob}
+            onStartParsing={startBackgroundParsing}
+            onSuccess={handleFinishReview} 
+            onCancel={() => {
+              setReviewJob(null);
+              setCurrentView('dashboard');
+            }} 
+          />
+        );
+      case 'exam':
+        return selectedPaper ? (
+          <ExamPanel 
+            paper={selectedPaper} 
+            resumeAttempt={resumeAttempt}
+            onFinish={handleExamFinish} 
+            onCancel={() => setCurrentView('dashboard')} 
+          />
+        ) : null;
+      case 'result':
+        return currentAttempt && selectedPaper ? (
+          <ResultView 
+            attempt={currentAttempt} 
+            paper={selectedPaper} 
+            onBack={() => setCurrentView(resultSource === 'history' ? 'history' : 'dashboard')} 
+          />
+        ) : null;
+      case 'history':
+        return <HistoryView onBack={() => setCurrentView('dashboard')} onSelectAttempt={handleViewAttemptDetail} />;
+      case 'settings':
+        return <SettingsPage onBack={() => setCurrentView('dashboard')} />;
+      default:
+        return <Dashboard papers={papers} jobs={activeJobs} onStartExam={handleStartExam} onImportClick={() => setCurrentView('import')} onDeletePaper={() => {}} onReviewJob={handleReviewJob} onDeleteJob={handleDeleteJob} />;
+    }
+  };
 
   return (
-    <div className="flex min-h-screen bg-[#f8fafc] font-sans text-slate-900 overflow-hidden">
-      <Sidebar activePage={state.activePage} onNavigate={(p) => setState(prev => ({ ...prev, activePage: p }))} isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
-      <div className="flex-1 flex flex-col min-w-0">
-        <header className="h-14 lg:hidden bg-white border-b flex items-center px-4">
-          <button onClick={() => setIsSidebarOpen(true)} className="p-2 text-slate-400"><Menu className="w-5 h-5" /></button>
-          <div className="ml-3 flex items-center gap-2 font-black uppercase text-sm">EXAMPRO</div>
-        </header>
-        <main className="flex-1 overflow-y-auto custom-scrollbar p-8">
-          {state.activePage === Page.DASHBOARD && (
-            <div className="max-w-7xl mx-auto space-y-10">
-              <header className="flex justify-between items-center">
-                <h1 className="text-2xl font-black uppercase">Dashboard</h1>
-                <button onClick={() => setShowImportModal(true)} className="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2"><FileUp className="w-4 h-4" /> Import PDF</button>
-              </header>
-
-              {isUploading && (
-                <div className="bg-white p-6 rounded-2xl border border-indigo-100 shadow-xl">
-                  <div className="flex justify-between text-xs font-black uppercase mb-2">
-                    <span>Processing Batch...</span>
-                    <span>{Math.round(uploadProgress)}%</span>
-                  </div>
-                  <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                    <div className="h-full bg-indigo-600 transition-all duration-500" style={{width: `${uploadProgress}%`}} />
-                  </div>
-                </div>
-              )}
-
-              {error && (
-                <div className="bg-rose-50 border border-rose-100 p-4 rounded-xl flex items-center gap-3 text-rose-600 text-sm font-bold">
-                  <AlertCircle className="w-5 h-5" />
-                  {error}
-                </div>
-              )}
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {state.exams.map(exam => (
-                  <div key={exam.id} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
-                    <span className="text-[10px] font-black bg-slate-100 px-2 py-1 rounded mb-4 inline-block">{exam.type}</span>
-                    <h3 className="font-black text-lg mb-2 truncate uppercase">{exam.title}</h3>
-                    <p className="text-xs text-slate-400 font-bold mb-6 italic">{exam.examName}</p>
-                    <button 
-                      onClick={() => { setState(prev => ({ ...prev, currentExam: exam })); setShowLanguageModal(true); }}
-                      className="w-full bg-slate-900 text-white py-3 rounded-xl font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2"
-                    >
-                      Attempt Test <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                ))}
-              </div>
+    <div className="flex h-screen bg-slate-50 overflow-hidden font-sans">
+      {currentView !== 'exam' && !isLoading && (
+        <aside className="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 transition-all">
+          <div className="p-6 flex items-center gap-3">
+            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+              <BookOpen size={24} />
             </div>
-          )}
-          {state.activePage === Page.HISTORY && (
-            <div className="max-w-4xl mx-auto space-y-4">
-               <h1 className="text-2xl font-black uppercase mb-8">Attempt History</h1>
-               {state.history.length === 0 ? (
-                 <div className="bg-white p-12 rounded-[2rem] border-2 border-dashed border-slate-100 text-center text-slate-300 font-black uppercase tracking-widest">
-                    No Attempts Found
-                 </div>
-               ) : (
-                 state.history.map(att => (
-                   <div key={att.id} className="bg-white p-6 rounded-2xl border border-slate-100 flex justify-between items-center">
-                      <div>
-                        <h3 className="font-bold uppercase text-slate-900">{att.examTitle}</h3>
-                        <p className="text-[10px] font-black text-slate-400 uppercase">{new Date(att.startTime).toLocaleDateString()}</p>
-                      </div>
-                      <div className="text-right">
-                         <p className="text-lg font-black text-indigo-600">{att.score?.toFixed(2)}</p>
-                         <p className="text-[9px] font-black text-slate-300 uppercase">Final Score</p>
-                      </div>
-                   </div>
-                 ))
-               )}
-            </div>
-          )}
-        </main>
-      </div>
-      
-      {showImportModal && (
-        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-white rounded-3xl w-full max-w-lg p-8 animate-in zoom-in-95">
-             <h2 className="text-xl font-black uppercase mb-6">Import BPSC Paper</h2>
-             <div className="space-y-4">
-                <div>
-                  <label className="text-[10px] font-black uppercase text-slate-400 mb-1 block">Examination Year</label>
-                  <select value={importYear} onChange={e => setImportYear(e.target.value)} className="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-bold focus:border-indigo-600 outline-none">
-                     {TRE_YEARS.map(y => <option key={y.value} value={y.value}>{y.label}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="text-[10px] font-black uppercase text-slate-400 mb-1 block">Subject Filter</label>
-                  <select value={importSubject} onChange={e => setImportSubject(e.target.value)} className="w-full p-4 bg-slate-50 border-2 border-slate-100 rounded-2xl font-bold focus:border-indigo-600 outline-none">
-                     {BPSC_SUBJECTS.map(s => <option key={s} value={s}>{s}</option>)}
-                  </select>
-                </div>
-                <div onClick={() => fileInputRef.current?.click()} className="border-2 border-dashed border-slate-200 rounded-3xl p-10 text-center cursor-pointer hover:bg-slate-50 transition-colors">
-                   <input type="file" ref={fileInputRef} className="hidden" accept=".pdf" onChange={e => setSelectedFile(e.target.files?.[0] || null)} />
-                   {selectedFile ? (
-                     <div className="text-indigo-600 font-bold flex flex-col items-center">
-                        <CheckCircle className="w-8 h-8 mb-2" />
-                        {selectedFile.name}
-                     </div>
-                   ) : (
-                     <div className="text-slate-400 font-black uppercase text-xs flex flex-col items-center">
-                        <FileUp className="w-8 h-8 mb-2 opacity-20" />
-                        Select Question Paper PDF
-                     </div>
-                   )}
-                </div>
-                <div className="flex gap-4 pt-4">
-                   <button onClick={() => setShowImportModal(false)} className="flex-1 font-black uppercase text-slate-400 py-4 hover:text-slate-600 transition-colors">Cancel</button>
-                   <button disabled={!selectedFile} onClick={handleFileUpload} className="flex-1 bg-indigo-600 text-white py-4 rounded-2xl font-black uppercase shadow-xl shadow-indigo-500/30 active:scale-95 disabled:opacity-50 transition-all">Start Ingestion</button>
-                </div>
-             </div>
+            <h1 className="text-xl font-bold tracking-tight text-slate-800">TRE-Prep</h1>
           </div>
-        </div>
-      )}
 
-      {showLanguageModal && (
-        <div className="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-white p-10 rounded-[3rem] text-center max-w-sm w-full shadow-2xl animate-in zoom-in-95">
-            <h3 className="text-xl font-black uppercase mb-8">Choose Medium</h3>
-            <div className="grid gap-3">
-              <button onClick={() => { if (state.currentExam) startExam(state.currentExam, 'en'); setShowLanguageModal(false); }} className="p-6 border-2 border-slate-100 rounded-3xl font-black uppercase text-sm hover:border-indigo-600 hover:bg-indigo-50/50 transition-all">English Medium</button>
-              <button onClick={() => { if (state.currentExam) startExam(state.currentExam, 'hi'); setShowLanguageModal(false); }} className="p-6 border-2 border-slate-100 rounded-3xl font-black uppercase text-sm hover:border-indigo-600 hover:bg-indigo-50/50 transition-all">Hindi Medium (हिंदी)</button>
+          <nav className="flex-1 px-4 space-y-1 py-4">
+            <NavItem 
+              active={currentView === 'dashboard'} 
+              icon={<LayoutDashboard size={20} />} 
+              label="Dashboard" 
+              onClick={() => setCurrentView('dashboard')} 
+            />
+            <NavItem 
+              active={currentView === 'import'} 
+              icon={<FileUp size={20} />} 
+              label="Import Paper" 
+              onClick={() => {
+                setReviewJob(null);
+                setCurrentView('import');
+              }} 
+            />
+            <NavItem 
+              active={currentView === 'history'} 
+              icon={<HistoryIcon size={20} />} 
+              label="Attempt History" 
+              onClick={() => setCurrentView('history')} 
+            />
+          </nav>
+
+          <div className="p-4 border-t border-slate-100">
+            <div className="bg-indigo-50 p-4 rounded-2xl mb-4 border border-indigo-100">
+               <div className="flex items-center gap-2 text-indigo-600 mb-1">
+                  <Sparkles size={16} />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Premium Plan</span>
+               </div>
+               <p className="text-[10px] text-indigo-700/70 font-bold leading-tight">Gemini Live & Pro features enabled.</p>
             </div>
-            <button onClick={() => setShowLanguageModal(false)} className="mt-6 text-[10px] font-black uppercase text-slate-300 hover:text-slate-500 transition-colors">Go Back</button>
+            <NavItem 
+              active={currentView === 'settings'} 
+              icon={<SettingsIcon size={20} />} 
+              label="Settings" 
+              onClick={() => setCurrentView('settings')} 
+            />
+            <button className="flex items-center gap-3 w-full px-4 py-3 text-slate-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all mt-1">
+              <LogOut size={20} />
+              <span className="font-medium text-sm">Logout</span>
+            </button>
           </div>
-        </div>
+        </aside>
       )}
 
-      {state.activePage === Page.INSTRUCTIONS && renderInstructions()}
-      {state.activePage === Page.RESULTS && (
-         <div className="fixed inset-0 bg-white z-[200] p-10 overflow-y-auto">
-            <div className="max-w-4xl mx-auto text-center">
-               <div className="bg-indigo-600 w-24 h-24 rounded-full flex items-center justify-center text-white mx-auto mb-8 shadow-2xl shadow-indigo-200 animate-bounce">
-                  <Award className="w-12 h-12" />
-               </div>
-               <h1 className="text-4xl font-black uppercase mb-2 tracking-tighter">Practice Complete</h1>
-               <p className="text-slate-400 font-bold uppercase tracking-[0.2em] mb-12">{state.lastResult?.examTitle}</p>
-               
-               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-                  <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100"><p className="text-4xl font-black text-slate-900">{state.lastResult?.score?.toFixed(2)}</p><p className="text-[10px] font-black uppercase text-slate-400 mt-1">Final Score</p></div>
-                  <div className="bg-emerald-50 p-8 rounded-3xl border border-emerald-100"><p className="text-4xl font-black text-emerald-600">{state.lastResult?.correctCount}</p><p className="text-[10px] font-black uppercase text-emerald-400 mt-1">Correct</p></div>
-                  <div className="bg-rose-50 p-8 rounded-3xl border border-rose-100"><p className="text-4xl font-black text-rose-600">{state.lastResult?.wrongCount}</p><p className="text-[10px] font-black uppercase text-rose-400 mt-1">Wrong</p></div>
-                  <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100"><p className="text-4xl font-black text-slate-600">{state.lastResult?.skippedCount}</p><p className="text-[10px] font-black uppercase text-slate-400 mt-1">Skipped</p></div>
-               </div>
-
-               <button onClick={() => setState(prev => ({ ...prev, activePage: Page.DASHBOARD, lastResult: null }))} className="bg-slate-900 text-white px-16 py-6 rounded-3xl font-black uppercase tracking-widest shadow-2xl active:scale-95 transition-all">Return to Dashboard</button>
-            </div>
-         </div>
-      )}
+      <main className="flex-1 overflow-auto relative">
+        {renderContent()}
+        {currentView !== 'exam' && currentView !== 'result' && !isLoading && (
+          <AIChatAssistant />
+        )}
+      </main>
     </div>
   );
-};
+}
+
+const NavItem: React.FC<{ active: boolean; icon: React.ReactNode; label: string; onClick: () => void }> = ({ active, icon, label, onClick }) => (
+  <button 
+    onClick={onClick}
+    className={`flex items-center gap-3 w-full px-4 py-3 rounded-xl transition-all duration-200 ${
+      active 
+        ? 'bg-indigo-600 text-white shadow-md shadow-indigo-100 translate-x-1' 
+        : 'text-slate-500 hover:bg-slate-100 hover:text-slate-800'
+    }`}
+  >
+    {icon}
+    <span className="font-semibold text-sm">{label}</span>
+  </button>
+);
+
+const SettingsPage: React.FC<{ onBack: () => void }> = ({ onBack }) => (
+  <div className="p-8 max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-2">
+    <div className="flex items-center gap-4 mb-8">
+      <button onClick={onBack} className="p-2 hover:bg-white rounded-lg transition-colors border border-transparent hover:border-slate-200">
+        <ArrowLeft size={24} className="text-slate-600" />
+      </button>
+      <h2 className="text-2xl font-bold text-slate-800">Account Settings</h2>
+    </div>
+    <div className="bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+      <div className="space-y-6">
+        <div>
+          <label className="block text-sm font-bold text-slate-700 mb-2">Display Name</label>
+          <input type="text" className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none" defaultValue="User" />
+        </div>
+        <div>
+          <label className="block text-sm font-bold text-slate-700 mb-2">Bilingual Preference</label>
+          <select className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg outline-none">
+            <option>Hindi & English (Both)</option>
+            <option>English Only</option>
+            <option>Hindi Only</option>
+          </select>
+        </div>
+        <div className="pt-4 border-t">
+          <button className="px-6 py-2 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition-colors">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 export default App;

@@ -1,76 +1,66 @@
 
-export type Language = 'en' | 'hi';
-
 export interface Translation {
-  language: Language;
-  content: string;
+  en: string;
+  hi: string;
 }
 
 export interface Option {
   id: string;
-  orderIndex: number;
-  translations: Translation[];
+  text: Translation;
 }
 
 export interface Question {
   id: string;
-  order: number;
-  subject: string;
-  correctAnswer: number;
-  translations: Translation[];
+  number: number;
+  content: Translation;
   options: Option[];
+  correctOptionId: string;
+  explanation: Translation;
 }
 
-export interface Exam {
+export interface ExamPaper {
   id: string;
   title: string;
-  examName: string;
+  examType: string;
   year: number;
-  type: string;
-  durationMinutes: number;
-  totalMarks: number;
-  negativeMarking: number;
+  subject: string;
   questions: Question[];
+  status: 'draft' | 'published';
   createdAt: number;
 }
 
-export interface UserAnswer {
+export interface ParsingJob {
+  id: string;
+  title: string;
+  fileName: string;
+  status: 'pending' | 'parsing' | 'review' | 'failed';
+  progress: number;
+  progressMsg: string;
+  parsedQuestions?: Question[];
+  metadata: {
+    examType: string;
+    year: number;
+    subject: string;
+  };
+}
+
+export interface AttemptResponse {
   questionId: string;
   selectedOptionId: string | null;
   isMarkedForReview: boolean;
+  timeSpent: number; // in seconds
 }
 
-export interface Attempt {
+export interface ExamAttempt {
   id: string;
-  examId: string;
-  examTitle: string;
+  paperId: string;
+  userId: string;
   startTime: number;
-  endTime?: number;
-  status: 'IN_PROGRESS' | 'COMPLETED';
-  userAnswers: UserAnswer[];
-  
-  // Stats for completed attempts
-  score?: number;
-  correctCount?: number;
-  wrongCount?: number;
-  skippedCount?: number;
-}
-
-export enum Page {
-  DASHBOARD = 'DASHBOARD',
-  HISTORY = 'HISTORY',
-  SETTINGS = 'SETTINGS',
-  EXAM_ROOM = 'EXAM_ROOM',
-  INSTRUCTIONS = 'INSTRUCTIONS',
-  RESULTS = 'RESULTS'
-}
-
-export interface AppState {
-  exams: Exam[];
-  history: Attempt[];
-  activePage: Page;
-  currentExam: Exam | null;
-  activeAttempt: Attempt | null;
-  lastResult: Attempt | null;
-  preferredLanguage: Language;
+  endTime: number | null;
+  timeElapsed: number; // seconds
+  responses: AttemptResponse[];
+  score: number;
+  totalCorrect: number;
+  totalIncorrect: number;
+  totalUnattempted: number;
 }
