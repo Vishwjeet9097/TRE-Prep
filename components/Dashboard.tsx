@@ -1,156 +1,454 @@
 
 import React from 'react';
-import { Plus, Trash2, ArrowRight, BookOpen, Clock, FileText, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
-import { ExamPaper, ParsingJob } from '../types';
+import { Plus, Trash2, ArrowRight, BookOpen, Clock, FileText, Loader2, CheckCircle2, AlertCircle, ChevronRight, ChevronLeft, Activity, Calendar, Trophy, Play } from 'lucide-react';
+import { ExamPaper, ParsingJob, ExamAttempt } from '../types';
+import { useConfirm } from '../context/ConfirmContext';
 
 interface DashboardProps {
   papers: ExamPaper[];
   jobs: ParsingJob[];
+  attempts: ExamAttempt[];
   onStartExam: (paper: ExamPaper) => void;
   onImportClick: () => void;
   onDeletePaper: (id: string) => void;
   onReviewJob: (job: ParsingJob) => void;
   onDeleteJob: (id: string) => void;
+  onViewAttempt: (attempt: ExamAttempt) => void;
+  onResumeJob: (job: ParsingJob) => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ 
-  papers, 
-  jobs, 
-  onStartExam, 
-  onImportClick, 
+const Dashboard: React.FC<DashboardProps> = ({
+  papers,
+  jobs,
+  attempts,
+  onStartExam,
+  onImportClick,
   onDeletePaper,
   onReviewJob,
-  onDeleteJob
+  onDeleteJob,
+  onViewAttempt,
+  onResumeJob
 }) => {
-  return (
-    <div className="p-8 max-w-6xl mx-auto animate-in fade-in duration-500 pb-20">
-      <div className="flex justify-between items-center mb-10">
-        <div>
-          <h2 className="text-3xl font-extrabold text-slate-800">My Question Papers</h2>
-          <p className="text-slate-500 mt-1 font-medium">Practice with AI-curated competitive exams</p>
+  const [viewDate, setViewDate] = React.useState(new Date());
+  const { confirm } = useConfirm();
+
+  const handleDeletePaper = async (id: string, title: string) => {
+    if (await confirm({
+      title: "Delete Paper",
+      description: `Are you sure you want to delete "${title}"? This action cannot be undone.`,
+      confirmLabel: "Delete",
+      cancelLabel: "Cancel",
+      variant: "danger"
+    })) {
+      onDeletePaper(id);
+    }
+  };
+
+
+  const handlePrevMonth = () => {
+    setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1));
+  };
+
+  const handleNextMonth = () => {
+    setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1));
+  };
+
+  const recentAttempts = [...attempts].sort((a, b) => new Date(b.startTime).getTime() - new Date(a.startTime).getTime()).slice(0, 5);
+
+  /* --- Helper Components for Charts --- */
+  const BarChart = ({ data }: { data: ExamAttempt[] }) => {
+    const maxScore = 100;
+
+    return (
+      <div className="relative h-40 w-full pt-6 flex flex-col justify-end">
+        {/* Background Grid Lines for "Financial" Look */}
+        <div className="absolute inset-0 flex flex-col justify-between text-[9px] text-slate-300 font-bold z-0 pb-6 pointer-events-none">
+          <div className="w-full border-b border-dashed border-slate-100 flex items-center"><span className="absolute -left-0">100%</span></div>
+          <div className="w-full border-b border-dashed border-slate-100 flex items-center"><span className="absolute -left-0">50%</span></div>
+          <div className="w-full border-b border-dashed border-slate-100 flex items-center"><span className="absolute -left-0">0%</span></div>
         </div>
-        <button 
+
+        <div className="flex items-end gap-3 h-full w-full z-10 pl-6">
+          {data.map((attempt, i) => {
+            const paper = papers.find(p => p.id === attempt.paperId);
+            const pct = Math.round((attempt.score / (paper?.questions.length || 1)) * 100);
+            const height = Math.max(pct, 10); // min height for visibility
+
+            return (
+              <div key={i} className="flex-1 flex flex-col items-center gap-2 group relative cursor-pointer" onClick={() => onViewAttempt(attempt)}>
+                {/* Tooltip on Hover */}
+                <div className="absolute bottom-full mb-2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20 shadow-xl">
+                  {paper?.title} • {pct}%
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
+                </div>
+
+                {/* Animated Gradient Bar */}
+                <div className="w-full bg-slate-50/50 rounded-t-xl relative overflow-hidden h-full group-hover:bg-slate-100 transition-colors">
+                  <div
+                    className="absolute bottom-0 left-0 right-0 rounded-t-xl transition-all duration-1000 ease-out shadow-[0_4px_20px_-4px_rgba(99,102,241,0.5)] bg-gradient-to-t from-indigo-600 to-indigo-400 group-hover:to-indigo-500"
+                    style={{ height: `${height}%` }}
+                  >
+                    {/* Inner shine effect */}
+                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/30"></div>
+                  </div>
+                </div>
+
+                {/* Date Label */}
+                <span className="text-[10px] font-bold text-slate-400 group-hover:text-indigo-600 transition-colors">
+                  {new Date(attempt.startTime).getDate()}
+                </span>
+              </div>
+            )
+          })}
+
+          {data.length === 0 && (
+            <div className="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-50/50 rounded-2xl border-2 border-dashed border-slate-100">
+              No activity data yet.
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  const renderMobile = () => (
+    <div className="md:hidden space-y-6 pb-32">
+      {/* Header */}
+      <div className="flex flex-col gap-2">
+        <h2 className="text-2xl font-black text-slate-800 tracking-tight">Dashboard</h2>
+        <button
           onClick={onImportClick}
-          className="flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 shadow-lg shadow-indigo-100 transition-all hover:-translate-y-0.5 active:translate-y-0"
+          className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-indigo-600 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-200"
         >
-          <Plus size={20} />
-          Import New PDF
+          <Plus size={18} /> Import New Paper
         </button>
       </div>
 
-      {/* Active Parsing Jobs Section */}
-      {jobs.length > 0 && (
-        <div className="mb-12 space-y-4">
-          <h3 className="text-lg font-black text-slate-400 uppercase tracking-widest flex items-center gap-3">
-            Processing Jobs
-            <span className="w-6 h-6 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-xs">{jobs.length}</span>
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {jobs.map(job => (
-              <div key={job.id} className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex flex-col gap-4 relative overflow-hidden group">
-                <div className="flex justify-between items-start">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${job.status === 'failed' ? 'bg-red-50 text-red-600' : 'bg-indigo-50 text-indigo-600'}`}>
-                      {job.status === 'parsing' ? <Loader2 size={20} className="animate-spin" /> : 
-                       job.status === 'review' ? <CheckCircle2 size={20} /> : <AlertCircle size={20} />}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-slate-800 truncate max-w-[200px]">{job.title}</h4>
-                      <p className="text-xs text-slate-400 font-medium">{job.fileName}</p>
-                    </div>
-                  </div>
-                  <button 
-                    onClick={() => onDeleteJob(job.id)}
-                    className="text-slate-300 hover:text-red-500 transition-colors"
-                  >
-                    <Trash2 size={16} />
-                  </button>
+      {/* Papers List Mobile */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-black text-slate-800 tracking-tight">My Papers ({papers.length})</h3>
+        </div>
+        {papers.length === 0 ? (
+          <div className="p-8 text-center bg-white rounded-3xl border border-dashed border-slate-200">
+            <p className="text-slate-400 text-sm">No papers yet.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4">
+            {papers.map(paper => (
+              <div key={paper.id} className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
+                <div className="flex justify-between items-start mb-2">
+                  <span className="px-2 py-1 bg-indigo-50 text-indigo-700 text-[10px] font-black uppercase tracking-widest rounded-lg">{paper.examType || 'Exam'}</span>
+                  <button onClick={() => handleDeletePaper(paper.id, paper.title)} className="text-slate-300 hover:text-rose-500"><Trash2 size={16} /></button>
                 </div>
-
-                <div className="space-y-2">
-                  <div className="flex justify-between text-xs font-bold">
-                    <span className={job.status === 'failed' ? 'text-red-600' : 'text-indigo-600'}>
-                      {job.progressMsg}
-                    </span>
-                    <span className="text-slate-400">{job.progress}%</span>
-                  </div>
-                  <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
-                    <div 
-                      className={`h-full transition-all duration-500 ${job.status === 'failed' ? 'bg-red-500' : 'bg-indigo-600'}`} 
-                      style={{ width: `${job.progress}%` }}
-                    />
-                  </div>
-                </div>
-
-                {job.status === 'review' && (
-                  <button 
-                    onClick={() => onReviewJob(job)}
-                    className="w-full py-2 bg-indigo-600 text-white font-bold rounded-lg text-sm hover:bg-indigo-700 transition-colors shadow-md shadow-indigo-100"
-                  >
-                    Review & Approve
-                  </button>
-                )}
+                <h4 className="font-bold text-slate-900 text-lg mb-4 line-clamp-2">{paper.title}</h4>
+                <button onClick={() => onStartExam(paper)} className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2">Start Exam <ArrowRight size={16} /></button>
               </div>
             ))}
           </div>
+        )}
+      </div>
+
+      {/* Recent Activity Mobile */}
+      {recentAttempts.length > 0 && (
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <h3 className="text-lg font-black text-slate-800 tracking-tight">Recent Activity</h3>
+          </div>
+          <div className="grid grid-cols-1 gap-3">
+            {recentAttempts.map(attempt => {
+              const paper = papers.find(p => p.id === attempt.paperId);
+              const percentage = Math.round((attempt.score / (paper?.questions.length || 1)) * 100);
+              const isPass = percentage >= 40;
+              return (
+                <div key={attempt.id} onClick={() => onViewAttempt(attempt)} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm active:scale-95 transition-all flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-sm text-white shadow-md ${isPass ? 'bg-emerald-500 shadow-emerald-200' : 'bg-rose-500 shadow-rose-200'}`}>
+                      {percentage}%
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-slate-800 line-clamp-1">{paper?.title || 'Unknown Paper'}</h4>
+                      <span className="text-xs font-medium text-slate-400 flex items-center gap-1">
+                        <Calendar size={10} />
+                        {new Date(attempt.startTime).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                  <ChevronRight size={16} className="text-slate-300" />
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
+    </div>
+  );
 
-      {papers.length === 0 && jobs.length === 0 ? (
-        <div className="bg-white rounded-3xl border-2 border-dashed border-slate-200 p-20 flex flex-col items-center justify-center text-center">
-          <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 mb-6">
-            <FileText size={40} />
-          </div>
-          <h3 className="text-xl font-bold text-slate-800 mb-2">No Papers Imported Yet</h3>
-          <p className="text-slate-500 max-w-sm mb-8">Upload your exam PDFs and let our AI extract questions and prepare practice tests for you.</p>
-          <button 
-            onClick={onImportClick}
-            className="text-indigo-600 font-bold hover:underline"
-          >
-            Start by importing your first paper
-          </button>
+  const renderDesktop = () => (
+    <div className="hidden md:flex flex-col h-full overflow-hidden bg-[#F8F9FD] p-8 gap-8">
+      {/* Skillify Header */}
+      <div className="flex justify-between items-center shrink-0">
+        <div>
+          <h1 className="text-3xl font-black text-slate-900 tracking-tight">Welcome back, User</h1>
+          <p className="text-slate-400 font-medium mt-1">Ready to create next big thing?</p>
         </div>
-      ) : papers.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {papers.map(paper => (
-            <div key={paper.id} className="group bg-white rounded-2xl border border-slate-200 p-6 hover:shadow-xl hover:shadow-indigo-50/50 transition-all flex flex-col h-full">
-              <div className="flex justify-between items-start mb-4">
-                <div className="px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-full uppercase tracking-wider">
-                  {paper.examType || 'Practice'}
-                </div>
-                <button 
-                  onClick={() => {
-                    if (confirm('Delete this paper and all attempt history?')) onDeletePaper(paper.id);
-                  }}
-                  className="p-2 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                >
-                  <Trash2 size={18} />
-                </button>
+        <div className="flex items-center gap-6">
+          <div className="relative">
+            <input type="text" placeholder="Search papers..." className="pl-10 pr-4 py-3 bg-white rounded-full border-none shadow-sm text-sm font-medium w-64 focus:ring-2 focus:ring-indigo-100 outline-none transition-all text-slate-600 placeholder:text-slate-300" />
+            <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+          <div className="flex -space-x-2">
+            <div className="w-10 h-10 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-indigo-700 font-bold text-xs">JD</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Dashboard Content Grid */}
+      <div className="flex-1 grid grid-cols-12 gap-8 overflow-y-auto pr-2 pb-20 no-scrollbar">
+
+        {/* Left Main (8 cols) */}
+        <div className="col-span-8 flex flex-col gap-8">
+
+          {/* "Your Course" Section -> Active Papers List */}
+          <div className="bg-transparent">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="font-bold text-slate-900 text-xl">My Papers</h3>
+              <button onClick={onImportClick} className="px-5 py-2 bg-indigo-600 text-white rounded-full text-xs font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all">Import New</button>
+            </div>
+
+            {papers.length === 0 && jobs.length === 0 ? (
+              <div className="bg-white p-12 rounded-[2rem] text-center shadow-sm">
+                <p className="text-slate-400 font-bold">No papers found.</p>
               </div>
-              <h3 className="text-xl font-bold text-slate-800 line-clamp-2 mb-2 group-hover:text-indigo-600 transition-colors">
-                {paper.title}
-              </h3>
-              <div className="mt-auto space-y-3 pt-4">
-                <div className="flex items-center gap-2 text-slate-500 text-sm">
-                  <BookOpen size={16} />
-                  <span>{paper.questions.length} Questions</span>
+            ) : (
+              <div className="space-y-4">
+                {/* Active Jobs (Processing) rendered as cards */}
+                {jobs.map(job => (
+                  <div key={job.id} className="bg-white p-4 pr-6 rounded-[2rem] flex items-center gap-4 shadow-sm border border-indigo-100 relative overflow-hidden">
+                    {/* Background Progress */}
+                    {job.status === 'parsing' && (
+                      <div className="absolute bottom-0 left-0 h-1 bg-indigo-100 w-full">
+                        <div className="h-full bg-indigo-600 transition-all duration-500" style={{ width: `${job.progress}%` }}></div>
+                      </div>
+                    )}
+
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 ${job.status === 'paused' ? 'bg-amber-100 text-amber-600' :
+                      job.status === 'review' ? 'bg-emerald-50 text-emerald-600' :
+                        job.status === 'failed' ? 'bg-rose-50 text-rose-600' :
+                          'bg-indigo-50 text-indigo-600'
+                      }`}>
+                      {job.status === 'review' ? <CheckCircle2 size={24} /> :
+                        job.status === 'paused' ? <AlertCircle size={24} /> :
+                          job.status === 'failed' ? <AlertCircle size={24} /> :
+                            <Loader2 size={24} className="animate-spin" />}
+                    </div>
+
+                    <div className="flex-1">
+                      <h4 className="font-bold text-slate-900 text-lg mb-1">
+                        {job.status === 'review' ? 'Ready for Review' :
+                          job.status === 'paused' ? 'Extraction Paused' :
+                            job.status === 'failed' ? 'Extraction Failed' :
+                              'Digitizing Paper...'}
+                      </h4>
+                      <p className={`text-xs font-bold uppercase tracking-wider ${job.status === 'paused' ? 'text-amber-500' :
+                        job.status === 'failed' ? 'text-rose-500' :
+                          'text-slate-400'
+                        }`}>
+                        {job.status === 'review' ? 'Waiting for approval' :
+                          job.status === 'paused' ? `Limit Reached • ${job.completedBatches ? job.completedBatches * 30 : 0} Questions Saved` :
+                            job.progressMsg}
+                      </p>
+                    </div>
+
+                    <div className="mr-8 flex items-center gap-2">
+                      {job.status === 'review' && (
+                        <button onClick={() => onReviewJob(job)} className="px-5 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all flex items-center gap-2">
+                          Review Now <ArrowRight size={14} />
+                        </button>
+                      )}
+
+                      {job.status === 'paused' && (
+                        <button onClick={() => onResumeJob(job)} className="px-5 py-2 bg-amber-500 text-white rounded-xl text-xs font-bold shadow-lg shadow-amber-200 hover:bg-amber-600 transition-all flex items-center gap-2 animate-pulse">
+                          <Play size={14} fill="currentColor" /> Resume
+                        </button>
+                      )}
+
+                      {(job.status === 'paused' || job.status === 'failed') && (
+                        <button onClick={() => onDeleteJob(job.id)} className="p-2 text-slate-300 hover:text-rose-500 hover:bg-rose-50 rounded-lg transition-all">
+                          <Trash2 size={16} />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+
+                {papers.slice(0, 3).map((paper, i) => (
+                  <div key={paper.id} className="bg-white p-4 pr-6 rounded-[2rem] flex items-center gap-4 shadow-sm hover:shadow-md transition-all cursor-pointer group hover:border border-indigo-50 border-transparent" onClick={() => onStartExam(paper)}>
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shrink-0 ${i % 2 === 0 ? 'bg-[#98ABEE]' : 'bg-[#F9E8C9] text-orange-400'}`}>
+                      <FileText />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-slate-900 text-lg mb-1">{paper.title}</h4>
+                      <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">{paper.subject || 'General Studies'}</p>
+                    </div>
+                    <div className="hidden lg:block text-right mr-8">
+                      <p className="text-xs font-bold text-slate-400 uppercase">Questions</p>
+                      <p className="font-black text-slate-900">{paper.questions.length}</p>
+                    </div>
+                    <div className="w-12 h-12 rounded-full border-2 border-slate-100 flex items-center justify-center text-slate-300 group-hover:border-indigo-600 group-hover:text-indigo-600 transition-all">
+                      <ArrowRight size={20} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* "Hours Activity" -> Chart */}
+          <div className="bg-white p-8 rounded-[2.5rem] shadow-sm relative overflow-hidden">
+            <div className="flex justify-between items-center mb-6 z-10 relative">
+              <div>
+                <h3 className="font-bold text-slate-900 text-xl">Performance Activity</h3>
+                <p className="text-xs text-emerald-500 font-bold mt-1 flex items-center gap-1"><ArrowRight size={12} className="-rotate-45" /> +4.5% increased</p>
+              </div>
+              <div className="px-4 py-2 bg-indigo-50 text-indigo-600 rounded-xl text-xs font-bold cursor-pointer">Weekly</div>
+            </div>
+            <BarChart data={recentAttempts} />
+          </div>
+
+          {/* "Recent Activity" Table Section */}
+          <div className="bg-white p-8 rounded-[2.5rem] shadow-sm">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="font-bold text-slate-900 text-xl">Recent Activity</h3>
+              <button className="text-slate-400 hover:text-indigo-600 font-bold text-xs">View All</button>
+            </div>
+
+            <div className="w-full overflow-hidden">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr>
+                    <th className="pb-4 text-xs font-black text-slate-400 uppercase tracking-wider pl-4">Paper Name</th>
+                    <th className="pb-4 text-xs font-black text-slate-400 uppercase tracking-wider">Date</th>
+                    <th className="pb-4 text-xs font-black text-slate-400 uppercase tracking-wider">Status</th>
+                    <th className="pb-4 text-xs font-black text-slate-400 uppercase tracking-wider text-right pr-4">Action</th>
+                  </tr>
+                </thead>
+                <tbody className="space-y-4">
+                  {/* Recent Attempts Rows */}
+                  {recentAttempts.map(attempt => {
+                    const paper = papers.find(p => p.id === attempt.paperId);
+                    const pct = Math.round((attempt.score / (paper?.questions.length || 1)) * 100);
+                    const isPass = pct >= 40;
+
+                    return (
+                      <tr key={attempt.id} className="group border-b border-transparent hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer" onClick={() => onViewAttempt(attempt)}>
+                        <td className="py-4 pl-4 first:rounded-l-2xl">
+                          <div className="flex items-center gap-3">
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-xs ${isPass ? 'bg-emerald-400' : 'bg-rose-400'}`}>
+                              {paper?.title.substring(0, 1)}
+                            </div>
+                            <div>
+                              <h4 className="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">{paper?.title || 'Unknown Paper'}</h4>
+                              <p className="text-[10px] text-slate-400 font-bold uppercase">{paper?.examType || 'Exam'}</p>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="py-4 text-sm font-bold text-slate-500">{new Date(attempt.startTime).toLocaleDateString()}</td>
+                        <td className="py-4">
+                          <span className={`px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider ${isPass ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                            {isPass ? 'Passed' : 'Failed'}
+                          </span>
+                        </td>
+                        <td className="py-4 pr-4 last:rounded-r-2xl text-right">
+                          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 text-slate-500 text-xs font-bold group-hover:bg-indigo-600 group-hover:text-white group-hover:border-indigo-600 transition-all">
+                            View Result <ArrowRight size={12} />
+                          </div>
+                        </td>
+                      </tr>
+                    )
+                  })}
+
+                  {recentAttempts.length === 0 && (
+                    <tr>
+                      <td colSpan={4} className="py-8 text-center text-slate-400 font-bold text-sm">No recent activity found.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Right Sidebar (4 cols) */}
+        <div className="col-span-4 flex flex-col gap-8">
+
+          {/* "Join Our Class" -> Import Promo */}
+          <div className="bg-black rounded-[2.5rem] p-8 text-white relative overflow-hidden min-h-[280px] flex flex-col justify-center items-start shadow-xl cursor-pointer group" onClick={onImportClick}>
+            <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500 rounded-full blur-[60px] opacity-60 translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-orange-400 rounded-full blur-[50px] opacity-40 -translate-x-1/2 translate-y-1/2"></div>
+
+            <h2 className="text-4xl font-black leading-tight mb-4 relative z-10">Digitize<br />Your Exams<br /><span className="text-indigo-400">Instantly.</span></h2>
+            <div className="flex items-center gap-4 mt-auto">
+              <span className="px-4 py-2 bg-orange-400 text-black text-xs font-black rounded-full shadow-lg shadow-orange-200/50">-50% Time</span>
+              <button className="px-6 py-2 bg-indigo-600 rounded-full text-xs font-bold hover:bg-indigo-500 transition-colors">Start Import</button>
+            </div>
+          </div>
+
+          {/* "Daily Schedule" -> Calendar Widget (Placeholder) */}
+          <div className="bg-white p-8 rounded-[2.5rem] shadow-sm flex-1">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="font-bold text-slate-900 text-xl">Daily Schedule</h3>
+              <Calendar size={20} className="text-slate-400" />
+            </div>
+            {/* Calendar Grid Aesthetic */}
+            <div className="grid grid-cols-7 gap-2 text-center text-xs font-bold mb-4">
+              {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => <span key={i} className="text-slate-400">{d}</span>)}
+              {Array.from({ length: 31 }).map((_, i) => {
+                const dayNum = i + 1;
+                const today = new Date();
+                const isToday = dayNum === today.getDate();
+
+                const hasAttempt = recentAttempts.some(a => {
+                  const d = new Date(a.startTime);
+                  return d.getDate() === dayNum && d.getMonth() === today.getMonth();
+                });
+
+                let tileClass = "text-slate-700 hover:bg-slate-50";
+                if (isToday) {
+                  tileClass = "bg-indigo-600 text-white shadow-lg shadow-indigo-200 scale-110";
+                } else if (hasAttempt) {
+                  tileClass = "bg-orange-100 text-orange-600 border border-orange-200 font-black";
+                }
+
+                return (
+                  <div key={i} className={`aspect-square flex items-center justify-center rounded-full cursor-pointer transition-all duration-300 text-[10px] md:text-xs font-bold ${tileClass}`}>
+                    {dayNum}
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="space-y-4 pt-4 border-t border-slate-100">
+              <div className="flex items-center gap-4 p-3 rounded-2xl bg-[#FFF4F0] border border-orange-100">
+                <div className="w-10 h-10 rounded-full bg-orange-400 text-white flex items-center justify-center font-black text-xs">AI</div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-sm">Review Papers</h4>
+                  <p className="text-[10px] text-slate-400 font-bold">12:00 PM</p>
                 </div>
-                <div className="flex items-center gap-2 text-slate-500 text-sm">
-                  <Clock size={16} />
-                  <span>{new Date(paper.createdAt).toLocaleDateString()}</span>
-                </div>
-                <button 
-                  onClick={() => onStartExam(paper)}
-                  className="w-full flex items-center justify-center gap-2 py-3 mt-4 bg-slate-900 text-white font-bold rounded-xl group-hover:bg-indigo-600 transition-all shadow-md group-hover:shadow-indigo-100"
-                >
-                  Start Exam
-                  <ArrowRight size={18} />
-                </button>
               </div>
             </div>
-          ))}
+          </div>
+
         </div>
-      )}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="p-4 md:p-8 h-full w-full">
+      {renderMobile()}
+      {renderDesktop()}
     </div>
   );
 };

@@ -40,13 +40,13 @@ const responseSchema = {
  * This is necessary to avoid hitting the AI's output token limit for 150 bilingual questions.
  */
 export const extractQuestionBatch = async (
-  pdfBase64: string, 
-  rangeStart: number, 
+  pdfBase64: string,
+  rangeStart: number,
   rangeEnd: number,
   onProgress: (msg: string) => void
 ) => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  
+
   const systemInstruction = `
     You are a Professional BPSC TRE 4.0 Digitizer.
     TASK: Extract questions numbered ${rangeStart} to ${rangeEnd} from the provided PDF.
@@ -75,7 +75,7 @@ export const extractQuestionBatch = async (
 
     const text = response.text;
     if (!text) return [];
-    
+
     const parsed = JSON.parse(text);
     return (parsed.questions || []).map((q: any) => ({
       id: Math.random().toString(36).substr(2, 9),
@@ -90,30 +90,70 @@ export const extractQuestionBatch = async (
     }));
   } catch (error) {
     console.error(`Batch ${rangeStart}-${rangeEnd} failed:`, error);
-    return [];
+    throw error; // Propagate error to main parser
   }
 };
+
+// Custom error for rate limits
+export class LimitReachedError extends Error {
+  parsedQuestions: any[];
+  completedBatches: number;
+
+  constructor(message: string, parsedQuestions: any[], completedBatches: number) {
+    super(message);
+    this.name = "LimitReachedError";
+    this.parsedQuestions = parsedQuestions;
+    this.completedBatches = completedBatches;
+  }
+}
 
 /**
  * Orchestrates the full 150-question extraction by calling batches.
  */
-export const parseExamPDF = async (pdfBase64: string, onProgress: (msg: string) => void) => {
-  const allQuestions: any[] = [];
+export const parseExamPDF = async (
+  pdfBase64: string,
+  onProgress: (msg: string) => void,
+  startBatch: number = 0,
+  initialQuestions: any[] = []
+) => {
+  const allQuestions: any[] = [...initialQuestions];
   const batchSize = 30;
   const totalQuestions = 150;
   const totalBatches = Math.ceil(totalQuestions / batchSize);
 
-  onProgress("Initializing Professional Multi-Batch Parser...");
+  onProgress(`Initializing Professional Parser (Batch ${startBatch + 1}/${totalBatches})...`);
 
-  for (let i = 0; i < totalBatches; i++) {
+  for (let i = startBatch; i < totalBatches; i++) {
     const start = (i * batchSize) + 1;
     const end = Math.min((i + 1) * batchSize, totalQuestions);
-    
+
     onProgress(`Processing Batch ${i + 1}/${totalBatches}: Extracting Questions ${start}-${end}...`);
-    
-    const batch = await extractQuestionBatch(pdfBase64, start, end, onProgress);
-    allQuestions.push(...batch);
-    
+
+    try {
+      const batch = await extractQuestionBatch(pdfBase64, start, end, onProgress);
+      allQuestions.push(...batch);
+    } catch (error: any) {
+      // Check for rate limit / quota errors
+      if (error.message?.includes("429") || error.message?.includes("quota") || error.message?.includes("limit")) {
+        throw new LimitReachedError(
+          "API Limit Reached. Pausing extraction to preserve progress.",
+          allQuestions,
+          i // Completed batches count (failed at i, so i batches fully done before? No, i failed. so i batches completed? No, 0 to i-1 completed)
+          // Actually, if batch i failed, we have completed i batches (0 to i-1). 
+          // So restarting at i is correct.
+        );
+      }
+      console.error(`Batch ${i} failed, skipping...`, error);
+      // For non-critical errors, we might want to continue or throw?
+      // Let's throw LimitReachedError for generic failures too if we want "Resume" capability for network errors etc.
+      // But strictly speaking:
+      throw new LimitReachedError(
+        "Extraction Interrupted. You can resume from this batch.",
+        allQuestions,
+        i
+      );
+    }
+
     // Tiny delay to respect rate limits
     await new Promise(r => setTimeout(r, 1000));
   }

@@ -1,14 +1,14 @@
 
 import React from 'react';
-import { 
-  ArrowLeft, 
-  Clock, 
-  History as HistoryIcon, 
-  TrendingUp, 
-  ChevronRight, 
-  Award, 
-  Target, 
-  Zap, 
+import {
+  ArrowLeft,
+  Clock,
+  History as HistoryIcon,
+  TrendingUp,
+  ChevronRight,
+  Award,
+  Target,
+  Zap,
   Calendar,
   CheckCircle2,
   XCircle,
@@ -40,163 +40,122 @@ const HistoryView: React.FC<HistoryViewProps> = ({ onBack, onSelectAttempt }) =>
   };
 
   return (
-    <div className="p-4 md:p-10 max-w-6xl mx-auto animate-in fade-in duration-500 pb-20">
-      {/* Header Section */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-        <div className="flex items-center gap-5">
-          <button 
-            onClick={onBack} 
-            className="p-3 hover:bg-white rounded-2xl border border-transparent hover:border-slate-200 transition-all shadow-sm bg-slate-50"
-          >
-            <ArrowLeft size={24} className="text-slate-600" />
-          </button>
-          <div>
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight flex items-center gap-3">
-              <HistoryIcon className="text-indigo-600" size={32} />
-              Performance Log
-            </h2>
-            <p className="text-slate-500 font-medium mt-1">Track your progress and review past attempts</p>
+    <div className="p-4 md:p-10 min-h-full bg-[#F8F9FD] animate-in fade-in duration-500 pb-24 md:pb-20">
+      <div className="max-w-6xl mx-auto">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 mb-8 md:mb-12">
+          <div className="flex items-center gap-3 md:gap-5">
+            <button
+              onClick={onBack}
+              className="w-10 h-10 md:w-12 md:h-12 bg-white border border-slate-200 rounded-xl flex items-center justify-center text-slate-400 hover:text-indigo-600 transition-colors shadow-sm"
+            >
+              <ArrowLeft size={20} className="md:w-6 md:h-6" />
+            </button>
+            <div>
+              <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2 md:gap-3">
+                <HistoryIcon className="text-indigo-600 md:w-8 md:h-8" size={24} />
+                Performance Log
+              </h2>
+              <p className="text-xs md:text-base text-slate-500 font-medium mt-0.5 md:mt-1">Track your progress and review past attempts</p>
+            </div>
           </div>
-        </div>
 
-        {attempts.length > 0 && (
-          <div className="flex items-center gap-4 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm">
-             <div className="px-4 py-2 border-r border-slate-100 text-center">
-                <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Tests</span>
-                <span className="text-xl font-black text-indigo-600">{attempts.length}</span>
-             </div>
-             <div className="px-4 py-2 text-center">
-                <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Avg. Accuracy</span>
-                <span className="text-xl font-black text-emerald-600">
+          {attempts.length > 0 && (
+            <div className="flex items-center gap-2 md:gap-4 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm self-start md:self-auto">
+              <div className="px-3 md:px-4 py-1.5 md:py-2 border-r border-slate-100 text-center">
+                <span className="block text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Tests</span>
+                <span className="text-lg md:text-xl font-black text-indigo-600">{attempts.length}</span>
+              </div>
+              <div className="px-3 md:px-4 py-1.5 md:py-2 text-center">
+                <span className="block text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest">Avg. Accuracy</span>
+                <span className="text-lg md:text-xl font-black text-emerald-600">
                   {Math.round(attempts.reduce((acc, curr) => {
                     const paper = papers.find(p => p.id === curr.paperId);
                     return acc + (paper ? (curr.score / paper.questions.length) * 100 : 0);
                   }, 0) / (attempts.length || 1))}%
                 </span>
-             </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {attempts.length === 0 ? (
+          <div className="bg-white rounded-[2.5rem] border border-slate-200 p-10 md:p-20 text-center shadow-xl shadow-slate-200/50">
+            <div className="w-16 h-16 md:w-24 md:h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-slate-300">
+              <BarChart2 size={32} className="md:w-12 md:h-12" />
+            </div>
+            <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-2">No History Yet</h3>
+            <p className="text-sm md:text-base text-slate-500 font-medium max-w-sm mx-auto mb-6 md:mb-8">
+              Your exam attempts and performance analytics will appear here once you finish your first test.
+            </p>
+            <button
+              onClick={onBack}
+              className="px-6 py-3 md:px-8 md:py-4 bg-indigo-600 text-white font-black rounded-xl md:rounded-2xl hover:bg-indigo-700 shadow-xl shadow-indigo-100 transition-all text-sm md:text-base"
+            >
+              Take a Test Now
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 md:gap-4">
+            {attempts.map(attempt => {
+              const paper = papers.find(p => p.id === attempt.paperId);
+              const percentage = Math.round((attempt.score / (paper?.questions.length || 1)) * 100);
+              const { label, color } = getPerformanceLabel(percentage);
+
+              return (
+                <div
+                  key={attempt.id}
+                  onClick={() => onSelectAttempt(attempt)}
+                  className="bg-white p-5 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-lg hover:border-indigo-100 transition-all cursor-pointer group flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-4 md:gap-6">
+                    {/* Score Circle */}
+                    <div className="relative w-14 h-14 md:w-16 md:h-16 shrink-0">
+                      <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                        <circle cx="18" cy="18" r="16" className="fill-none stroke-slate-50" strokeWidth="2.5" />
+                        <circle
+                          cx="18"
+                          cy="18"
+                          r="16"
+                          className="fill-none stroke-indigo-600"
+                          strokeWidth="2.5"
+                          strokeDasharray={`${percentage}, 100`}
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                      <div className="absolute inset-0 flex items-center justify-center text-xs md:text-sm font-black text-slate-900">
+                        {percentage}%
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-base md:text-lg font-bold text-slate-900 mb-1 group-hover:text-indigo-600 transition-colors line-clamp-1">{paper?.title}</h3>
+                      <div className="flex items-center gap-3 text-xs md:text-sm text-slate-500 font-medium">
+                        <span className="flex items-center gap-1">
+                          <Calendar size={14} /> {new Date(attempt.startTime).toLocaleDateString()}
+                        </span>
+                        <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                        <span className="flex items-center gap-1">
+                          <Clock size={14} /> {formatDuration(attempt.timeElapsed)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4 md:gap-8">
+                    <span className={`hidden md:inline-flex px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border ${color}`}>
+                      {label}
+                    </span>
+                    <button className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-300 group-hover:bg-indigo-600 group-hover:text-white group-hover:border-transparent transition-all">
+                      <ChevronRight size={20} />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
-
-      {attempts.length === 0 ? (
-        <div className="bg-white rounded-[2.5rem] border border-slate-200 p-20 text-center shadow-xl shadow-slate-200/50">
-           <div className="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-300">
-              <BarChart2 size={48} />
-           </div>
-           <h3 className="text-2xl font-black text-slate-800 mb-2">No History Yet</h3>
-           <p className="text-slate-500 font-medium max-w-sm mx-auto mb-8">
-             Your exam attempts and performance analytics will appear here once you finish your first test.
-           </p>
-           <button 
-            onClick={onBack} 
-            className="px-8 py-4 bg-indigo-600 text-white font-black rounded-2xl hover:bg-indigo-700 shadow-xl shadow-indigo-100 transition-all"
-           >
-             Take a Test Now
-           </button>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 gap-6">
-          {attempts.map(attempt => {
-            const paper = papers.find(p => p.id === attempt.paperId);
-            const totalQuestions = paper?.questions.length || 0;
-            const percentage = totalQuestions > 0 ? Math.round((attempt.score / totalQuestions) * 100) : 0;
-            const perf = getPerformanceLabel(percentage);
-            const accuracy = (attempt.totalCorrect + attempt.totalIncorrect) > 0 
-              ? Math.round((attempt.totalCorrect / (attempt.totalCorrect + attempt.totalIncorrect)) * 100)
-              : 0;
-            
-            return (
-              <button 
-                key={attempt.id} 
-                onClick={() => onSelectAttempt(attempt)}
-                className="group w-full text-left bg-white rounded-3xl border border-slate-200 p-2 hover:shadow-2xl hover:shadow-indigo-50 hover:border-indigo-200 transition-all duration-300"
-              >
-                <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-6 p-4 md:p-6">
-                   {/* Score Badge */}
-                   <div className="flex flex-col items-center justify-center bg-slate-50 rounded-[2rem] px-8 py-6 shrink-0 group-hover:bg-indigo-50 transition-colors">
-                      <span className={`text-4xl font-black ${percentage >= 80 ? 'text-emerald-600' : percentage >= 40 ? 'text-indigo-600' : 'text-rose-600'}`}>
-                        {percentage}%
-                      </span>
-                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Overall</span>
-                   </div>
-
-                   {/* Main Info */}
-                   <div className="flex-1 space-y-4">
-                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                         <div>
-                            <div className="flex items-center gap-3 mb-1">
-                               <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border ${perf.color}`}>
-                                 {perf.label}
-                               </span>
-                               <span className="text-[10px] text-slate-400 font-black uppercase tracking-widest flex items-center gap-1">
-                                 <Calendar size={12} /> {new Date(attempt.endTime || 0).toLocaleDateString()}
-                               </span>
-                            </div>
-                            <h4 className="font-black text-slate-800 text-xl leading-tight group-hover:text-indigo-600 transition-colors">
-                               {paper?.title || 'Unknown Paper'}
-                            </h4>
-                         </div>
-                         
-                         <div className="flex items-center gap-4">
-                            <div className="text-right hidden sm:block">
-                               <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Time Spent</span>
-                               <span className="font-bold text-slate-700 flex items-center gap-1.5 justify-end">
-                                 <Clock size={14} className="text-indigo-500" />
-                                 {formatDuration(attempt.timeElapsed)}
-                               </span>
-                            </div>
-                            <div className="p-2 bg-slate-50 rounded-full group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                              <ChevronRight size={24} className="group-hover:translate-x-1 transition-all" />
-                            </div>
-                         </div>
-                      </div>
-
-                      {/* Mini Stats Grid */}
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-slate-100">
-                         <div className="flex items-center gap-3">
-                            <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
-                               <CheckCircle2 size={16} />
-                            </div>
-                            <div>
-                               <span className="block text-[9px] font-black text-slate-400 uppercase tracking-tighter">Correct</span>
-                               <span className="font-bold text-slate-700 leading-none">{attempt.totalCorrect}</span>
-                            </div>
-                         </div>
-                         <div className="flex items-center gap-3">
-                            <div className="p-2 bg-rose-50 text-rose-600 rounded-xl">
-                               <XCircle size={16} />
-                            </div>
-                            <div>
-                               <span className="block text-[9px] font-black text-slate-400 uppercase tracking-tighter">Incorrect</span>
-                               <span className="font-bold text-slate-700 leading-none">{attempt.totalIncorrect}</span>
-                            </div>
-                         </div>
-                         <div className="flex items-center gap-3">
-                            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
-                               <Target size={16} />
-                            </div>
-                            <div>
-                               <span className="block text-[9px] font-black text-slate-400 uppercase tracking-tighter">Accuracy</span>
-                               <span className="font-bold text-slate-700 leading-none">{accuracy}%</span>
-                            </div>
-                         </div>
-                         <div className="flex items-center gap-3">
-                            <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
-                               <Zap size={16} />
-                            </div>
-                            <div>
-                               <span className="block text-[9px] font-black text-slate-400 uppercase tracking-tighter">Score</span>
-                               <span className="font-bold text-slate-700 leading-none">{attempt.score}/{totalQuestions}</span>
-                            </div>
-                         </div>
-                      </div>
-                   </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      )}
     </div>
   );
 };

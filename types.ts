@@ -33,10 +33,12 @@ export interface ParsingJob {
   id: string;
   title: string;
   fileName: string;
-  status: 'pending' | 'parsing' | 'review' | 'failed';
+  status: 'pending' | 'parsing' | 'paused' | 'review' | 'failed';
   progress: number;
   progressMsg: string;
   parsedQuestions?: Question[];
+  file?: File; // Transient, for resuming
+  completedBatches?: number;
   metadata: {
     examType: string;
     year: number;
