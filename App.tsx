@@ -344,9 +344,7 @@ const AppContent: React.FC = () => {
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 bg-white border-b border-slate-100 shrink-0 z-40">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white shadow-lg shadow-indigo-200">
-            <BookOpen size={18} />
-          </div>
+          <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-lg shadow-md" />
           <h1 className="text-lg font-bold tracking-tight text-slate-800">TRE-Prep</h1>
         </div>
         <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 border border-slate-200">
@@ -357,9 +355,7 @@ const AppContent: React.FC = () => {
       {currentView !== 'exam' && !isLoading && (
         <aside className="hidden md:flex w-72 bg-white flex-col shrink-0 transition-all p-4">
           <div className="px-4 py-6 flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
-              <BookOpen size={24} />
-            </div>
+            <img src="/logo.png" alt="TRE-Prep Logo" className="w-10 h-10 rounded-xl shadow-lg shadow-indigo-200" />
             <h1 className="text-xl font-black tracking-tight text-slate-900">TRE-Prep</h1>
           </div>
 
