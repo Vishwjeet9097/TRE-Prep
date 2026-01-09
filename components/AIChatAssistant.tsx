@@ -511,7 +511,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
       <div className={`transition-all duration-500 transform ${showBubble ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'} origin-bottom-right`}>
         <div className="bg-white px-5 py-3 rounded-2xl rounded-tr-sm shadow-xl border border-indigo-50 relative pointer-events-auto max-w-[200px]">
           <p className="text-xs font-bold text-slate-700 leading-snug">
-            Hey! I'm your <span className="text-indigo-600 font-black">AI Tutor</span>. Ready to study?
+            Hey! I'm your <span className="text-indigo-600 font-bold">AI Tutor</span>. Ready to study?
           </p>
           {/* Tail */}
           <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white rotate-45 border-b border-r border-indigo-50 shadow-sm"></div>
@@ -549,7 +549,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
           <div onClick={() => setIsMinimized(false)} className="absolute inset-0 flex items-center justify-center md:justify-between px-4 cursor-pointer gap-3">
             <div className="flex items-center gap-3">
               <img src="/logo.png" alt="AI" className="w-8 h-8 rounded-lg shadow-lg border border-white/20" />
-              <span className="hidden md:block font-black text-sm tracking-widest text-white">AI TUTOR</span>
+              <span className="hidden md:block font-bold text-sm tracking-widest text-white">AI TUTOR</span>
             </div>
             <Maximize2 size={20} className="md:hidden" />
           </div>
@@ -560,10 +560,10 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                 <img src="/logo.png" alt="AI" className="w-full h-full object-cover rounded-lg md:rounded-xl shadow-sm" />
               </div>
               <div>
-                <h4 className="font-black text-sm md:text-xl tracking-tight leading-none">BPSC AI</h4>
+                <h4 className="font-bold text-sm md:text-xl tracking-tight leading-none">BPSC AI</h4>
                 <div className="flex items-center gap-1.5 mt-1">
                   <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-emerald-400 rounded-full animate-pulse shadow-[0_0_12px_rgba(52,211,153,0.8)]" />
-                  <p className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.2em] opacity-80">Online</p>
+                  <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] opacity-80">Online</p>
                 </div>
               </div>
             </div>
@@ -632,9 +632,9 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                                   <div className="w-8 h-8 md:w-10 md:h-10 bg-indigo-50 text-indigo-600 rounded-lg md:rounded-xl flex items-center justify-center">
                                     <FileText size={16} className="md:w-5 md:h-5" />
                                   </div>
-                                  <span className="text-[10px] md:text-[11px] font-black text-slate-400 uppercase tracking-widest">TRE 4.0 Challenge</span>
+                                  <span className="text-[10px] md:text-[11px] font-bold text-slate-400 uppercase tracking-widest">TRE 4.0 Challenge</span>
                                 </div>
-                                <h3 className="font-black text-slate-900 text-lg md:text-2xl leading-snug tracking-tight whitespace-pre-wrap">{m.quizData.question}</h3>
+                                <h3 className="font-bold text-slate-900 text-lg md:text-2xl leading-snug tracking-tight whitespace-pre-wrap">{m.quizData.question}</h3>
                                 <div className="grid grid-cols-1 gap-3 md:gap-4">
                                   {m.quizData.options.map(opt => (
                                     <button
@@ -642,7 +642,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                                       onClick={() => handleSendMessage(opt.id)}
                                       className="group w-full p-4 md:p-6 rounded-xl md:rounded-[2rem] border-2 border-slate-50 hover:border-indigo-500 hover:bg-indigo-50/50 transition-all text-left flex items-start gap-4 md:gap-5"
                                     >
-                                      <span className="w-10 h-10 md:w-12 md:h-12 bg-slate-50 group-hover:bg-indigo-600 group-hover:text-white rounded-xl md:rounded-2xl flex items-center justify-center font-black text-sm shrink-0 transition-all border border-slate-100">
+                                      <span className="w-10 h-10 md:w-12 md:h-12 bg-slate-50 group-hover:bg-indigo-600 group-hover:text-white rounded-xl md:rounded-2xl flex items-center justify-center font-bold text-sm shrink-0 transition-all border border-slate-100">
                                         {opt.id}
                                       </span>
                                       <span className="font-bold text-slate-700 group-hover:text-indigo-950 pt-2 text-sm md:text-lg transition-colors leading-snug">{opt.text}</span>
@@ -658,7 +658,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                                 <div className={`px-5 py-4 md:p-8 flex items-center justify-between ${m.resultData.isCorrect ? 'bg-emerald-50 text-emerald-700 border-b border-emerald-100' : 'bg-rose-50 text-rose-700 border-b border-rose-100'}`}>
                                   <div className="flex items-center gap-3 md:gap-4">
                                     {m.resultData.isCorrect ? <CheckCircle2 size={24} className="md:w-[28px]" /> : <XCircle size={24} className="md:w-[28px]" />}
-                                    <span className="font-black text-[10px] md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em]">{m.resultData.isCorrect ? 'Correct Solved' : 'Review Attempt'}</span>
+                                    <span className="font-bold text-[10px] md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em]">{m.resultData.isCorrect ? 'Correct Solved' : 'Review Attempt'}</span>
                                   </div>
                                 </div>
 
@@ -675,17 +675,17 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                                       if (isCorrect) {
                                         borderClass = "border-emerald-500 bg-emerald-50/50 ring-1 ring-emerald-500 opacity-100";
                                         badgeClass = "bg-emerald-600 text-white shadow-sm";
-                                        statusIcon = <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md text-[9px] font-black uppercase tracking-wider"><Check size={12} strokeWidth={3} /> Correct</div>;
+                                        statusIcon = <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md text-[9px] font-bold uppercase tracking-wider"><Check size={12} strokeWidth={3} /> Correct</div>;
                                       } else if (isUserChoice && !isCorrect) {
                                         borderClass = "border-rose-500 bg-rose-50/50 ring-1 ring-rose-500 opacity-100";
                                         badgeClass = "bg-rose-600 text-white shadow-sm";
-                                        statusIcon = <div className="flex items-center gap-1.5 px-2 py-1 bg-rose-100 text-rose-700 rounded-md text-[9px] font-black uppercase tracking-wider"><X size={12} strokeWidth={3} /> Your Answer</div>;
+                                        statusIcon = <div className="flex items-center gap-1.5 px-2 py-1 bg-rose-100 text-rose-700 rounded-md text-[9px] font-bold uppercase tracking-wider"><X size={12} strokeWidth={3} /> Your Answer</div>;
                                       }
 
                                       return (
                                         <div key={opt.id} className={`p-4 md:p-5 rounded-xl md:rounded-2xl border-2 flex flex-col md:flex-row md:items-center gap-3 md:gap-5 transition-all duration-300 relative overflow-hidden ${borderClass}`}>
                                           <div className="flex items-start md:items-center gap-4 w-full">
-                                            <span className={`w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center font-black text-xs md:text-sm shrink-0 transition-colors ${badgeClass}`}>
+                                            <span className={`w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center font-bold text-xs md:text-sm shrink-0 transition-colors ${badgeClass}`}>
                                               {opt.id}
                                             </span>
                                             <span className={`font-medium text-sm md:text-base pt-1 md:pt-0 leading-snug transition-colors ${isCorrect ? 'text-emerald-900 font-bold' : isUserChoice ? 'text-rose-900 font-semibold' : 'text-slate-700'}`}>
@@ -814,7 +814,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                 <div className="absolute top-8 left-0 right-0 flex justify-center z-20">
                   <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-full border border-white/10 backdrop-blur-md">
                     <div className={`w-2 h-2 rounded-full ${voiceStatus === 'listening' ? 'bg-emerald-400 shadow-[0_0_8px_#34d399]' : 'bg-amber-400'}`} />
-                    <span className="text-[10px] font-black uppercase tracking-widest opacity-80">
+                    <span className="text-[10px] font-bold uppercase tracking-widest opacity-80">
                       {voiceStatus === 'listening' ? 'Online' : voiceStatus === 'initializing' ? 'Syncing...' : 'Standby'}
                     </span>
                   </div>
@@ -844,7 +844,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                       ) : (
                         <button onClick={startVoiceSession} className="w-full h-full rounded-full flex items-center justify-center hover:bg-slate-600 transition-colors group">
                           <MicOff size={40} className="text-white/30 group-hover:hidden" />
-                          <p className="hidden group-hover:block text-xs font-black uppercase tracking-widest">Connect</p>
+                          <p className="hidden group-hover:block text-xs font-bold uppercase tracking-widest">Connect</p>
                         </button>
                       )}
                     </div>
@@ -856,7 +856,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                   {voiceStatus === 'idle' ? (
                     <button
                       onClick={startVoiceSession}
-                      className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-lg hover:shadow-indigo-500/50 transition-all flex items-center gap-3"
+                      className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.2em] shadow-lg hover:shadow-indigo-500/50 transition-all flex items-center gap-3"
                     >
                       <Mic size={16} /> Tap to Speak
                     </button>
@@ -871,7 +871,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
 
                       <button
                         onClick={stopVoiceSession}
-                        className="px-8 py-4 bg-rose-500/10 border border-rose-500/20 hover:bg-rose-500 hover:text-white text-rose-400 rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all backdrop-blur-md flex items-center gap-3 group"
+                        className="px-8 py-4 bg-rose-500/10 border border-rose-500/20 hover:bg-rose-500 hover:text-white text-rose-400 rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-all backdrop-blur-md flex items-center gap-3 group"
                       >
                         <span className="w-1.5 h-1.5 bg-current rounded-full" />
                         End Session
@@ -896,14 +896,14 @@ const SelectionCard = ({ icon, label, onClick }: any) => (
     <div className="p-4 md:p-6 bg-slate-50 rounded-xl md:rounded-2xl text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-all scale-100 md:scale-110">
       {icon}
     </div>
-    <span className="font-black text-slate-800 text-xs md:text-base text-center">{label}</span>
+    <span className="font-bold text-slate-800 text-xs md:text-base text-center">{label}</span>
   </button>
 );
 
 const ActionButton = ({ icon, label, onClick, primary, danger, className }: any) => (
   <button
     onClick={onClick}
-    className={`px-4 py-3 md:px-7 md:py-5 rounded-xl md:rounded-[1.5rem] text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.25em] flex items-center justify-center gap-2 md:gap-4 transition-all shadow-md active:scale-95 whitespace-nowrap ${primary
+    className={`px-4 py-3 md:px-7 md:py-5 rounded-xl md:rounded-[1.5rem] text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] md:tracking-[0.25em] flex items-center justify-center gap-2 md:gap-4 transition-all shadow-md active:scale-95 whitespace-nowrap ${primary
       ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-indigo-100'
       : danger
         ? 'bg-red-50 text-red-600 border border-red-100 hover:bg-red-600 hover:text-white'

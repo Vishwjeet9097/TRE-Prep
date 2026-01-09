@@ -65,7 +65,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack, onProfileUpdate }) =>
 
                     <div className="flex items-center gap-6">
                         <div className="relative">
-                            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-3xl font-black border-4 border-white shadow-lg">
+                            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-3xl font-bold border-4 border-white shadow-lg">
                                 {profile.initials}
                             </div>
                             <button className="absolute bottom-0 right-0 p-2 bg-indigo-600 text-white rounded-full shadow-md hover:scale-110 transition-transform border-2 border-white">
@@ -74,7 +74,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack, onProfileUpdate }) =>
                         </div>
 
                         <div>
-                            <h1 className="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">{profile.name}</h1>
+                            <h1 className="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight">{profile.name}</h1>
                             <p className="text-slate-400 font-bold text-sm">Personal Account</p>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack, onProfileUpdate }) =>
                                 <>
                                     <div className="space-y-6">
                                         <div className="space-y-2">
-                                            <label className="text-xs font-black text-slate-400 uppercase tracking-wider ml-1">Full Name</label>
+                                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Full Name</label>
                                             <div className="relative">
                                                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                                 <input
@@ -118,7 +118,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack, onProfileUpdate }) =>
                                             </div>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-xs font-black text-slate-400 uppercase tracking-wider ml-1">Phone Number</label>
+                                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Phone Number</label>
                                             <div className="relative">
                                                 <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                                 <input
@@ -130,7 +130,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack, onProfileUpdate }) =>
                                             </div>
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-xs font-black text-slate-400 uppercase tracking-wider ml-1">Location</label>
+                                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Location</label>
                                             <div className="relative">
                                                 <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                                 <input
@@ -143,9 +143,9 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack, onProfileUpdate }) =>
                                         </div>
 
                                         <div className="pt-4 border-t border-slate-100">
-                                            <h3 className="text-sm font-black text-slate-800 mb-4">App Settings</h3>
+                                            <h3 className="text-sm font-bold text-slate-800 mb-4">App Settings</h3>
                                             <div className="space-y-2">
-                                                <label className="text-xs font-black text-slate-400 uppercase tracking-wider ml-1">Gemini API Key (Optional)</label>
+                                                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Gemini API Key (Optional)</label>
                                                 <div className="relative">
                                                     <Key className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                                     <input
@@ -174,7 +174,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack, onProfileUpdate }) =>
 
                             {activeTab === 'preferences' && (
                                 <div className="space-y-6">
-                                    <h3 className="text-lg font-black text-slate-900 border-b border-slate-100 pb-4">App Settings</h3>
+                                    <h3 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-4">App Settings</h3>
                                     <div className="flex items-center justify-between">
                                         <div>
                                             <h4 className="font-bold text-slate-800">Bilingual Interface</h4>

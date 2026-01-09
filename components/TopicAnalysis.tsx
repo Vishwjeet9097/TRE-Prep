@@ -48,7 +48,7 @@ const TopicAnalysis: React.FC<TopicAnalysisProps> = ({ attempts, papers }) => {
                     <TrendingUp className="text-rose-600" size={24} />
                 </div>
                 <div>
-                    <h3 className="text-lg font-black text-slate-800">Weakness Intelligence</h3>
+                    <h3 className="text-lg font-bold text-slate-800">Weakness Intelligence</h3>
                     <p className="text-sm text-slate-500 font-medium">AI-detected areas for improvement</p>
                 </div>
             </div>
@@ -63,7 +63,7 @@ const TopicAnalysis: React.FC<TopicAnalysisProps> = ({ attempts, papers }) => {
                         <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
                             <div
                                 className={`h-full rounded-full transition-all duration-1000 ${stat.accuracy < 40 ? 'bg-rose-500' :
-                                        stat.accuracy < 70 ? 'bg-amber-400' : 'bg-emerald-500'
+                                    stat.accuracy < 70 ? 'bg-amber-400' : 'bg-emerald-500'
                                     }`}
                                 style={{ width: `${stat.accuracy}%` }}
                             />

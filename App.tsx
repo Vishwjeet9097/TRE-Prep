@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
+import 'katex/dist/katex.min.css';
+import 'highlight.js/styles/github-dark.css';
 import {
   LayoutDashboard,
   FileUp,
@@ -36,9 +38,10 @@ import ResultView from './components/ResultView';
 import HistoryView from './components/HistoryView';
 import AIChatAssistant from './components/AIChatAssistant';
 import AIChatPage from './components/AIChatPage';
+import TopicGenerator from './components/TopicGenerator';
 import BottomNav from './components/BottomNav';
 
-type View = 'dashboard' | 'import' | 'exam' | 'result' | 'history' | 'settings' | 'ai-chat';
+type View = 'dashboard' | 'import' | 'exam' | 'result' | 'history' | 'settings' | 'ai-chat' | 'topic-generator';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('dashboard');
@@ -294,7 +297,7 @@ const App: React.FC = () => {
       return (
         <div className="flex flex-col items-center justify-center h-full gap-4">
           <Loader2 className="w-12 h-12 text-indigo-600 animate-spin" />
-          <h3 className="text-xl font-black text-slate-800 tracking-tight">Calculating Results...</h3>
+          <h3 className="text-xl font-bold text-slate-800 tracking-tight">Calculating Results...</h3>
         </div>
       );
     }
@@ -308,6 +311,7 @@ const App: React.FC = () => {
             attempts={attempts}
             onStartExam={handleStartExam}
             onImportClick={() => setCurrentView('import')}
+            onGenerateClick={() => setCurrentView('topic-generator')}
             onDeletePaper={(id) => {
               StorageService.deletePaper(id);
               setPapers(StorageService.getPapers());
@@ -318,7 +322,7 @@ const App: React.FC = () => {
             onViewAttempt={handleViewAttemptDetail}
             onAddSamplePaper={handleAddSamplePaper}
             onSaveTemplate={handleSaveTemplate}
-            onSaveTemplate={handleSaveTemplate}
+
             library={library}
             userProfile={userProfile}
           />
@@ -378,6 +382,17 @@ const App: React.FC = () => {
         return <AIChatPage />;
       case 'settings':
         return <ProfilePage onBack={() => setCurrentView('dashboard')} onProfileUpdate={() => setUserProfile(UserService.getProfile())} />;
+      case 'topic-generator':
+        return (
+          <TopicGenerator
+            onBack={() => setCurrentView('dashboard')}
+            onSave={(paper) => {
+              handleAddSamplePaper(paper);
+              setCurrentView('dashboard');
+              toast.success("Practice Set Created", { description: "New generated set added to your workspace." });
+            }}
+          />
+        );
       default:
         return <Dashboard papers={papers} jobs={activeJobs} onStartExam={handleStartExam} onImportClick={() => setCurrentView('import')} onDeletePaper={() => { }} onReviewJob={handleReviewJob} onDeleteJob={handleDeleteJob} attempts={attempts} onViewAttempt={handleViewAttemptDetail} />;
     }
@@ -394,7 +409,7 @@ const App: React.FC = () => {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full border border-orange-100">
             <Flame size={14} className="text-orange-500 fill-orange-500 animate-pulse" />
-            <span className="text-xs font-black text-orange-600">{streak} Day{streak !== 1 ? 's' : ''}</span>
+            <span className="text-xs font-bold text-orange-600">{streak} Day{streak !== 1 ? 's' : ''}</span>
           </div>
           <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 border border-slate-200">
             <span className="text-xs font-bold">{userProfile.initials}</span>
@@ -407,7 +422,7 @@ const App: React.FC = () => {
           <div className="px-4 py-6 flex items-center justify-between mb-2">
             <div className="flex items-center gap-3">
               <img src="/logo.png" alt="TRE-Prep Logo" className="w-10 h-10 rounded-xl shadow-lg shadow-indigo-200" />
-              <h1 className="text-xl font-black tracking-tight text-slate-900">TRE-Prep</h1>
+              <h1 className="text-xl font-bold tracking-tight text-slate-900">TRE-Prep</h1>
             </div>
           </div>
 
@@ -421,7 +436,7 @@ const App: React.FC = () => {
               </div>
               <div>
                 <p className="text-[10px] uppercase font-bold text-orange-400 tracking-wider">Study Streak</p>
-                <p className="text-lg font-black text-slate-800 leading-none mt-0.5">{streak} Day{streak !== 1 ? 's' : ''}</p>
+                <p className="text-lg font-bold text-slate-800 leading-none mt-0.5">{streak} Day{streak !== 1 ? 's' : ''}</p>
               </div>
             </div>
           </div>

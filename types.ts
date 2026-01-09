@@ -28,6 +28,7 @@ export interface ExamPaper {
   questions: Question[];
   status: 'draft' | 'published';
   createdAt: number;
+  source?: 'PDF' | 'LOCAL';
 }
 
 export interface ParsingJob {

@@ -68,6 +68,9 @@ export const extractQuestionBatch = async (
     4. ACCURACY: Do not hallucinate. If a question in this range is missing, skip it.
     5. COMPACTNESS: Keep explanations to exactly one sentence to save space.
     6. TOPIC TAGGING: Categorize every question into one of: 'History', 'Polity', 'Geography', 'Economy', 'Science', 'Math', 'Current Affairs', 'Bihar Special'. Use your best judgement based on content.
+    7. FORMATTING: 
+       - Code Snippets: MUST be wrapped in markdown code blocks (e.g. \`\`\`python ... \`\`\`).
+       - Math/Equations: MUST be formatted in LaTeX (e.g. $x^2 + y^2 = z^2$). Do NOT use plain text for math.
   `;
 
   try {
@@ -176,4 +179,75 @@ export const parseExamPDF = async (
 
   // Sort by number to ensure order is preserved during reassembly
   return allQuestions.sort((a, b) => a.number - b.number);
+};
+
+/**
+ * Generates a fresh batch of 20 BPSC-style questions on a specific topic.
+ */
+export const generateQuestionsByTopic = async (
+  topic: string,
+  onProgress: (msg: string) => void
+) => {
+  const profile = UserService.getProfile();
+  const apiKey = profile.apiKey || process.env.API_KEY;
+
+  if (!apiKey) {
+    throw new Error("Gemini API Key is missing. Please add it in Settings.");
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
+
+  const systemInstruction = `
+    You are a Senior BPSC (Bihar Public Service Commission) Exam Setter.
+    TASK: Generate a high-quality, 20-question practice set for the topic: "${topic}".
+
+    STRICT RULES:
+    1. PATTERN: BPSC TRE Standard (5 Options).
+       - Option A, B, C: Plausible distractors or correct answer.
+       - Option D: "More than one of the above" (उपर्युक्त में से एक से अधिक).
+       - Option E: "None of the above" (उपर्युक्त में से कोई नहीं).
+    2. BILINGUAL: Every question and option MUST be in English and Hindi.
+    3. DIFFICULTY: Mix of Moderate (60%) and Hard (40%). Avoid easy questions.
+    4. ACCURACY: Fact-check strictly. No hallucinations.
+    5. FORMAT: Return strict JSON.
+  `;
+
+  onProgress(`AI requires thinking time... Drafting 20 high-quality questions on "${topic}"...`);
+
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash-exp", // Using Flash for speed/cost balance
+      contents: [
+        { text: `Generate 20 BPSC-style questions on ${topic}. Ensure strict 5-option pattern with D and E fixed.` }
+      ],
+      config: {
+        systemInstruction,
+        responseMimeType: "application/json",
+        responseSchema
+      }
+    });
+
+    onProgress("Formatting and validating content...");
+
+    const text = response.text;
+    if (!text) throw new Error("AI returned empty response");
+
+    const parsed = JSON.parse(text);
+    return (parsed.questions || []).map((q: any, idx: number) => ({
+      id: Math.random().toString(36).substr(2, 9),
+      number: idx + 1,
+      content: { en: q.content_en || "", hi: q.content_hi || "" },
+      options: (q.options || []).map((o: any) => ({
+        id: (o.id || "").toLowerCase(),
+        text: { en: o.text_en || "", hi: o.text_hi || "" }
+      })),
+      correctOptionId: (q.correctOptionId || "").toLowerCase(),
+      explanation: { en: q.explanation_en || "", hi: q.explanation_hi || "" },
+      topic: topic
+    }));
+
+  } catch (error) {
+    console.error(`Generation failed:`, error);
+    throw error;
+  }
 };

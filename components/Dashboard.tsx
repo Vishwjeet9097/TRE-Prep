@@ -1,6 +1,16 @@
 
 import React from 'react';
-import { Plus, Trash2, ArrowRight, BookOpen, Clock, FileText, Loader2, CheckCircle2, AlertCircle, ChevronRight, ChevronLeft, Activity, Calendar, Trophy, Play, Bookmark } from 'lucide-react';
+import {
+  Plus, Trash2, ArrowRight, BookOpen, Clock, FileText, Loader2, CheckCircle2, AlertCircle, ChevronRight, ChevronLeft, Activity,
+  Eye,
+  AlarmClockCheck,
+  TrendingUp,
+  Sparkles,
+  Calendar,
+  Play,
+  Bookmark,
+  Trophy
+} from 'lucide-react';
 import { ExamPaper, ParsingJob, ExamAttempt } from '../types';
 import { useConfirm } from '../context/ConfirmContext';
 import TopicAnalysis from './TopicAnalysis';
@@ -16,6 +26,7 @@ interface DashboardProps {
   attempts: ExamAttempt[];
   onStartExam: (paper: ExamPaper) => void;
   onImportClick: () => void;
+  onGenerateClick: () => void;
   onDeletePaper: (id: string) => void;
   onReviewJob: (job: ParsingJob) => void;
   onDeleteJob: (id: string) => void;
@@ -33,6 +44,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   attempts,
   onStartExam,
   onImportClick,
+  onGenerateClick,
   onDeletePaper,
   onReviewJob,
   onDeleteJob,
@@ -45,6 +57,7 @@ const Dashboard: React.FC<DashboardProps> = ({
 }) => {
   const [viewDate, setViewDate] = React.useState(new Date());
   const { confirm } = useConfirm();
+  const [showAllPapers, setShowAllPapers] = React.useState(false);
 
   const handleDeletePaper = async (id: string, title: string) => {
     if (await confirm({
@@ -131,26 +144,27 @@ const Dashboard: React.FC<DashboardProps> = ({
       <div className="flex flex-col gap-4">
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-2xl font-black text-slate-800 tracking-tight">Dashboard</h2>
-            <p className="text-slate-400 text-xs font-bold">
+            <h2 className="text-xl font-bold text-slate-800 tracking-tight">Dashboard</h2>
+            <p className="text-slate-400 text-xs font-medium">
               {userProfile ? `Welcome back, ${userProfile.name.split(' ')[0]}` : 'Manage your preparation'}
             </p>
           </div>
 
         </div>
 
-        <button
-          onClick={onImportClick}
-          className="w-full flex items-center justify-center gap-2 px-5 py-4 bg-indigo-600 text-white font-bold text-sm rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition-all hover:bg-indigo-700"
-        >
-          <Plus size={20} /> Import New Paper
-        </button>
+        <div className="flex gap-3">
+          <button onClick={onImportClick} className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-white text-indigo-600 font-semibold text-sm rounded-2xl shadow-lg shadow-slate-200 active:scale-95 transition-all hover:bg-indigo-50 border border-indigo-100">
+            <Plus size={18} /> Import PDF
+          </button>
+          <button onClick={onGenerateClick} className="flex-1 flex items-center justify-center gap-2 py-3.5 bg-indigo-600 text-white font-semibold text-sm rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition-all hover:bg-indigo-700">
+            <Sparkles size={18} /> AI Generate
+          </button>
+        </div>
       </div>
 
-      {/* Papers List Mobile */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-black text-slate-800 tracking-tight">My Papers ({papers.length})</h3>
+          <h3 className="text-base font-bold text-slate-800 tracking-tight">My Papers ({papers.length})</h3>
         </div>
         {papers.length === 0 ? (
           <div className="p-8 text-center bg-white rounded-3xl border border-dashed border-slate-200">
@@ -168,7 +182,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                 <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-bl-[100%] -mr-8 -mt-8 opacity-50 pointer-events-none"></div>
 
                 <div className="flex justify-between items-start mb-3 relative z-10">
-                  <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-[10px] font-black uppercase tracking-wider rounded-lg border border-indigo-100">{paper.examType || 'Exam'}</span>
+                  <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-[10px] font-bold uppercase tracking-wider rounded-lg border border-indigo-100">{paper.examType || 'Exam'}</span>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
@@ -180,15 +194,15 @@ const Dashboard: React.FC<DashboardProps> = ({
                   </button>
                 </div>
 
-                <h4 className="font-black text-slate-900 text-xl mb-1 leading-tight">{paper.title}</h4>
-                <div className="flex items-center gap-3 text-xs font-bold text-slate-400 mb-6">
+                <h4 className="font-bold text-slate-900 text-lg mb-1 leading-tight">{paper.title}</h4>
+                <div className="flex items-center gap-3 text-xs font-semibold text-slate-400 mb-5">
                   <span>{paper.questions.length} Questions</span>
                   <span className="w-1 h-1 rounded-full bg-slate-300"></span>
                   <span>{paper.subject || 'General'}</span>
                 </div>
 
-                <div className="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-slate-200">
-                  Start Test <ArrowRight size={18} />
+                <div className="w-full py-3.5 bg-slate-900 text-white rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-slate-200">
+                  Start Test <ArrowRight size={16} />
                 </div>
               </div>
             ))}
@@ -200,7 +214,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       {recentAttempts.length > 0 && (
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <h3 className="text-lg font-black text-slate-800 tracking-tight">Recent Activity</h3>
+            <h3 className="text-lg font-bold text-slate-800 tracking-tight">Recent Activity</h3>
           </div>
           <div className="grid grid-cols-1 gap-3">
             {recentAttempts.map((attempt, i) => {
@@ -210,7 +224,7 @@ const Dashboard: React.FC<DashboardProps> = ({
               return (
                 <div key={`${attempt.id}-${i}`} onClick={() => onViewAttempt(attempt)} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm active:scale-95 transition-all flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-sm text-white shadow-md ${isPass ? 'bg-emerald-500 shadow-emerald-200' : 'bg-rose-500 shadow-rose-200'}`}>
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-sm text-white shadow-md ${isPass ? 'bg-emerald-500 shadow-emerald-200' : 'bg-rose-500 shadow-rose-200'}`}>
                       {percentage}%
                     </div>
                     <div>
@@ -236,7 +250,7 @@ const Dashboard: React.FC<DashboardProps> = ({
       {/* Skillify Header */}
       <div className="flex justify-between items-center shrink-0">
         <div>
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight">Welcome back, User</h1>
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Welcome back, User</h1>
           <p className="text-slate-400 font-medium mt-1">Ready to create next big thing?</p>
         </div>
         <div className="flex items-center gap-6">
@@ -278,13 +292,13 @@ const Dashboard: React.FC<DashboardProps> = ({
                         </div>
                         <div>
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-black uppercase tracking-wider rounded-lg">Mock Test</span>
+                            <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-wider rounded-lg">Mock Test</span>
                             {paper.source === 'LOCAL' && (
-                              <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-wider rounded-lg">Saved</span>
+                              <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-wider rounded-lg">Saved</span>
                             )}
                             <span className="px-2 py-0.5 bg-slate-100 text-slate-500 text-[10px] font-bold uppercase tracking-wider rounded-lg">{paper.questions.length} Qs</span>
                           </div>
-                          <h4 className="font-black text-slate-900 text-lg leading-tight">{paper.title}</h4>
+                          <h4 className="font-bold text-slate-900 text-lg leading-tight">{paper.title}</h4>
                           <p className="text-xs text-slate-500 font-medium mt-1">{paper.subject || 'General Studies'}</p>
                         </div>
                       </div>
@@ -306,7 +320,20 @@ const Dashboard: React.FC<DashboardProps> = ({
           <div className="bg-transparent">
             <div className="flex justify-between items-center mb-6">
               <h3 className="font-bold text-slate-900 text-xl">My Papers</h3>
-              <button onClick={onImportClick} className="px-5 py-2 bg-indigo-600 text-white rounded-full text-xs font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all">Import New</button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setShowAllPapers(!showAllPapers)}
+                  className="text-slate-400 hover:text-indigo-600 font-bold text-xs mr-2 transition-colors"
+                >
+                  {showAllPapers ? 'Show Less' : 'View All'}
+                </button>
+                <button onClick={onGenerateClick} className="px-5 py-2 bg-white text-indigo-600 border border-indigo-100 rounded-full text-xs font-bold shadow-sm hover:bg-indigo-50 transition-all flex items-center gap-2">
+                  <Sparkles size={14} /> AI Generate
+                </button>
+                <button onClick={onImportClick} className="px-5 py-2 bg-indigo-600 text-white rounded-full text-xs font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all flex items-center gap-2">
+                  <Plus size={14} /> Import New
+                </button>
+              </div>
             </div>
 
             {papers.length === 0 && jobs.length === 0 ? (
@@ -375,7 +402,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                   </div>
                 ))}
 
-                {papers.slice(0, 3).map((paper, i) => (
+                {(showAllPapers ? papers : papers.slice(0, 3)).map((paper, i) => (
                   <div key={paper.id} className="bg-white p-4 pr-6 rounded-[2rem] flex items-center gap-4 shadow-sm hover:shadow-md transition-all cursor-pointer group hover:border border-indigo-50 border-transparent" onClick={() => onStartExam(paper)}>
                     <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shrink-0 ${i % 2 === 0 ? 'bg-[#98ABEE]' : 'bg-[#F9E8C9] text-orange-400'}`}>
                       <FileText />
@@ -386,7 +413,7 @@ const Dashboard: React.FC<DashboardProps> = ({
                     </div>
                     <div className="hidden lg:block text-right mr-8">
                       <p className="text-xs font-bold text-slate-400 uppercase">Questions</p>
-                      <p className="font-black text-slate-900">{paper.questions.length}</p>
+                      <p className="font-bold text-slate-900">{paper.questions.length}</p>
                     </div>
 
                     {/* Actions */}

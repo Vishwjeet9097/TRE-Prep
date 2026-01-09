@@ -1,5 +1,5 @@
 
-import { ExamPaper, ExamAttempt } from './types';
+import { ExamPaper, ExamAttempt, Question } from './types';
 
 const STORAGE_KEYS = {
   PAPERS: 'tre_prep_papers',
@@ -30,6 +30,11 @@ export const StorageService = {
     localStorage.setItem(STORAGE_KEYS.PAPERS, JSON.stringify(papers));
     const attempts = StorageService.getAttempts().filter(a => a.paperId !== id);
     localStorage.setItem(STORAGE_KEYS.ATTEMPTS, JSON.stringify(attempts));
+  },
+
+  getAllQuestions: (): Question[] => {
+    const papers = StorageService.getPapers();
+    return papers.flatMap(p => p.questions);
   },
 
   getAttempts: (): ExamAttempt[] => {

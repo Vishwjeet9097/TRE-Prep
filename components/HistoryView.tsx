@@ -52,7 +52,7 @@ const HistoryView: React.FC<HistoryViewProps> = ({ onBack, onSelectAttempt }) =>
               <ArrowLeft size={20} className="md:w-6 md:h-6" />
             </button>
             <div>
-              <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2 md:gap-3">
+              <h2 className="text-xl md:text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-2 md:gap-3">
                 <HistoryIcon className="text-indigo-600 md:w-8 md:h-8" size={24} />
                 Performance Log
               </h2>
@@ -63,12 +63,12 @@ const HistoryView: React.FC<HistoryViewProps> = ({ onBack, onSelectAttempt }) =>
           {attempts.length > 0 && (
             <div className="flex items-center gap-2 md:gap-4 bg-white p-2 rounded-2xl border border-slate-200 shadow-sm self-start md:self-auto">
               <div className="px-3 md:px-4 py-1.5 md:py-2 border-r border-slate-100 text-center">
-                <span className="block text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Tests</span>
-                <span className="text-lg md:text-xl font-black text-indigo-600">{attempts.length}</span>
+                <span className="block text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total Tests</span>
+                <span className="text-lg md:text-xl font-bold text-indigo-600">{attempts.length}</span>
               </div>
               <div className="px-3 md:px-4 py-1.5 md:py-2 text-center">
-                <span className="block text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest">Avg. Accuracy</span>
-                <span className="text-lg md:text-xl font-black text-emerald-600">
+                <span className="block text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-widest">Avg. Accuracy</span>
+                <span className="text-lg md:text-xl font-bold text-emerald-600">
                   {Math.round(attempts.reduce((acc, curr) => {
                     const paper = papers.find(p => p.id === curr.paperId);
                     return acc + (paper ? (curr.score / paper.questions.length) * 100 : 0);
@@ -84,13 +84,13 @@ const HistoryView: React.FC<HistoryViewProps> = ({ onBack, onSelectAttempt }) =>
             <div className="w-16 h-16 md:w-24 md:h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-slate-300">
               <BarChart2 size={32} className="md:w-12 md:h-12" />
             </div>
-            <h3 className="text-xl md:text-2xl font-black text-slate-800 mb-2">No History Yet</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-2">No History Yet</h3>
             <p className="text-sm md:text-base text-slate-500 font-medium max-w-sm mx-auto mb-6 md:mb-8">
               Your exam attempts and performance analytics will appear here once you finish your first test.
             </p>
             <button
               onClick={onBack}
-              className="px-6 py-3 md:px-8 md:py-4 bg-indigo-600 text-white font-black rounded-xl md:rounded-2xl hover:bg-indigo-700 shadow-xl shadow-indigo-100 transition-all text-sm md:text-base"
+              className="px-6 py-3 md:px-8 md:py-4 bg-indigo-600 text-white font-bold rounded-xl md:rounded-2xl hover:bg-indigo-700 shadow-xl shadow-indigo-100 transition-all text-sm md:text-base"
             >
               Take a Test Now
             </button>
@@ -123,7 +123,7 @@ const HistoryView: React.FC<HistoryViewProps> = ({ onBack, onSelectAttempt }) =>
                           strokeLinecap="round"
                         />
                       </svg>
-                      <div className="absolute inset-0 flex items-center justify-center text-xs md:text-sm font-black text-slate-900">
+                      <div className="absolute inset-0 flex items-center justify-center text-xs md:text-sm font-bold text-slate-900">
                         {percentage}%
                       </div>
                     </div>

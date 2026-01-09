@@ -98,7 +98,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
             <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
           </button>
           <div>
-            <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2 md:gap-3">
+            <h2 className="text-xl md:text-3xl font-bold text-slate-900 tracking-tight flex items-center gap-2 md:gap-3">
               {step === 'review' ? 'Verify Analysis' : 'Content Command'}
               {step === 'upload' && <Sparkles className="text-amber-400" size={20} fill="currentColor" />}
             </h2>
@@ -115,7 +115,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
                 <button
                   key={m}
                   onClick={() => setLangMode(m)}
-                  className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${langMode === m ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-700 hover:bg-slate-50'}`}
+                  className={`px-5 py-2.5 rounded-xl text-[11px] font-bold uppercase tracking-widest transition-all ${langMode === m ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-700 hover:bg-slate-50'}`}
                 >
                   {m === 'en' ? 'English' : m === 'hi' ? 'Hindi' : 'Bi-Lingual'}
                 </button>
@@ -153,7 +153,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
                 </div>
 
                 <div>
-                  <h3 className={`text-3xl md:text-5xl font-black tracking-tight mb-2 md:mb-4 ${isDragging ? 'text-white' : 'text-slate-900'}`}>
+                  <h3 className={`text-3xl md:text-5xl font-bold tracking-tight mb-2 md:mb-4 ${isDragging ? 'text-white' : 'text-slate-900'}`}>
                     {isDragging ? 'Drop to Digitize' : 'Import Paper'}
                   </h3>
                   <p className={`text-sm md:text-lg font-medium max-w-xl leading-relaxed ${isDragging ? 'text-indigo-100' : 'text-slate-500'}`}>
@@ -172,7 +172,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
 
               {/* Decorative / Settings Panel */}
               <div className={`w-full lg:w-96 rounded-3xl p-6 md:p-8 backdrop-blur-xl border transition-all duration-300 ${isDragging ? 'bg-white/10 border-white/20' : 'bg-slate-50/80 border-slate-100'}`}>
-                <h4 className={`text-xs font-black uppercase tracking-widest mb-4 md:mb-6 ${isDragging ? 'text-indigo-200' : 'text-slate-400'}`}>Quick Configuration</h4>
+                <h4 className={`text-xs font-bold uppercase tracking-widest mb-4 md:mb-6 ${isDragging ? 'text-indigo-200' : 'text-slate-400'}`}>Quick Configuration</h4>
                 <div className="space-y-4 md:space-y-6">
                   <div className="space-y-2">
                     <label className={`text-xs font-bold uppercase tracking-wider ml-1 ${isDragging ? 'text-white/80' : 'text-slate-500'}`}>Target Exam</label>
@@ -217,12 +217,12 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
                   <LayoutGrid size={20} className="md:w-6 md:h-6" />
                 </div>
                 <div>
-                  <h3 className="font-black text-slate-900 text-lg md:text-xl tracking-tight">Question Analysis</h3>
+                  <h3 className="font-bold text-slate-900 text-lg md:text-xl tracking-tight">Question Analysis</h3>
                   <p className="text-slate-500 font-medium text-xs md:text-sm">Review extracted content before finalizing</p>
                 </div>
               </div>
               <div className="px-5 py-2 bg-white border border-slate-200 rounded-xl shadow-sm self-end md:self-auto">
-                <span className="font-black text-slate-900 text-lg">{parsedQuestions.length}</span>
+                <span className="font-bold text-slate-900 text-lg">{parsedQuestions.length}</span>
                 <span className="font-bold text-slate-400 text-xs uppercase ml-2">Questions</span>
               </div>
             </div>
@@ -231,7 +231,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
               {parsedQuestions.map((q, i) => (
                 <div key={i} className="p-4 md:p-8 hover:bg-indigo-50/30 transition-colors group">
                   <div className="flex gap-4 md:gap-6">
-                    <span className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-slate-100 text-slate-400 font-black text-base md:text-lg flex items-center justify-center shrink-0 group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">
+                    <span className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-slate-100 text-slate-400 font-bold text-base md:text-lg flex items-center justify-center shrink-0 group-hover:bg-indigo-100 group-hover:text-indigo-600 transition-colors">
                       {q.number}
                     </span>
                     <div className="flex-1 space-y-4 md:space-y-6">
@@ -244,7 +244,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                         {q.options.map(opt => (
                           <div key={opt.id} className={`p-3 md:p-4 rounded-xl border-2 flex items-start gap-3 transition-all ${opt.id === q.correctOptionId ? 'bg-emerald-50 border-emerald-100' : 'bg-white border-transparent hover:border-slate-100'}`}>
-                            <span className={`w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center text-xs font-black shrink-0 ${opt.id === q.correctOptionId ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-200' : 'bg-slate-100 text-slate-500'}`}>
+                            <span className={`w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ${opt.id === q.correctOptionId ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-200' : 'bg-slate-100 text-slate-500'}`}>
                               {opt.id}
                             </span>
                             <div className="text-sm font-bold text-slate-600 pt-1">
@@ -269,7 +269,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
           <div className="space-y-8">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="font-black text-slate-900 text-2xl tracking-tight mb-1">Recommended Templates</h3>
+                <h3 className="font-bold text-slate-900 text-2xl tracking-tight mb-1">Recommended Templates</h3>
                 <p className="text-slate-500 font-medium">Pre-loaded high quality mock tests for you.</p>
               </div>
               <button className="text-indigo-600 font-bold text-sm hover:underline">View All Library</button>
@@ -298,18 +298,18 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
                             <BookOpen size={24} />
                           </div>
                           <div className="flex flex-col items-end gap-1">
-                            <span className="px-3 py-1 bg-amber-50 text-amber-600 text-[10px] font-black uppercase tracking-wider rounded-lg border border-amber-100">
+                            <span className="px-3 py-1 bg-amber-50 text-amber-600 text-[10px] font-bold uppercase tracking-wider rounded-lg border border-amber-100">
                               Template
                             </span>
                             {paper.source === 'LOCAL' && (
-                              <span className="px-3 py-1 bg-emerald-50 text-emerald-600 text-[10px] font-black uppercase tracking-wider rounded-lg border border-emerald-100">
+                              <span className="px-3 py-1 bg-emerald-50 text-emerald-600 text-[10px] font-bold uppercase tracking-wider rounded-lg border border-emerald-100">
                                 Saved
                               </span>
                             )}
                           </div>
                         </div>
 
-                        <h4 className="font-black text-slate-900 text-lg leading-tight mb-2 line-clamp-2">{paper.title}</h4>
+                        <h4 className="font-bold text-slate-900 text-lg leading-tight mb-2 line-clamp-2">{paper.title}</h4>
                         <div className="flex items-center gap-3 text-xs font-bold text-slate-400 uppercase tracking-wide">
                           <span>{paper.questions.length} Qs</span>
                           <span className="w-1 h-1 rounded-full bg-slate-300"></span>
@@ -319,7 +319,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
 
                       <button
                         onClick={() => onAddSamplePaper(paper)}
-                        className="w-full py-4 bg-slate-50 text-slate-600 text-xs font-black uppercase tracking-wider rounded-xl hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center gap-2 group/btn"
+                        className="w-full py-4 bg-slate-50 text-slate-600 text-xs font-bold uppercase tracking-wider rounded-xl hover:bg-slate-900 hover:text-white transition-all flex items-center justify-center gap-2 group/btn"
                       >
                         <Plus size={16} className="group-hover/btn:scale-110 transition-transform" /> Add to Workspace
                       </button>
@@ -339,7 +339,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
                 <List size={20} />
               </div>
               <div>
-                <h3 className="font-black text-slate-900 text-2xl tracking-tight">Active Workspace</h3>
+                <h3 className="font-bold text-slate-900 text-2xl tracking-tight">Active Workspace</h3>
                 <p className="text-slate-500 font-medium text-sm">Your currently imported papers.</p>
               </div>
             </div>

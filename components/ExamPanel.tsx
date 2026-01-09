@@ -32,6 +32,7 @@ interface ExamPanelProps {
 type LangMode = 'en' | 'hi' | 'both';
 
 import { useConfirm } from '../context/ConfirmContext';
+import RichTextRenderer from './RichTextRenderer';
 
 const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, onCancel }) => {
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -168,16 +169,8 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
     }
   };
 
-  const handleSubmit = async () => {
-    if (await confirm({
-      title: "Submit Exam?",
-      description: "Are you sure you want to finish the exam? Unanswered questions will be marked as skipped.",
-      confirmLabel: "Submit Now",
-      cancelLabel: "Keep Working",
-      variant: "neutral"
-    })) {
-      calculateResultAndFinish();
-    }
+  const handleSubmit = () => {
+    calculateResultAndFinish();
   };
 
   const handleExit = async () => {
@@ -212,7 +205,7 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
             <div className="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
               <CheckCircle size={32} />
             </div>
-            <h3 className="text-2xl font-black text-slate-800 mb-2">Ready to Submit?</h3>
+            <h3 className="text-2xl font-bold text-slate-800 mb-2">Ready to Submit?</h3>
             <p className="text-slate-500 font-medium mb-6">
               You have answered <span className="text-indigo-600 font-bold">{answeredCount}</span> out of <span className="font-bold">{paper.questions.length}</span> questions.
               {markedCount > 0 && <span> You still have <span className="text-purple-600 font-bold">{markedCount}</span> questions marked for review.</span>}
@@ -247,11 +240,11 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
           </button>
           <div className="h-8 md:h-10 w-px bg-slate-200 mx-1 hidden md:block" />
           <div className="hidden md:flex flex-col">
-            <h2 className="font-extrabold text-slate-800 leading-tight truncate max-w-[160px] md:max-w-xl text-base md:text-xl tracking-tight">
+            <h2 className="font-bold text-slate-800 leading-tight truncate max-w-[160px] md:max-w-xl text-base md:text-xl tracking-tight">
               {paper.title}
             </h2>
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-black uppercase tracking-widest border border-indigo-100">{paper.examType}</span>
+              <span className="text-[10px] bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-md font-bold uppercase tracking-widest border border-indigo-100">{paper.examType}</span>
               <span className="text-[10px] text-slate-400 font-bold">• {paper.questions.length} Questions</span>
             </div>
           </div>
@@ -280,7 +273,7 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
               <button
                 key={m}
                 onClick={() => setLangMode(m)}
-                className={`px-4 py-1.5 rounded-xl text-[11px] font-black transition-all duration-300 ${langMode === m
+                className={`px-4 py-1.5 rounded-xl text-[11px] font-bold transition-all duration-300 ${langMode === m
                   ? 'bg-white text-indigo-600 shadow-sm scale-100 ring-1 ring-black/5'
                   : 'text-slate-500 hover:text-slate-800'
                   }`}
@@ -292,7 +285,7 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
 
           <div className="flex items-center gap-2 md:gap-4">
             {/* Timer - Neumorphic Depth */}
-            <div className={`flex items-center gap-2.5 px-4 py-2 md:px-5 md:py-2.5 rounded-2xl font-mono font-black text-xs md:text-lg transition-all shadow-inner border border-white/20 ${isPaused
+            <div className={`flex items-center gap-2.5 px-4 py-2 md:px-5 md:py-2.5 rounded-2xl font-mono font-bold text-xs md:text-lg transition-all shadow-inner border border-white/20 ${isPaused
               ? 'bg-amber-50 text-amber-600 ring-1 ring-amber-200'
               : 'bg-slate-800 text-white shadow-slate-300'
               }`}>
@@ -317,7 +310,7 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
             <div className="w-28 h-28 bg-white text-amber-500 rounded-[2.5rem] flex items-center justify-center mb-8 shadow-[0_20px_60px_-15px_rgba(251,191,36,0.5)] ring-1 ring-amber-100">
               <Pause size={56} fill="currentColor" className="ml-1" />
             </div>
-            <h3 className="text-5xl font-black text-slate-900 mb-4 tracking-tighter">Exam Paused</h3>
+            <h3 className="text-5xl font-bold text-slate-900 mb-4 tracking-tighter">Exam Paused</h3>
             <p className="text-slate-500 font-medium max-w-sm mb-12 text-lg leading-relaxed">Your progress is safely locked. Take a break and resume when ready.</p>
             <button
               onClick={() => setIsPaused(false)}
@@ -336,13 +329,34 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
           <div className="max-w-5xl mx-auto space-y-6 md:space-y-8 pb-10">
 
             {/* Mobile Paper Details */}
-            <div className="md:hidden px-2 space-y-2">
-              <h1 className="text-2xl font-black text-slate-900 leading-tight">{paper.title}</h1>
-              <div className="flex items-center gap-3">
-                <span className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 shadow-sm uppercase tracking-wider">{paper.examType}</span>
-                <span className="text-xs font-bold text-slate-400">{paper.questions.length} Questions</span>
-                <div className="flex-1" />
-                {/* Mobile Timer moved here for context? No, keep in header for visibility. */}
+            <div className="md:hidden px-2 space-y-4">
+              <div className="space-y-2">
+                <h1 className="text-2xl font-bold text-slate-900 leading-tight">{paper.title}</h1>
+                <div className="flex items-center gap-3">
+                  <span className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 shadow-sm uppercase tracking-wider">{paper.examType}</span>
+                  <span className="text-xs font-bold text-slate-400">{paper.questions.length} Questions</span>
+                </div>
+              </div>
+
+              {/* Mobile Language Toggle - Segmented Control */}
+              <div className="bg-slate-100 p-1.5 rounded-[1.2rem] flex items-center shadow-inner border border-slate-200/60 mx-1">
+                {(['en', 'hi', 'both'] as LangMode[]).map((m) => {
+                  const isActive = langMode === m;
+                  return (
+                    <button
+                      key={m}
+                      onClick={() => setLangMode(m)}
+                      className={`flex-1 py-2.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300 relative overflow-hidden ${isActive
+                        ? 'bg-white text-indigo-600 shadow-md scale-100 shadow-indigo-100 ring-1 ring-black/5'
+                        : 'text-slate-400 hover:text-slate-600 hover:bg-slate-200/50'
+                        }`}
+                    >
+                      {/* Active Indicator Dot matching the screenshot aesthetic slightly differently but premium */}
+                      {isActive && <div className="absolute top-1/2 left-2 w-1 h-1 bg-indigo-500 rounded-full -translate-y-1/2 hidden" />}
+                      {m}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -353,13 +367,13 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
                 <div className="flex items-center gap-4">
                   <div className="relative">
                     <div className="absolute inset-0 bg-indigo-600 blur-lg opacity-20 rounded-full"></div>
-                    <span className="relative w-12 h-12 md:w-14 md:h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-black text-xl md:text-2xl shadow-inner border border-white/20">
+                    <span className="relative w-12 h-12 md:w-14 md:h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white font-bold text-xl md:text-2xl shadow-inner border border-white/20">
                       {currentIdx + 1}
                     </span>
                   </div>
                   <div>
-                    <h3 className="hidden md:block text-[10px] font-black text-slate-400 uppercase tracking-[0.25em] leading-none mb-1">Question</h3>
-                    <p className="font-extrabold text-slate-800 text-sm md:text-base">Multiple Choice</p>
+                    <h3 className="hidden md:block text-[10px] font-bold text-slate-400 uppercase tracking-[0.25em] leading-none mb-1">Question</h3>
+                    <p className="font-bold text-slate-800 text-sm md:text-base">Multiple Choice</p>
                   </div>
                 </div>
 
@@ -393,17 +407,15 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
                 </div>
 
                 <div className="relative space-y-6 md:space-y-10 z-10">
-                  <div className="space-y-5 md:space-y-6">
+                  <div className="mb-6 space-y-3">
                     {(langMode === 'en' || langMode === 'both') && (
-                      <p className="text-xl md:text-3xl font-bold text-slate-800 leading-snug tracking-tight">
-                        {currentQuestion.content.en}
-                      </p>
+                      <div className="text-base font-semibold text-slate-800 leading-relaxed">
+                        <RichTextRenderer content={currentQuestion.content.en} />
+                      </div>
                     )}
                     {(langMode === 'hi' || langMode === 'both') && (
-                      <div className={`relative ${langMode === 'both' ? 'pl-6 md:pl-8 border-l-4 border-indigo-100' : ''}`}>
-                        <p className="text-lg md:text-2xl font-semibold leading-relaxed text-slate-600 hindi-text">
-                          {currentQuestion.content.hi}
-                        </p>
+                      <div className="text-base font-medium text-slate-600 leading-relaxed hindi-text">
+                        <RichTextRenderer content={currentQuestion.content.hi} />
                       </div>
                     )}
                   </div>
@@ -420,20 +432,20 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
                             : 'border-slate-100 hover:border-indigo-200 bg-white'
                             }`}
                         >
-                          <span className={`w-8 h-8 md:w-11 md:h-11 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-xs md:text-sm shrink-0 transition-all duration-300 ${isSelected ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-300' : 'bg-slate-100 text-slate-400 group-hover:bg-indigo-100 group-hover:text-indigo-600'
+                          <span className={`w-8 h-8 md:w-11 md:h-11 rounded-xl md:rounded-2xl flex items-center justify-center font-bold text-xs md:text-sm shrink-0 transition-all duration-300 ${isSelected ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-300' : 'bg-slate-100 text-slate-400 group-hover:bg-indigo-100 group-hover:text-indigo-600'
                             }`}>
                             {opt.id.toUpperCase()}
                           </span>
                           <div className="flex-1 pt-0.5 md:pt-1.5">
                             {(langMode === 'en' || langMode === 'both') && (
-                              <p className={`font-semibold text-base md:text-lg transition-colors ${isSelected ? 'text-indigo-950' : 'text-slate-700'}`}>
-                                {opt.text.en}
-                              </p>
+                              <div className={`font-semibold text-sm md:text-base transition-colors ${isSelected ? 'text-indigo-950' : 'text-slate-700'}`}>
+                                <RichTextRenderer content={opt.text.en} />
+                              </div>
                             )}
-                            {(langMode === 'hi' || langMode === 'both') && (
-                              <p className={`text-sm md:text-base font-medium hindi-text transition-colors mt-1 ${isSelected ? 'text-indigo-900/80' : 'text-slate-500'}`}>
-                                {opt.text.hi}
-                              </p>
+                            {(langMode === 'hi' || langMode === 'both') && opt.text.hi && (
+                              <div className={`text-sm md:text-base transition-colors hindi-text ${isSelected ? 'text-indigo-900' : 'text-slate-600'} ${langMode === 'both' ? 'mt-1' : ''}`}>
+                                <RichTextRenderer content={opt.text.hi} />
+                              </div>
                             )}
                           </div>
 
@@ -487,7 +499,7 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
         {/* Improved Question Palette */}
         <aside className={`fixed inset-y-0 right-0 w-80 bg-white border-l border-slate-100 p-8 overflow-auto shadow-2xl transition-transform lg:relative lg:translate-x-0 z-50 ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="flex items-center justify-between mb-10">
-            <h4 className="font-black text-slate-900 text-[10px] uppercase tracking-[0.25em] flex items-center gap-3">
+            <h4 className="font-bold text-slate-900 text-[10px] uppercase tracking-[0.25em] flex items-center gap-3">
               <Flag size={16} className="text-indigo-600" />
               Question Explorer
             </h4>

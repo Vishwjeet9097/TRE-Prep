@@ -18,10 +18,13 @@ import {
   Clock,
   LayoutGrid,
   Sparkles,
-  Filter as FilterIcon
+  Filter as FilterIcon,
+  Share2, RotateCcw, Home, Download, MinusCircle, ChevronDown, ChevronUp, Eye, X, MessageSquare
 } from 'lucide-react';
 import { ExamPaper, ExamAttempt, Question } from '../types';
 import AIChatAssistant from './AIChatAssistant';
+import RichTextRenderer from './RichTextRenderer';
+import { toPDF } from '../services/pdfService';
 
 interface ResultViewProps {
   attempt: ExamAttempt;
@@ -68,22 +71,22 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
             <circle cx="96" cy="96" r="86" className="stroke-indigo-500 fill-none" strokeWidth="16" strokeDasharray={540} strokeDashoffset={540 - (540 * percentage) / 100} strokeLinecap="round" />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-3xl font-black">{percentage}%</span>
+            <span className="text-3xl font-bold">{percentage}%</span>
             <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-indigo-400 mt-1">Score</span>
           </div>
         </div>
-        <h3 className="text-2xl font-black mb-2">{percentage >= 40 ? 'Well Done!' : 'Try Again!'}</h3>
+        <h3 className="text-2xl font-bold mb-2">{percentage >= 40 ? 'Well Done!' : 'Try Again!'}</h3>
         <div className="grid grid-cols-3 gap-2 mt-6">
           <div className="bg-emerald-500/10 rounded-xl p-2 border border-emerald-500/20">
-            <span className="block text-xl font-black text-emerald-400">{attempt.totalCorrect}</span>
+            <span className="block text-xl font-bold text-emerald-400">{attempt.totalCorrect}</span>
             <span className="text-[8px] uppercase tracking-wider text-emerald-200">Correct</span>
           </div>
           <div className="bg-rose-500/10 rounded-xl p-2 border border-rose-500/20">
-            <span className="block text-xl font-black text-rose-400">{attempt.totalIncorrect}</span>
+            <span className="block text-xl font-bold text-rose-400">{attempt.totalIncorrect}</span>
             <span className="text-[8px] uppercase tracking-wider text-rose-200">Wrong</span>
           </div>
           <div className="bg-slate-500/10 rounded-xl p-2 border border-slate-500/20">
-            <span className="block text-xl font-black text-slate-400">{attempt.totalUnattempted}</span>
+            <span className="block text-xl font-bold text-slate-400">{attempt.totalUnattempted}</span>
             <span className="text-[8px] uppercase tracking-wider text-slate-300">Skip</span>
           </div>
         </div>
@@ -98,7 +101,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
             <div key={q.id} onClick={() => setSelectedQuestion(q)} className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm active:scale-95 transition-all cursor-pointer">
               <div className="flex justify-between items-center mb-4">
                 <span className="font-bold text-slate-400">#{q.number}</span>
-                <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded-lg ${isCorrect ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
+                <span className={`text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded-lg ${isCorrect ? 'bg-emerald-50 text-emerald-600' : 'bg-rose-50 text-rose-600'}`}>
                   {isCorrect ? 'Correct' : 'Incorrect'}
                 </span>
               </div>
@@ -121,7 +124,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
       <div className="grid grid-cols-4 gap-8">
         {/* Main Score Card - Clean White Style */}
         <div className="col-span-1 bg-white rounded-[2.5rem] p-8 border border-slate-200 shadow-lg shadow-slate-200/50 relative overflow-hidden flex flex-col items-center justify-between h-[360px]">
-          <h3 className="font-black text-slate-800 text-lg uppercase tracking-widest self-start">Total Score</h3>
+          <h3 className="font-bold text-slate-800 text-lg uppercase tracking-widest self-start">Total Score</h3>
           <div className="relative w-48 h-48">
             <svg className="w-full h-full -rotate-90" viewBox="0 0 192 192">
               <defs>
@@ -134,7 +137,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
               <circle cx="96" cy="96" r="80" className="stroke-[url(#scoreGradient)] fill-none" strokeWidth="12" strokeDasharray={502} strokeDashoffset={502 - (502 * percentage) / 100} strokeLinecap="round" />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-5xl font-black text-slate-900">{percentage}%</span>
+              <span className="text-5xl font-bold text-slate-900">{percentage}%</span>
               <span className="text-xs font-bold text-slate-400 mt-2">{percentage >= 40 ? 'PASS' : 'FAIL'}</span>
             </div>
           </div>
@@ -151,7 +154,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
               <CheckCircle size={24} />
             </div>
             <div>
-              <span className="text-4xl font-black text-slate-900">{attempt.totalCorrect}</span>
+              <span className="text-4xl font-bold text-slate-900">{attempt.totalCorrect}</span>
               <p className="text-sm font-bold text-slate-400 uppercase tracking-wider mt-1">Correct Answers</p>
             </div>
           </div>
@@ -160,7 +163,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
               <XCircle size={24} />
             </div>
             <div>
-              <span className="text-4xl font-black text-slate-900">{attempt.totalIncorrect}</span>
+              <span className="text-4xl font-bold text-slate-900">{attempt.totalIncorrect}</span>
               <p className="text-sm font-bold text-slate-400 uppercase tracking-wider mt-1">Incorrect</p>
             </div>
           </div>
@@ -169,7 +172,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
               <Clock size={24} />
             </div>
             <div>
-              <span className="text-4xl font-black text-slate-900">{(attempt.timeElapsed / 60).toFixed(1)}m</span>
+              <span className="text-4xl font-bold text-slate-900">{(attempt.timeElapsed / 60).toFixed(1)}m</span>
               <p className="text-sm font-bold text-slate-400 uppercase tracking-wider mt-1">Time Spent</p>
             </div>
           </div>
@@ -184,7 +187,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
         <div className="col-span-1 bg-slate-900 text-white rounded-[2.5rem] p-8 flex flex-col justify-between h-[360px] relative overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-full blur-[60px] opacity-40"></div>
           <div>
-            <h3 className="text-2xl font-black mb-2">Keep Going!</h3>
+            <h3 className="text-2xl font-bold mb-2">Keep Going!</h3>
             <p className="text-slate-400 text-sm leading-relaxed">Consistency is key. You've mastered {accuracy}% of this paper.</p>
           </div>
           <div className="space-y-3">
@@ -197,7 +200,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
       {/* Compact Table Section */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-black text-slate-800 tracking-tight">Question Analysis</h3>
+          <h3 className="text-2xl font-bold text-slate-800 tracking-tight">Question Analysis</h3>
           <div className="flex gap-2">
             {/* Table Filters */}
             {(['all', 'correct', 'incorrect'] as Filter[]).map(f => (
@@ -207,7 +210,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
         </div>
 
         <div className="bg-white rounded-[2.5rem] border border-slate-200 shadow-sm overflow-hidden p-2">
-          <div className="grid grid-cols-12 gap-4 p-5 text-xs font-black text-slate-400 uppercase tracking-widest border-b border-slate-100">
+          <div className="grid grid-cols-12 gap-4 p-5 text-xs font-bold text-slate-400 uppercase tracking-widest border-b border-slate-100">
             <div className="col-span-1 text-center">#</div>
             <div className="col-span-6">Question</div>
             <div className="col-span-2">Your Answer</div>
@@ -222,7 +225,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
 
               return (
                 <div key={q.id} onClick={() => setSelectedQuestion(q)} className="grid grid-cols-12 gap-4 p-5 items-center hover:bg-slate-50 rounded-2xl transition-all text-sm font-medium text-slate-700 group cursor-pointer border border-transparent hover:border-indigo-100 hover:shadow-sm">
-                  <div className="col-span-1 text-center font-black text-slate-300">#{q.number}</div>
+                  <div className="col-span-1 text-center font-bold text-slate-300">#{q.number}</div>
                   <div className="col-span-6 pr-8">
                     <p className="line-clamp-2 text-slate-900 font-bold mb-1">{q.content['en']}</p>
                     <div className="hidden group-hover:block transition-all text-xs text-slate-400 line-clamp-1">{q.explanation.en}</div>
@@ -270,11 +273,11 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
             <button onClick={onBack} className="w-10 h-10 md:w-12 md:h-12 bg-white border border-slate-200 rounded-xl flex items-center justify-center text-slate-400 hover:text-indigo-600 transition-colors shadow-sm">
               <ArrowLeft size={20} />
             </button>
-            <h2 className="text-xl md:text-3xl font-black text-slate-900 tracking-tight">Performance Summary</h2>
+            <h2 className="text-xl md:text-3xl font-bold text-slate-900 tracking-tight">Performance Summary</h2>
           </div>
           <div className="flex bg-white p-1 rounded-xl border border-slate-200 shadow-sm">
             {(['en', 'hi', 'both'] as LangMode[]).map(m => (
-              <button key={m} onClick={() => setLangMode(m)} className={`px-4 py-2 rounded-lg text-xs font-black transition-all ${langMode === m ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-slate-700'}`}>{m.toUpperCase()}</button>
+              <button key={m} onClick={() => setLangMode(m)} className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${langMode === m ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-slate-700'}`}>{m.toUpperCase()}</button>
             ))}
           </div>
         </div>
@@ -295,14 +298,14 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
             {/* Modal Header */}
             <div className="sticky top-0 bg-white/95 backdrop-blur z-20 px-5 py-4 md:px-8 md:py-6 border-b border-slate-100 flex items-center justify-between">
               <div className="flex items-center gap-3 md:gap-4">
-                <span className="w-10 h-10 md:w-12 md:h-12 bg-slate-50 rounded-xl md:rounded-2xl flex items-center justify-center font-black text-slate-500 text-sm border border-slate-100 shadow-sm">#{selectedQuestion.number}</span>
+                <span className="w-10 h-10 md:w-12 md:h-12 bg-slate-50 rounded-xl md:rounded-2xl flex items-center justify-center font-bold text-slate-500 text-sm border border-slate-100 shadow-sm">#{selectedQuestion.number}</span>
                 <div>
-                  <h3 className="text-lg md:text-2xl font-black text-slate-900 tracking-tight">Question Details</h3>
+                  <h3 className="text-lg md:text-2xl font-bold text-slate-900 tracking-tight">Question Details</h3>
                   <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest hidden md:block">Deep Dive Analysis</p>
                 </div>
               </div>
               <button onClick={() => setSelectedQuestion(null)} className="w-10 h-10 md:w-12 md:h-12 bg-slate-50 hover:bg-rose-50 hover:text-rose-600 rounded-full flex items-center justify-center text-slate-400 transition-all">
-                <XCircle size={20} className="md:w-6 md:h-6" />
+                <X size={20} className="md:w-6 md:h-6" />
               </button>
             </div>
 
@@ -312,12 +315,12 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
               <div className="space-y-3 md:space-y-6">
                 {(langMode === 'en' || langMode === 'both') && (
                   <div className="relative pl-4 md:pl-6 border-l-4 border-indigo-500">
-                    <p className="text-xl md:text-3xl font-black text-slate-900 leading-snug">{selectedQuestion.content.en}</p>
+                    <RichTextRenderer content={selectedQuestion.content.en} className="text-xl md:text-3xl font-black text-slate-900 leading-snug" />
                   </div>
                 )}
                 {(langMode === 'hi' || langMode === 'both') && (
                   <div className="relative pl-4 md:pl-6 border-l-4 border-slate-200">
-                    <p className="text-lg md:text-2xl font-bold text-slate-500 hindi-text leading-relaxed">{selectedQuestion.content.hi}</p>
+                    <RichTextRenderer content={selectedQuestion.content.hi} className="text-lg md:text-2xl font-bold text-slate-500 hindi-text leading-relaxed" />
                   </div>
                 )}
               </div>
@@ -348,8 +351,8 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
                           {opt.id.toUpperCase()}
                         </span>
                         <div className="flex-1 space-y-1">
-                          <p className="font-bold text-base md:text-lg leading-tight">{opt.text.en}</p>
-                          <p className="text-xs md:text-sm opacity-80 hindi-text font-medium">{opt.text.hi}</p>
+                          <RichTextRenderer content={opt.text.en} className="font-bold text-base md:text-lg leading-tight" />
+                          <RichTextRenderer content={opt.text.hi} className="text-xs md:text-sm opacity-80 hindi-text font-medium" />
                         </div>
                         {icon}
                       </div>
@@ -376,8 +379,8 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
                         <h4 className="text-xs font-black text-indigo-400 uppercase tracking-[0.2em]">Logic Breakdown</h4>
                       </div>
                       <div className="space-y-3 text-slate-200 leading-relaxed font-medium text-sm md:text-base border-l-2 border-indigo-500/30 pl-4">
-                        <p>{selectedQuestion.explanation.en}</p>
-                        <p className="italic opacity-60 hindi-text">{selectedQuestion.explanation.hi}</p>
+                        <RichTextRenderer content={selectedQuestion.explanation.en} />
+                        <RichTextRenderer content={selectedQuestion.explanation.hi} className="italic opacity-60 hindi-text" />
                       </div>
                     </div>
 
