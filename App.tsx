@@ -38,7 +38,6 @@ type View = 'dashboard' | 'import' | 'exam' | 'result' | 'history' | 'settings' 
 
 const AppContent: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('dashboard');
-  console.log('App Render: currentView =', currentView); // DEBUG LOG
   const [selectedPaper, setSelectedPaper] = useState<ExamPaper | null>(null);
   const [currentAttempt, setCurrentAttempt] = useState<ExamAttempt | null>(null);
   const [papers, setPapers] = useState<ExamPaper[]>([]);
@@ -339,16 +338,7 @@ const AppContent: React.FC = () => {
       case 'settings':
         return <ProfilePage onBack={() => setCurrentView('dashboard')} />;
       default:
-        // DEBUG: If we hit default, show what view we are trying to render
-        return (
-          <div className="flex items-center justify-center h-full flex-col gap-4">
-            <h2 className="text-xl font-bold text-red-500">Page Not Found</h2>
-            <p>Trying to render view: {currentView}</p>
-            <button onClick={() => setCurrentView('dashboard')} className="px-4 py-2 bg-blue-500 text-white rounded">Go Home</button>
-            {/* Fallback to Dashboard if needed for production, but right now we debug */}
-          </div>
-        );
-      // return <Dashboard papers={papers} jobs={activeJobs} onStartExam={handleStartExam} onImportClick={() => setCurrentView('import')} onDeletePaper={() => { }} onReviewJob={handleReviewJob} onDeleteJob={handleDeleteJob} attempts={attempts} onViewAttempt={handleViewAttemptDetail} />;
+        return <Dashboard papers={papers} jobs={activeJobs} onStartExam={handleStartExam} onImportClick={() => setCurrentView('import')} onDeletePaper={() => { }} onReviewJob={handleReviewJob} onDeleteJob={handleDeleteJob} attempts={attempts} onViewAttempt={handleViewAttemptDetail} />;
     }
   };
 

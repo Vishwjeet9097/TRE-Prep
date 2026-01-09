@@ -156,12 +156,12 @@ const Dashboard: React.FC<DashboardProps> = ({
             <h3 className="text-lg font-black text-slate-800 tracking-tight">Recent Activity</h3>
           </div>
           <div className="grid grid-cols-1 gap-3">
-            {recentAttempts.map(attempt => {
+            {recentAttempts.map((attempt, i) => {
               const paper = papers.find(p => p.id === attempt.paperId);
               const percentage = Math.round((attempt.score / (paper?.questions.length || 1)) * 100);
               const isPass = percentage >= 40;
               return (
-                <div key={attempt.id} onClick={() => onViewAttempt(attempt)} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm active:scale-95 transition-all flex items-center justify-between">
+                <div key={`${attempt.id}-${i}`} onClick={() => onViewAttempt(attempt)} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm active:scale-95 transition-all flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-sm text-white shadow-md ${isPass ? 'bg-emerald-500 shadow-emerald-200' : 'bg-rose-500 shadow-rose-200'}`}>
                       {percentage}%
@@ -335,13 +335,13 @@ const Dashboard: React.FC<DashboardProps> = ({
                 </thead>
                 <tbody className="space-y-4">
                   {/* Recent Attempts Rows */}
-                  {recentAttempts.map(attempt => {
+                  {recentAttempts.map((attempt, i) => {
                     const paper = papers.find(p => p.id === attempt.paperId);
                     const pct = Math.round((attempt.score / (paper?.questions.length || 1)) * 100);
                     const isPass = pct >= 40;
 
                     return (
-                      <tr key={attempt.id} className="group border-b border-transparent hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer" onClick={() => onViewAttempt(attempt)}>
+                      <tr key={`${attempt.id}-${i}`} className="group border-b border-transparent hover:bg-slate-50 rounded-2xl transition-colors cursor-pointer" onClick={() => onViewAttempt(attempt)}>
                         <td className="py-4 pl-4 first:rounded-l-2xl">
                           <div className="flex items-center gap-3">
                             <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-xs ${isPass ? 'bg-emerald-400' : 'bg-rose-400'}`}>

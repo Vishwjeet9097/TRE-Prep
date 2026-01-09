@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   MessageSquare,
   Mic,
+  MicOff,
   X,
   Send,
   Sparkles,
@@ -113,7 +114,10 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+
   const [isVoiceActive, setIsVoiceActive] = useState(false);
+  const [voiceStatus, setVoiceStatus] = useState<'idle' | 'initializing' | 'listening' | 'error'>('idle');
+  const [isMuted, setIsMuted] = useState(false);
   const [showBubble, setShowBubble] = useState(false);
 
   const [step, setStep] = useState<OnboardingStep>('language');
@@ -131,8 +135,15 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
     if (variant === 'full-page') {
       setIsOpen(true);
       setIsMinimized(false);
+      setMode('chat');
+    } else {
+      setMode('voice');
+      // Auto-start voice if opening floating
+      if (isOpen) {
+        startVoiceSession();
+      }
     }
-  }, [variant]);
+  }, [variant, isOpen]);
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -306,7 +317,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
           parts: [{ text: m.text }]
         })),
         config: {
-          systemInstruction: `${BPSC_TRE_4_SYSTEM_PROMPT}\nUser Preference: Language: ${selectedLang || 'English'}, Subject: ${selectedSubject || 'General Studies'}.`
+          systemInstruction: `${BPSC_TRE_4_SYSTEM_PROMPT}\n\nCRITICAL INSTRUCTION: The user has selected the language: ${selectedLang || 'English'}. You MUST conduct the entire conversation, including explanations, greeting, and questions, in ${selectedLang || 'English'} ONLY. Do not switch languages unless explicitly impressed.`
         }
       });
 
@@ -348,23 +359,47 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
     if (type === 'language') {
       setSelectedLang(value);
       setStep('subject');
+
+      const responseText = value === 'Hindi'
+        ? `भाषा ${value} चुनी गई। अब, TRE 4.0 के लिए अपना विषय चुनें।`
+        : `Language set to ${value}. Now, choose your target subject for TRE 4.0.`;
+
       setMessages(prev => [...prev, { role: 'user', text: value }, {
         role: 'model',
-        text: `Language set to ${value}. Now, choose your target subject for TRE 4.0.`,
+        text: responseText,
         type: 'onboarding'
       }]);
     } else {
       setSelectedSubject(value);
       setStep('ready');
+
+      const isHindi = selectedLang === 'Hindi';
+      const responseText = isHindi
+        ? `बढ़िया। ${value} के लिए कॉन्फ़िगर किया गया। चलिए 2026 की परीक्षा की तैयारी शुरू करते हैं!`
+        : `Excellent. Configured for ${value}. Let's master the 2026 exam together!`;
+
       setMessages(prev => [...prev, { role: 'user', text: value }, {
         role: 'model',
-        text: `Excellent. Configured for ${value}. Let's master the 2026 exam together!`
+        text: responseText
       }]);
+    }
+  };
+
+  const toggleMute = () => {
+    if (!inputAudioContextRef.current) return;
+
+    if (isMuted) {
+      inputAudioContextRef.current.resume();
+      setIsMuted(false);
+    } else {
+      inputAudioContextRef.current.suspend();
+      setIsMuted(true);
     }
   };
 
   const startVoiceSession = async () => {
     try {
+      setVoiceStatus('initializing');
       setIsVoiceActive(true);
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       inputAudioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 16000 });
@@ -377,6 +412,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
         model: 'gemini-2.5-flash-native-audio-preview-12-2025',
         callbacks: {
           onopen: () => {
+            setVoiceStatus('listening');
             const source = inputAudioContextRef.current!.createMediaStreamSource(stream);
             const scriptProcessor = inputAudioContextRef.current!.createScriptProcessor(4096, 1, 1);
             scriptProcessor.onaudioprocess = (e) => {
@@ -409,15 +445,32 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
         }
       });
       sessionRef.current = await sessionPromise;
-    } catch (e) { console.error(e); stopVoiceSession(); }
+    } catch (e) {
+      console.error(e);
+      setVoiceStatus('error');
+      stopVoiceSession();
+    }
   };
 
   const stopVoiceSession = () => {
     setIsVoiceActive(false);
+    setVoiceStatus('idle');
+    setIsMuted(false);
     if (sessionRef.current) sessionRef.current.close();
-    if (inputAudioContextRef.current) inputAudioContextRef.current.close();
-    if (outputAudioContextRef.current) outputAudioContextRef.current.close();
-    setMode('chat');
+
+    if (inputAudioContextRef.current && inputAudioContextRef.current.state !== 'closed') {
+      inputAudioContextRef.current.close();
+    }
+
+    if (outputAudioContextRef.current && outputAudioContextRef.current.state !== 'closed') {
+      outputAudioContextRef.current.close();
+    }
+
+    // Do not auto-switch to chat if just stopping for mute/pause, but here stopping means ending session.
+    // If floating, we keep it in voice mode but idle.
+    if (variant === 'full-page') {
+      setMode('chat');
+    }
   };
 
   useEffect(() => {
@@ -531,20 +584,11 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
       {!isMinimized && (
         <>
 
-          {/* Mode Switcher - Only for Floating Variant */}
-          {variant === 'floating' && (
-            <div className="flex bg-slate-50/80 p-1.5 md:p-2 border-b border-slate-100 shrink-0 gap-2">
-              <button onClick={() => setMode('chat')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 md:py-3.5 text-[10px] md:text-[11px] font-black tracking-[0.2em] rounded-xl md:rounded-2xl transition-all ${mode === 'chat' ? 'bg-white text-indigo-600 shadow-md border border-slate-200' : 'text-slate-400 hover:text-slate-600'}`}>
-                <MessageSquare size={14} /> CHAT
-              </button>
-              <button onClick={() => { setMode('voice'); startVoiceSession(); }} className={`flex-1 flex items-center justify-center gap-2 py-2.5 md:py-3.5 text-[10px] md:text-[11px] font-black tracking-[0.2em] rounded-xl md:rounded-2xl transition-all ${mode === 'voice' ? 'bg-indigo-600 text-white shadow-xl' : 'text-slate-400 hover:text-slate-600'}`}>
-                <Mic size={14} /> VOICE
-              </button>
-            </div>
-          )}
+          {/* Mode Switcher Removed for Floating Variant (Voice Only) */}
+          {/* {variant === 'floating' && (...)} */}
 
           <div className="flex-1 overflow-hidden flex flex-col bg-[#F9FBFF] w-full relative">
-            {mode === 'chat' ? (
+            {variant === 'full-page' ? (
               <>
                 <div ref={scrollRef} className={`flex-1 overflow-y-auto ${variant === 'full-page' ? 'w-full max-w-5xl mx-auto px-6 py-8 md:px-12 md:py-12' : 'p-4 md:p-6'} space-y-6 md:space-y-12 no-scrollbar pb-32 md:pb-32`}>
                   {messages.map((m, i) => (
@@ -623,24 +667,36 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                                     {lastQuiz.options.map(opt => {
                                       const isCorrect = opt.id === m.resultData?.correctOption;
                                       const isUserChoice = opt.id === m.resultData?.userChoice;
-                                      let borderClass = "border-slate-50 bg-slate-50/20 opacity-30";
+
+                                      let borderClass = "border-slate-100 bg-white opacity-60";
                                       let badgeClass = "bg-slate-100 text-slate-400";
+                                      let statusIcon = null;
 
                                       if (isCorrect) {
-                                        borderClass = "border-emerald-500 bg-emerald-50 shadow-md ring-1 ring-emerald-200 opacity-100";
-                                        badgeClass = "bg-emerald-600 text-white";
+                                        borderClass = "border-emerald-500 bg-emerald-50/50 ring-1 ring-emerald-500 opacity-100";
+                                        badgeClass = "bg-emerald-600 text-white shadow-sm";
+                                        statusIcon = <div className="flex items-center gap-1.5 px-2 py-1 bg-emerald-100 text-emerald-700 rounded-md text-[9px] font-black uppercase tracking-wider"><Check size={12} strokeWidth={3} /> Correct</div>;
                                       } else if (isUserChoice && !isCorrect) {
-                                        borderClass = "border-rose-500 bg-rose-50 opacity-100";
-                                        badgeClass = "bg-rose-600 text-white";
+                                        borderClass = "border-rose-500 bg-rose-50/50 ring-1 ring-rose-500 opacity-100";
+                                        badgeClass = "bg-rose-600 text-white shadow-sm";
+                                        statusIcon = <div className="flex items-center gap-1.5 px-2 py-1 bg-rose-100 text-rose-700 rounded-md text-[9px] font-black uppercase tracking-wider"><X size={12} strokeWidth={3} /> Your Answer</div>;
                                       }
 
                                       return (
-                                        <div key={opt.id} className={`p-4 md:p-5 rounded-xl md:rounded-2xl border-2 flex items-start gap-4 md:gap-5 transition-all duration-500 ${borderClass}`}>
-                                          <span className={`w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center font-black text-xs md:text-sm shrink-0 ${badgeClass}`}>
-                                            {opt.id}
-                                          </span>
-                                          <span className="font-bold text-slate-800 text-sm md:text-base pt-1 md:pt-2">{opt.text}</span>
-                                          {isCorrect && <Check size={18} className="ml-auto text-emerald-600 md:w-5 md:h-5" />}
+                                        <div key={opt.id} className={`p-4 md:p-5 rounded-xl md:rounded-2xl border-2 flex flex-col md:flex-row md:items-center gap-3 md:gap-5 transition-all duration-300 relative overflow-hidden ${borderClass}`}>
+                                          <div className="flex items-start md:items-center gap-4 w-full">
+                                            <span className={`w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl flex items-center justify-center font-black text-xs md:text-sm shrink-0 transition-colors ${badgeClass}`}>
+                                              {opt.id}
+                                            </span>
+                                            <span className={`font-medium text-sm md:text-base pt-1 md:pt-0 leading-snug transition-colors ${isCorrect ? 'text-emerald-900 font-bold' : isUserChoice ? 'text-rose-900 font-semibold' : 'text-slate-700'}`}>
+                                              {opt.text}
+                                            </span>
+                                          </div>
+                                          {statusIcon && (
+                                            <div className="md:ml-auto shrink-0 self-start md:self-center">
+                                              {statusIcon}
+                                            </div>
+                                          )}
                                         </div>
                                       );
                                     })}
@@ -649,28 +705,40 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                                   <div className="pt-4 md:pt-6 border-t border-slate-100 space-y-4">
                                     <button
                                       onClick={() => setShowExplanationId(showExplanationId === i ? null : i)}
-                                      className="w-full flex items-center justify-between p-4 md:p-5 bg-slate-900 text-white rounded-2xl md:rounded-3xl hover:bg-slate-800 transition-all group"
+                                      className="w-full flex items-center justify-between p-4 md:p-5 bg-gradient-to-r from-slate-50 to-indigo-50/50 text-slate-700 rounded-xl md:rounded-2xl border border-slate-200 hover:border-indigo-300 transition-all group"
                                     >
-                                      <div className="flex items-center gap-3 md:gap-4">
-                                        <Lightbulb size={18} className="text-amber-400 md:w-5 md:h-5" />
-                                        <span className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.2em] md:tracking-[0.25em]">2026 Strategy Insight</span>
+                                      <div className="flex items-center gap-3">
+                                        <div className="bg-white p-2 rounded-lg shadow-sm text-indigo-600">
+                                          <BookOpen size={18} />
+                                        </div>
+                                        <span className="text-sm font-bold tracking-tight">
+                                          {selectedLang === 'Hindi' ? "विस्तृत व्याख्या और विश्लेषण" : "Detailed Explanation & Analysis"}
+                                        </span>
                                       </div>
-                                      {showExplanationId === i ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                                      {showExplanationId === i ? <ChevronUp size={18} className="text-slate-400" /> : <ChevronDown size={18} className="text-slate-400" />}
                                     </button>
 
                                     {showExplanationId === i && (
-                                      <div className="p-6 md:p-8 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100 animate-in slide-in-from-top-4 duration-300">
-                                        <p className="text-sm md:text-base font-bold leading-relaxed text-slate-600 whitespace-pre-wrap">
-                                          {m.resultData.explanation}
-                                        </p>
+                                      <div className="p-5 md:p-8 bg-white rounded-2xl border border-slate-100 shadow-sm animate-in slide-in-from-top-2 duration-300 mt-2">
+                                        <div className="flex items-start gap-3 mb-4">
+                                          <div className="p-1.5 bg-amber-100 text-amber-700 rounded-md shrink-0 mt-0.5">
+                                            <Lightbulb size={16} />
+                                          </div>
+                                          <p className="text-sm md:text-base leading-7 text-slate-700 whitespace-pre-wrap font-medium">
+                                            {m.resultData.explanation}
+                                          </p>
+                                        </div>
                                       </div>
                                     )}
                                   </div>
 
-                                  <div className="grid grid-cols-2 gap-3 md:gap-4 pt-2">
-                                    <ActionButton icon={<ArrowRight size={16} />} label="Next" onClick={() => handleSendMessage("Ask me next practice question")} primary className="w-full h-12 md:h-16" />
-                                    <ActionButton icon={<LogOut size={16} />} label="Finish" onClick={() => setMessages(prev => [...prev, { role: 'model', text: "Excellent practice session. Review your progress in the history tab!" }])} danger className="h-12 md:h-16" />
-                                  </div>
+                                  {/* Actions - Only show if it's the last message */}
+                                  {i === messages.length - 1 && (
+                                    <div className="grid grid-cols-2 gap-3 md:gap-4 pt-2">
+                                      <ActionButton icon={<ArrowRight size={16} />} label="Next" onClick={() => handleSendMessage("Ask me next practice question")} primary className="w-full h-12 md:h-16" />
+                                      <ActionButton icon={<LogOut size={16} />} label="Finish" onClick={() => setMessages(prev => [...prev, { role: 'model', text: "Excellent practice session. Review your progress in the history tab!" }])} danger className="h-12 md:h-16" />
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                             )}
@@ -683,8 +751,17 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                   {/* Ready Menu */}
                   {!isTyping && step === 'ready' && messages[messages.length - 1]?.role === 'model' && !messages[messages.length - 1].quizData && !messages[messages.length - 1].resultData && (
                     <div className="flex flex-wrap gap-2 md:gap-3">
-                      <ActionButton icon={<Sparkles size={14} className="md:w-4 md:h-4" />} label="Start BPSC Quiz" onClick={() => handleSendMessage("Give me a BPSC practice question")} primary />
-                      <ActionButton icon={<BrainCircuit size={14} className="md:w-4 md:h-4" />} label="2026 Syllabus" onClick={() => handleSendMessage("Explain the key topics of this subject for BPSC TRE 4.0")} />
+                      <ActionButton
+                        icon={<Sparkles size={14} className="md:w-4 md:h-4" />}
+                        label={selectedLang === 'Hindi' ? "अभ्यास प्रश्न शुरू करें" : "Start BPSC Quiz"}
+                        onClick={() => handleSendMessage(selectedLang === 'Hindi' ? "मुझे BPSC का अभ्यास प्रश्न दें" : "Give me a BPSC practice question")}
+                        primary
+                      />
+                      <ActionButton
+                        icon={<BrainCircuit size={14} className="md:w-4 md:h-4" />}
+                        label={selectedLang === 'Hindi' ? "2026 पाठ्यक्रम" : "2026 Syllabus"}
+                        onClick={() => handleSendMessage(selectedLang === 'Hindi' ? "BPSC TRE 4.0 के लिए इस विषय के मुख्य टॉपिक समझाएं" : "Explain the key topics of this subject for BPSC TRE 4.0")}
+                      />
                     </div>
                   )}
 
@@ -730,30 +807,84 @@ const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' 
                 </div>
               </>
             ) : (
-              <div className="flex-1 flex flex-col items-center justify-center p-8 md:p-14 text-center space-y-8 md:space-y-14 bg-slate-900 text-white relative h-full">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500/20 via-transparent to-transparent opacity-70 pointer-events-none" />
+              <div className="flex-1 flex flex-col items-center justify-center p-8 md:p-14 text-center space-y-10 md:space-y-16 bg-slate-900 text-white relative h-full overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-600/30 via-slate-900 to-slate-900 pointer-events-none" />
+
+                {/* Status Bar */}
+                <div className="absolute top-8 left-0 right-0 flex justify-center z-20">
+                  <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-full border border-white/10 backdrop-blur-md">
+                    <div className={`w-2 h-2 rounded-full ${voiceStatus === 'listening' ? 'bg-emerald-400 shadow-[0_0_8px_#34d399]' : 'bg-amber-400'}`} />
+                    <span className="text-[10px] font-black uppercase tracking-widest opacity-80">
+                      {voiceStatus === 'listening' ? 'Online' : voiceStatus === 'initializing' ? 'Syncing...' : 'Standby'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Digital Aura Ring */}
                 <div className="relative">
-                  <div className={`w-40 h-40 md:w-64 md:h-64 rounded-full bg-indigo-500/5 flex items-center justify-center ${isVoiceActive ? 'animate-pulse' : ''}`}>
-                    <div className={`w-32 h-32 md:w-48 md:h-48 rounded-full bg-indigo-500/10 flex items-center justify-center ${isVoiceActive ? 'animate-ping duration-[6000ms]' : ''}`}>
-                      <div className="w-20 h-20 md:w-32 md:h-32 bg-indigo-600 rounded-[2rem] md:rounded-[3rem] flex items-center justify-center shadow-[0_0_100px_rgba(79,70,229,0.8)] relative z-10">
-                        <Mic size={32} className={`md:w-[56px] ${isVoiceActive ? 'animate-pulse' : ''}`} />
-                      </div>
+                  {/* Status Ring */}
+                  <div className={`absolute -inset-10 rounded-full border border-indigo-500/30 ${voiceStatus === 'initializing' ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
+                  <div className={`absolute -inset-20 rounded-full border border-indigo-500/20 ${voiceStatus === 'initializing' ? 'animate-[spin_5s_linear_infinite_reverse]' : ''}`} />
+
+                  <div className={`w-40 h-40 md:w-64 md:h-64 rounded-full flex items-center justify-center relative z-10 transition-all duration-700 ${voiceStatus === 'listening' && !isMuted ? 'bg-indigo-600/10' : 'bg-slate-800/50'}`}>
+                    <div className={`w-32 h-32 md:w-48 md:h-48 rounded-full flex items-center justify-center shadow-[0_0_60px_rgba(79,70,229,0.3)] transition-all duration-500 ${voiceStatus === 'listening' && !isMuted ? 'bg-indigo-600 scale-100' : 'bg-slate-700 scale-95'}`}>
+                      {voiceStatus === 'initializing' ? (
+                        <Loader2 size={48} className="animate-spin text-white/50" />
+                      ) : voiceStatus === 'listening' ? (
+                        isMuted ? (
+                          <MicOff size={40} className="text-amber-400/80" />
+                        ) : (
+                          <div className="flex gap-1.5 h-12 items-center">
+                            <div className="w-2 bg-white rounded-full animate-[music-bar_1s_ease-in-out_infinite]" />
+                            <div className="w-2 bg-white rounded-full animate-[music-bar_1.2s_ease-in-out_infinite]" />
+                            <div className="w-2 bg-white rounded-full animate-[music-bar_0.8s_ease-in-out_infinite]" />
+                            <div className="w-2 bg-white rounded-full animate-[music-bar_1.1s_ease-in-out_infinite]" />
+                          </div>
+                        )
+                      ) : (
+                        <button onClick={startVoiceSession} className="w-full h-full rounded-full flex items-center justify-center hover:bg-slate-600 transition-colors group">
+                          <MicOff size={40} className="text-white/30 group-hover:hidden" />
+                          <p className="hidden group-hover:block text-xs font-black uppercase tracking-widest">Connect</p>
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
-                <div className="space-y-4 md:space-y-6">
-                  <h3 className="text-2xl md:text-4xl font-black tracking-tight">AI Listening</h3>
-                  <p className="text-xs md:text-base text-slate-400 font-bold max-w-[240px] md:max-w-[300px] mx-auto leading-relaxed opacity-70 italic">Speak freely about BPSC TRE 2026. I'm ready to evaluate your spoken answers.</p>
+
+                {/* Control Dock */}
+                <div className="flex items-center gap-6 justify-center relative z-20 pt-8">
+                  {voiceStatus === 'idle' ? (
+                    <button
+                      onClick={startVoiceSession}
+                      className="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-lg hover:shadow-indigo-500/50 transition-all flex items-center gap-3"
+                    >
+                      <Mic size={16} /> Tap to Speak
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        onClick={toggleMute}
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center border transition-all ${isMuted ? 'bg-amber-500/20 border-amber-500 text-amber-500' : 'bg-white/10 border-white/10 text-white hover:bg-white/20'}`}
+                      >
+                        {isMuted ? <MicOff size={20} /> : <Mic size={20} />}
+                      </button>
+
+                      <button
+                        onClick={stopVoiceSession}
+                        className="px-8 py-4 bg-rose-500/10 border border-rose-500/20 hover:bg-rose-500 hover:text-white text-rose-400 rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all backdrop-blur-md flex items-center gap-3 group"
+                      >
+                        <span className="w-1.5 h-1.5 bg-current rounded-full" />
+                        End Session
+                      </button>
+                    </>
+                  )}
                 </div>
-                <button onClick={stopVoiceSession} className="px-8 py-4 md:px-16 md:py-6 bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl font-black text-[9px] md:text-[11px] tracking-[0.3em] md:tracking-[0.4em] hover:bg-red-500 hover:text-white transition-all group flex items-center gap-3 md:gap-5">
-                  <X size={16} className="group-hover:rotate-90 transition-transform md:w-5 md:h-5" /> END SESSION
-                </button>
               </div>
             )}
           </div>
         </>
       )}
-    </div>
+    </div >
   );
 };
 

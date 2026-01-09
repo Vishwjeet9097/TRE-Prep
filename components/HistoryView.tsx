@@ -97,14 +97,14 @@ const HistoryView: React.FC<HistoryViewProps> = ({ onBack, onSelectAttempt }) =>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:gap-4">
-            {attempts.map(attempt => {
+            {attempts.map((attempt, i) => {
               const paper = papers.find(p => p.id === attempt.paperId);
               const percentage = Math.round((attempt.score / (paper?.questions.length || 1)) * 100);
               const { label, color } = getPerformanceLabel(percentage);
 
               return (
                 <div
-                  key={attempt.id}
+                  key={`${attempt.id}-${i}`}
                   onClick={() => onSelectAttempt(attempt)}
                   className="bg-white p-5 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-lg hover:border-indigo-100 transition-all cursor-pointer group flex items-center justify-between"
                 >
