@@ -31,9 +31,10 @@ import ExamPanel from './components/ExamPanel';
 import ResultView from './components/ResultView';
 import HistoryView from './components/HistoryView';
 import AIChatAssistant from './components/AIChatAssistant';
+import AIChatPage from './components/AIChatPage';
 import BottomNav from './components/BottomNav';
 
-type View = 'dashboard' | 'import' | 'exam' | 'result' | 'history' | 'settings';
+type View = 'dashboard' | 'import' | 'exam' | 'result' | 'history' | 'settings' | 'ai-chat';
 
 const AppContent: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('dashboard');
@@ -332,6 +333,8 @@ const AppContent: React.FC = () => {
         ) : null;
       case 'history':
         return <HistoryView onBack={() => setCurrentView('dashboard')} onSelectAttempt={handleViewAttemptDetail} attempts={attempts} papers={papers} />;
+      case 'ai-chat':
+        return <AIChatPage />;
       case 'settings':
         return <ProfilePage onBack={() => setCurrentView('dashboard')} />;
       default:
@@ -376,6 +379,12 @@ const AppContent: React.FC = () => {
               }}
             />
             <NavItem
+              active={currentView === 'ai-chat'}
+              icon={<Sparkles size={20} />}
+              label="AI Tutor"
+              onClick={() => setCurrentView('ai-chat')}
+            />
+            <NavItem
               active={currentView === 'history'}
               icon={<HistoryIcon size={20} />}
               label="Attempt History"
@@ -398,7 +407,7 @@ const AppContent: React.FC = () => {
 
       <main className="flex-1 overflow-auto relative pb-24 md:pb-0">
         {renderContent()}
-        {currentView !== 'exam' && currentView !== 'result' && !isLoading && (
+        {currentView !== 'exam' && currentView !== 'result' && currentView !== 'ai-chat' && !isLoading && (
           <AIChatAssistant />
         )}
       </main>

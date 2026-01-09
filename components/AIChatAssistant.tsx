@@ -106,14 +106,15 @@ STRICT INTERACTION PROTOCOL:
 
 Tone: Authoritative, supportive, and highly focused on Bihar-specific exam nuances.`;
 
-const AIChatAssistant: React.FC<{ initialContext?: string }> = ({ initialContext }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const AIChatAssistant: React.FC<{ initialContext?: string; variant?: 'floating' | 'full-page' }> = ({ initialContext, variant = 'floating' }) => {
+  const [isOpen, setIsOpen] = useState(variant === 'full-page');
   const [isMinimized, setIsMinimized] = useState(false);
   const [mode, setMode] = useState<'chat' | 'voice'>('chat');
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isVoiceActive, setIsVoiceActive] = useState(false);
+  const [showBubble, setShowBubble] = useState(false);
 
   const [step, setStep] = useState<OnboardingStep>('language');
   const [selectedLang, setSelectedLang] = useState<string>('');
@@ -127,6 +128,13 @@ const AIChatAssistant: React.FC<{ initialContext?: string }> = ({ initialContext
   const outputAudioContextRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {
+    if (variant === 'full-page') {
+      setIsOpen(true);
+      setIsMinimized(false);
+    }
+  }, [variant]);
+
+  useEffect(() => {
     if (isOpen && messages.length === 0) {
       setMessages([{
         role: 'model',
@@ -138,7 +146,7 @@ const AIChatAssistant: React.FC<{ initialContext?: string }> = ({ initialContext
 
   useEffect(() => {
     if (initialContext) {
-      setIsOpen(true);
+      if (variant === 'floating') setIsOpen(true);
       setIsMinimized(false);
       handleSendMessage(initialContext);
     }
@@ -149,6 +157,38 @@ const AIChatAssistant: React.FC<{ initialContext?: string }> = ({ initialContext
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isTyping]);
+
+  useEffect(() => {
+    if (isOpen && variant === 'floating') {
+      setShowBubble(false);
+      return;
+    }
+
+    if (variant === 'full-page' || isOpen) return;
+
+    const startLoop = () => {
+      // Show immediately (or after short delay)
+      setShowBubble(true);
+
+      // Hide after 3s
+      const hideTimer = setTimeout(() => {
+        setShowBubble(false);
+
+        // Schedule next appearance after 30s
+        const nextLoopTimer = setTimeout(() => {
+          startLoop();
+        }, 30000);
+
+        return () => clearTimeout(nextLoopTimer);
+      }, 3000);
+
+      return () => clearTimeout(hideTimer);
+    };
+
+    // Initial start delay
+    const initialTimer = setTimeout(startLoop, 2000);
+    return () => clearTimeout(initialTimer);
+  }, [isOpen, variant]);
 
   const getRandomLocalQuestion = (): Message | null => {
     const papers = StorageService.getPapers();
@@ -380,33 +420,82 @@ const AIChatAssistant: React.FC<{ initialContext?: string }> = ({ initialContext
     setMode('chat');
   };
 
-  if (!isOpen) return (
-    <button
-      onClick={() => setIsOpen(true)}
-      className="fixed bottom-24 right-4 md:bottom-8 md:right-8 w-14 h-14 md:w-16 md:h-16 bg-indigo-600 text-white rounded-2xl flex items-center justify-center shadow-2xl hover:bg-indigo-700 transition-all animate-bounce z-[100]"
-    >
-      <BrainCircuit size={28} className="md:w-8 md:h-8" />
-    </button>
+  useEffect(() => {
+    if (isOpen && variant === 'floating') {
+      setShowBubble(false);
+      return;
+    }
+
+    if (variant === 'full-page' || isOpen) return;
+
+    const startLoop = () => {
+      // Show immediately (or after short delay)
+      setShowBubble(true);
+
+      // Hide after 3s
+      const hideTimer = setTimeout(() => {
+        setShowBubble(false);
+
+        // Schedule next appearance after 30s
+        const nextLoopTimer = setTimeout(() => {
+          startLoop();
+        }, 30000);
+
+        return () => clearTimeout(nextLoopTimer);
+      }, 3000);
+
+      return () => clearTimeout(hideTimer);
+    };
+
+    // Initial start delay
+    const initialTimer = setTimeout(startLoop, 2000);
+    return () => clearTimeout(initialTimer);
+  }, [isOpen]);
+
+  if (variant === 'floating' && !isOpen) return (
+    <div className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-[100] flex flex-col items-end gap-4 pointer-events-none">
+      {/* Engagement Bubble */}
+      <div className={`transition-all duration-500 transform ${showBubble ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-4 scale-95'} origin-bottom-right`}>
+        <div className="bg-white px-5 py-3 rounded-2xl rounded-tr-sm shadow-xl border border-indigo-50 relative pointer-events-auto max-w-[200px]">
+          <p className="text-xs font-bold text-slate-700 leading-snug">
+            Hey! I'm your <span className="text-indigo-600 font-black">AI Tutor</span>. Ready to study?
+          </p>
+          {/* Tail */}
+          <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white rotate-45 border-b border-r border-indigo-50 shadow-sm"></div>
+        </div>
+      </div>
+
+      <button
+        onClick={() => setIsOpen(true)}
+        className="w-14 h-14 md:w-16 md:h-16 bg-white text-indigo-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-indigo-500/40 hover:scale-110 transition-all animate-bounce overflow-hidden border-2 border-white pointer-events-auto"
+      >
+        <img src="/logo.png" alt="AI" className="w-full h-full object-cover" />
+      </button>
+    </div>
   );
 
+  const containerClasses = variant === 'full-page'
+    ? "w-full h-full flex flex-col bg-[#F9FBFF] relative overflow-hidden"
+    : `fixed z-[200] transition-all duration-300 ease-in-out bg-white overflow-hidden shadow-2xl border border-slate-200 flex flex-col font-sans ${isMinimized
+      ? 'bottom-24 right-4 w-16 h-16 md:bottom-8 md:right-8 md:w-64 md:h-16 rounded-[2rem]'
+      : 'inset-0 md:inset-auto md:bottom-8 md:right-8 md:w-[520px] md:h-[760px] md:max-h-[90vh] rounded-none md:rounded-[3rem]'}`;
+
+  const headerClasses = variant === 'full-page'
+    ? "relative shrink-0 flex items-center justify-between text-white overflow-hidden transition-all duration-300 h-20 md:h-24 bg-indigo-600 px-8 lg:px-12 shadow-md z-30"
+    : `relative shrink-0 flex items-center justify-between text-white overflow-hidden transition-all duration-300 ${isMinimized ? 'h-full px-0 justify-center md:px-6 md:justify-between bg-indigo-600' : 'h-16 md:h-24 bg-indigo-600 px-4 md:px-6'}`;
+
   return (
-    <div className={`fixed z-[200] transition-all duration-300 ease-in-out bg-white overflow-hidden shadow-2xl border border-slate-200
-      ${isMinimized
-        ? 'bottom-24 right-4 w-16 h-16 md:bottom-8 md:right-8 md:w-64 md:h-16 rounded-[2rem]'
-        : 'inset-0 md:inset-auto md:bottom-8 md:right-8 md:w-[520px] md:h-[760px] md:max-h-[90vh] rounded-none md:rounded-[3rem]'
-      } flex flex-col font-sans`}
-    >
+    <div className={containerClasses}>
       {/* Premium Header */}
-      <div className={`relative shrink-0 flex items-center justify-between text-white overflow-hidden transition-all duration-300
-        ${isMinimized ? 'h-full px-0 justify-center md:px-6 md:justify-between bg-indigo-600' : 'h-16 md:h-24 bg-indigo-600 px-4 md:px-6'}`}>
+      <div className={headerClasses}>
 
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-800" />
         <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 blur-3xl rounded-full -mr-40 -mt-40 pointer-events-none" />
 
-        {isMinimized ? (
-          <div onClick={() => setIsMinimized(false)} className="absolute inset-0 flex items-center justify-center md:justify-between px-4 cursor-pointer">
+        {isMinimized && variant === 'floating' ? (
+          <div onClick={() => setIsMinimized(false)} className="absolute inset-0 flex items-center justify-center md:justify-between px-4 cursor-pointer gap-3">
             <div className="flex items-center gap-3">
-              <BrainCircuit size={24} className="text-white" />
+              <img src="/logo.png" alt="AI" className="w-8 h-8 rounded-lg shadow-lg border border-white/20" />
               <span className="hidden md:block font-black text-sm tracking-widest text-white">AI TUTOR</span>
             </div>
             <Maximize2 size={20} className="md:hidden" />
@@ -414,8 +503,8 @@ const AIChatAssistant: React.FC<{ initialContext?: string }> = ({ initialContext
         ) : (
           <>
             <div className="flex items-center gap-3 relative z-10">
-              <div className="w-9 h-9 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-xl md:rounded-2xl flex items-center justify-center border border-white/20 shadow-inner">
-                <BrainCircuit size={18} className="text-white md:w-6 md:h-6" />
+              <div className="w-9 h-9 md:w-12 md:h-12 bg-white/10 backdrop-blur-md rounded-xl md:rounded-2xl flex items-center justify-center border border-white/20 shadow-inner overflow-hidden p-1">
+                <img src="/logo.png" alt="AI" className="w-full h-full object-cover rounded-lg md:rounded-xl shadow-sm" />
               </div>
               <div>
                 <h4 className="font-black text-sm md:text-xl tracking-tight leading-none">BPSC AI</h4>
@@ -425,34 +514,39 @@ const AIChatAssistant: React.FC<{ initialContext?: string }> = ({ initialContext
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-1 relative z-10">
-              <button onClick={() => setIsMinimized(true)} className="p-2 md:p-3 hover:bg-white/10 rounded-xl transition-all">
-                <Minimize2 size={18} className="md:w-5 md:h-5" />
-              </button>
-              <button onClick={() => setIsOpen(false)} className="p-2 md:p-3 hover:bg-white/10 rounded-xl transition-all">
-                <X size={18} className="md:w-5 md:h-5" />
-              </button>
-            </div>
+            {variant === 'floating' && (
+              <div className="flex items-center gap-1 relative z-10">
+                <button onClick={() => setIsMinimized(true)} className="p-2 md:p-3 hover:bg-white/10 rounded-xl transition-all">
+                  <Minimize2 size={18} className="md:w-5 md:h-5" />
+                </button>
+                <button onClick={() => setIsOpen(false)} className="p-2 md:p-3 hover:bg-white/10 rounded-xl transition-all">
+                  <X size={18} className="md:w-5 md:h-5" />
+                </button>
+              </div>
+            )}
           </>
         )}
       </div>
 
       {!isMinimized && (
         <>
-          {/* Mode Switcher */}
-          <div className="flex bg-slate-50/80 p-1.5 md:p-2 border-b border-slate-100 shrink-0 gap-2">
-            <button onClick={() => setMode('chat')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 md:py-3.5 text-[10px] md:text-[11px] font-black tracking-[0.2em] rounded-xl md:rounded-2xl transition-all ${mode === 'chat' ? 'bg-white text-indigo-600 shadow-md border border-slate-200' : 'text-slate-400 hover:text-slate-600'}`}>
-              <MessageSquare size={14} /> CHAT
-            </button>
-            <button onClick={() => { setMode('voice'); startVoiceSession(); }} className={`flex-1 flex items-center justify-center gap-2 py-2.5 md:py-3.5 text-[10px] md:text-[11px] font-black tracking-[0.2em] rounded-xl md:rounded-2xl transition-all ${mode === 'voice' ? 'bg-indigo-600 text-white shadow-xl' : 'text-slate-400 hover:text-slate-600'}`}>
-              <Mic size={14} /> VOICE
-            </button>
-          </div>
+
+          {/* Mode Switcher - Only for Floating Variant */}
+          {variant === 'floating' && (
+            <div className="flex bg-slate-50/80 p-1.5 md:p-2 border-b border-slate-100 shrink-0 gap-2">
+              <button onClick={() => setMode('chat')} className={`flex-1 flex items-center justify-center gap-2 py-2.5 md:py-3.5 text-[10px] md:text-[11px] font-black tracking-[0.2em] rounded-xl md:rounded-2xl transition-all ${mode === 'chat' ? 'bg-white text-indigo-600 shadow-md border border-slate-200' : 'text-slate-400 hover:text-slate-600'}`}>
+                <MessageSquare size={14} /> CHAT
+              </button>
+              <button onClick={() => { setMode('voice'); startVoiceSession(); }} className={`flex-1 flex items-center justify-center gap-2 py-2.5 md:py-3.5 text-[10px] md:text-[11px] font-black tracking-[0.2em] rounded-xl md:rounded-2xl transition-all ${mode === 'voice' ? 'bg-indigo-600 text-white shadow-xl' : 'text-slate-400 hover:text-slate-600'}`}>
+                <Mic size={14} /> VOICE
+              </button>
+            </div>
+          )}
 
           <div className="flex-1 overflow-hidden flex flex-col bg-[#F9FBFF] w-full relative">
             {mode === 'chat' ? (
               <>
-                <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-6 md:space-y-12 no-scrollbar pb-28 md:pb-8">
+                <div ref={scrollRef} className={`flex-1 overflow-y-auto ${variant === 'full-page' ? 'w-full max-w-5xl mx-auto px-6 py-8 md:px-12 md:py-12' : 'p-4 md:p-6'} space-y-6 md:space-y-12 no-scrollbar pb-32 md:pb-32`}>
                   {messages.map((m, i) => (
                     <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start md:pr-12'} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
                       <div className={`max-w-[85%] md:max-w-[90%] ${m.role === 'user' ? 'bg-indigo-600 text-white p-4 md:p-6 rounded-2xl md:rounded-[2.5rem] rounded-tr-none shadow-md' : 'w-full'}`}>
@@ -605,26 +699,34 @@ const AIChatAssistant: React.FC<{ initialContext?: string }> = ({ initialContext
                   )}
                 </div>
 
-                {/* Fixed Input Area for Mobile */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-8 bg-white/90 backdrop-blur-lg border-t border-slate-200 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] flex gap-3 md:gap-5 z-20">
-                  <div className="flex-1 relative">
-                    <input
-                      type="text"
-                      value={inputText}
-                      onChange={(e) => setInputText(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                      placeholder="Ask about TRE-4.0..."
-                      className="w-full bg-slate-50 border border-slate-200 rounded-2xl md:rounded-[1.5rem] pl-5 md:pl-8 pr-12 md:pr-20 py-3.5 md:py-5 text-sm md:text-base font-bold focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-400"
-                    />
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-md bg-slate-200 text-[8px] md:text-[9px] font-black text-slate-500 select-none uppercase hidden md:block">Enter</div>
+                {/* Fixed Input Area for Mobile & Desktop */}
+                <div className={`absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-white/80 backdrop-blur-xl border-t border-indigo-50 shadow-[0_-10px_40px_rgba(0,0,0,0.03)] z-20 flex justify-center`}>
+                  <div className={`flex gap-3 md:gap-5 w-full ${variant === 'full-page' ? 'max-w-4xl' : ''}`}>
+                    <div className="flex-1 relative group">
+                      <div className="absolute inset-0 bg-indigo-500/5 rounded-2xl md:rounded-[1.5rem] blur-sm group-focus-within:blur-md transition-all duration-500 opacity-50" />
+                      <input
+                        type="text"
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                        placeholder={variant === 'full-page' ? "Ask anything about BPSC TRE 4.0 (Syllabus, Questions, Strategy)..." : "Ask about TRE-4.0..."}
+                        className="w-full bg-white relative border border-slate-200 rounded-2xl md:rounded-[1.5rem] pl-5 md:pl-8 pr-12 md:pr-24 py-3.5 md:py-5 text-sm md:text-lg font-medium text-slate-700 focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-400 shadow-sm"
+                      />
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 h-8 flex items-center gap-2 px-3 rounded-xl bg-slate-50 border border-slate-100 text-[10px] font-bold text-slate-400 select-none uppercase hidden md:flex">
+                        <span>Enter</span>
+                        <div className="w-1 h-1 rounded-full bg-slate-300" />
+                        <Send size={12} />
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => handleSendMessage()}
+                      disabled={!inputText.trim()}
+                      className="w-12 h-12 md:w-[4.5rem] md:h-[4.5rem] bg-indigo-600 text-white rounded-xl md:rounded-[1.5rem] flex items-center justify-center hover:bg-indigo-700 shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 active:scale-95 transition-all disabled:opacity-50 disabled:grayscale relative overflow-hidden group"
+                    >
+                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+                      <ArrowRight size={24} className="md:w-[28px] relative z-10" />
+                    </button>
                   </div>
-                  <button
-                    onClick={() => handleSendMessage()}
-                    disabled={!inputText.trim()}
-                    className="w-12 h-12 md:w-16 md:h-16 bg-indigo-600 text-white rounded-xl md:rounded-[1.5rem] flex items-center justify-center hover:bg-indigo-700 shadow-xl shadow-indigo-200 active:scale-95 transition-all disabled:opacity-50"
-                  >
-                    <ArrowRight size={24} className="md:w-[30px]" />
-                  </button>
                 </div>
               </>
             ) : (

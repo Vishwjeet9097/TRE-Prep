@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Home, FileUp, Calendar, Hexagon } from 'lucide-react';
+import { Home, FileUp, Calendar, Hexagon, Sparkles } from 'lucide-react';
 
 interface BottomNavProps {
     currentView: string;
@@ -11,6 +11,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentView, onChangeView }) => {
     const navItems = [
         { id: 'dashboard', icon: <Home />, label: 'Home' },
         { id: 'import', icon: <FileUp />, label: 'Import' },
+        { id: 'ai-chat', icon: <Sparkles />, label: 'AI Tutor' },
         { id: 'history', icon: <Calendar />, label: 'History' },
         { id: 'settings', icon: <Hexagon />, label: 'Settings' },
     ];
@@ -24,8 +25,8 @@ const BottomNav: React.FC<BottomNavProps> = ({ currentView, onChangeView }) => {
                         key={item.id}
                         onClick={() => onChangeView(item.id)}
                         className={`flex items-center justify-center gap-2.5 transition-all duration-300 ease-out ${isActive
-                                ? 'bg-slate-900 text-white pl-5 pr-6 h-[3.25rem] rounded-[2rem] shadow-xl shadow-slate-900/20 grow-[0.5]'
-                                : 'w-14 h-14 text-slate-900 hover:bg-slate-50 rounded-full'
+                            ? 'bg-slate-900 text-white pl-5 pr-6 h-[3.25rem] rounded-[2rem] shadow-xl shadow-slate-900/20 grow-[0.5]'
+                            : 'w-14 h-14 text-slate-900 hover:bg-slate-50 rounded-full'
                             }`}
                     >
                         {React.cloneElement(item.icon as React.ReactElement, {
