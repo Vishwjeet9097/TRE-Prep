@@ -1,26 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     User,
     Settings,
     Camera,
     ArrowLeft,
     MapPin,
-    Phone
+    Phone,
+    Key
 } from 'lucide-react';
+import { UserService, UserProfile } from '../store';
+import { toast } from 'sonner';
 
 interface ProfilePageProps {
     onBack: () => void;
+    onProfileUpdate?: () => void;
 }
 
 type TabType = 'profile' | 'preferences';
 
-const ProfilePage: React.FC<ProfilePageProps> = ({ onBack }) => {
+const ProfilePage: React.FC<ProfilePageProps> = ({ onBack, onProfileUpdate }) => {
     const [activeTab, setActiveTab] = useState<TabType>('profile');
+    const [profile, setProfile] = useState<UserProfile>(UserService.getProfile());
 
     const menuItems = [
         { id: 'profile', label: 'Edit Profile', icon: <User size={18} /> },
         { id: 'preferences', label: 'Preferences', icon: <Settings size={18} /> },
     ];
+
+    const handleSave = () => {
+        // Calculate initials
+        const nameParts = profile.name.split(' ');
+        let initials = nameParts[0].charAt(0);
+        if (nameParts.length > 1) {
+            initials += nameParts[nameParts.length - 1].charAt(0);
+        }
+        initials = initials.toUpperCase();
+
+        const updatedProfile = { ...profile, initials };
+        UserService.saveProfile(updatedProfile);
+        setProfile(updatedProfile);
+
+        if (onProfileUpdate) {
+            onProfileUpdate();
+        }
+
+        toast.success("Profile Updated", { description: "Your changes have been saved successfully." });
+    };
 
     return (
         <div className="flex-1 h-full bg-[#F8F9FD] overflow-hidden flex flex-col relative md:p-8">
@@ -41,7 +66,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack }) => {
                     <div className="flex items-center gap-6">
                         <div className="relative">
                             <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 text-3xl font-black border-4 border-white shadow-lg">
-                                JD
+                                {profile.initials}
                             </div>
                             <button className="absolute bottom-0 right-0 p-2 bg-indigo-600 text-white rounded-full shadow-md hover:scale-110 transition-transform border-2 border-white">
                                 <Camera size={14} />
@@ -49,7 +74,7 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack }) => {
                         </div>
 
                         <div>
-                            <h1 className="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">John Doe</h1>
+                            <h1 className="text-2xl md:text-3xl font-black text-slate-800 tracking-tight">{profile.name}</h1>
                             <p className="text-slate-400 font-bold text-sm">Personal Account</p>
                         </div>
                     </div>
@@ -84,27 +109,63 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack }) => {
                                             <label className="text-xs font-black text-slate-400 uppercase tracking-wider ml-1">Full Name</label>
                                             <div className="relative">
                                                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                                                <input type="text" defaultValue="John Doe" className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
+                                                <input
+                                                    type="text"
+                                                    value={profile.name}
+                                                    onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+                                                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all"
+                                                />
                                             </div>
                                         </div>
                                         <div className="space-y-2">
                                             <label className="text-xs font-black text-slate-400 uppercase tracking-wider ml-1">Phone Number</label>
                                             <div className="relative">
                                                 <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                                                <input type="tel" defaultValue="+91 98765 43210" className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
+                                                <input
+                                                    type="tel"
+                                                    value={profile.phone}
+                                                    onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
+                                                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all"
+                                                />
                                             </div>
                                         </div>
                                         <div className="space-y-2">
                                             <label className="text-xs font-black text-slate-400 uppercase tracking-wider ml-1">Location</label>
                                             <div className="relative">
                                                 <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                                                <input type="text" defaultValue="New Delhi, India" className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all" />
+                                                <input
+                                                    type="text"
+                                                    value={profile.location}
+                                                    onChange={(e) => setProfile({ ...profile, location: e.target.value })}
+                                                    className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="pt-4 border-t border-slate-100">
+                                            <h3 className="text-sm font-black text-slate-800 mb-4">App Settings</h3>
+                                            <div className="space-y-2">
+                                                <label className="text-xs font-black text-slate-400 uppercase tracking-wider ml-1">Gemini API Key (Optional)</label>
+                                                <div className="relative">
+                                                    <Key className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                                                    <input
+                                                        type="password"
+                                                        value={profile.apiKey || ''}
+                                                        onChange={(e) => setProfile({ ...profile, apiKey: e.target.value })}
+                                                        placeholder="Leave empty to use default"
+                                                        className="w-full pl-12 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-300"
+                                                    />
+                                                </div>
+                                                <p className="text-[10px] text-slate-400 ml-1">Override the default API key for your own personal usage limits.</p>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className="pt-6">
-                                        <button className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all active:scale-95">
+                                        <button
+                                            onClick={handleSave}
+                                            className="px-6 py-3 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-all active:scale-95"
+                                        >
                                             Save Changes
                                         </button>
                                     </div>
@@ -120,7 +181,17 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack }) => {
                                             <p className="text-slate-500 text-xs font-medium mt-1">Show questions in both Hindi & English</p>
                                         </div>
                                         <div className="relative cursor-pointer group">
-                                            <input type="checkbox" className="sr-only peer" defaultChecked />
+                                            <input
+                                                type="checkbox"
+                                                className="sr-only peer"
+                                                checked={profile.isBilingual}
+                                                onChange={(e) => {
+                                                    const updated = { ...profile, isBilingual: e.target.checked };
+                                                    setProfile(updated);
+                                                    UserService.saveProfile(updated);
+                                                    if (onProfileUpdate) onProfileUpdate();
+                                                }}
+                                            />
                                             <div className="w-12 h-7 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-indigo-600"></div>
                                         </div>
                                     </div>
@@ -130,8 +201,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ onBack }) => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

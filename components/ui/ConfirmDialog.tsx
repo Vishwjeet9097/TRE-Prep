@@ -34,11 +34,17 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
 
             {/* Modal Content */}
             <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-6 md:p-8 transform transition-all animate-in zoom-in-95 duration-200 border border-white/20">
+                <button
+                    onClick={onCancel}
+                    className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-full transition-all"
+                >
+                    <X size={20} />
+                </button>
 
                 {/* Icon based on variant */}
                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto shadow-inner ${variant === 'danger' ? 'bg-rose-50 text-rose-500' :
-                        variant === 'success' ? 'bg-emerald-50 text-emerald-600' :
-                            'bg-indigo-50 text-indigo-600'
+                    variant === 'success' ? 'bg-emerald-50 text-emerald-600' :
+                        'bg-indigo-50 text-indigo-600'
                     }`}>
                     {variant === 'danger' ? <AlertTriangle size={32} /> :
                         variant === 'success' ? <Check size={32} /> :
@@ -61,8 +67,8 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
                     <button
                         onClick={onConfirm}
                         className={`w-full py-3.5 rounded-xl font-bold text-white shadow-lg transition-all transform active:scale-95 ${variant === 'danger' ? 'bg-rose-500 hover:bg-rose-600 shadow-rose-200' :
-                                variant === 'success' ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-200' :
-                                    'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-200'
+                            variant === 'success' ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-200' :
+                                'bg-indigo-600 hover:bg-indigo-700 shadow-indigo-200'
                             }`}
                     >
                         {confirmLabel}

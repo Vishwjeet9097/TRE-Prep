@@ -16,13 +16,17 @@ import {
   ArrowLeft,
   Timer,
   Loader2,
-  Sparkles
+  Sparkles,
+  Flame
 } from 'lucide-react';
-import { StorageService } from './store';
+import { StorageService, StreakService, UserService, UserProfile } from './store';
+import { ContentService, LibraryPaper } from './services/ContentService';
 import { ExamPaper, ExamAttempt, Question, ParsingJob } from './types';
 import { parseExamPDF, LimitReachedError } from './services/geminiService';
 import { Toaster, toast } from 'sonner';
-import { ConfirmProvider, useConfirm } from './context/ConfirmContext';
+import { useConfirm } from './context/ConfirmContext';
+import ResumeConfirmDialog from './components/ResumeConfirmDialog';
+import ProfilePage from './components/ProfilePage';
 
 // --- Sub-components ---
 import Dashboard from './components/Dashboard';
@@ -36,7 +40,7 @@ import BottomNav from './components/BottomNav';
 
 type View = 'dashboard' | 'import' | 'exam' | 'result' | 'history' | 'settings' | 'ai-chat';
 
-const AppContent: React.FC = () => {
+const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('dashboard');
   const [selectedPaper, setSelectedPaper] = useState<ExamPaper | null>(null);
   const [currentAttempt, setCurrentAttempt] = useState<ExamAttempt | null>(null);
@@ -47,12 +51,19 @@ const AppContent: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [resultSource, setResultSource] = useState<'exam' | 'history'>('exam');
   const [attempts, setAttempts] = useState<ExamAttempt[]>([]);
+  const [streak, setStreak] = useState(0);
+  const [library, setLibrary] = useState<LibraryPaper[]>([]);
+  const [resumeDialog, setResumeDialog] = useState<{ isOpen: boolean; paper: ExamPaper | null }>({ isOpen: false, paper: null });
+  const [userProfile, setUserProfile] = useState<UserProfile>(UserService.getProfile());
 
   const { confirm } = useConfirm();
 
   useEffect(() => {
+    setStreak(StreakService.checkStreak());
     setPapers(StorageService.getPapers());
     setAttempts(StorageService.getAttempts());
+    setLibrary(ContentService.getAllPapers());
+    setUserProfile(UserService.getProfile());
     const draft = StorageService.getDraftAttempt();
     if (draft) {
       setResumeAttempt(draft);
@@ -61,27 +72,29 @@ const AppContent: React.FC = () => {
 
   const handleStartExam = async (paper: ExamPaper) => {
     if (resumeAttempt && resumeAttempt.paperId === paper.id) {
-      const shouldResume = await confirm({
-        title: "Resume Exam?",
-        description: "A saved draft exists for this paper. Would you like to resume where you left off?",
-        confirmLabel: "Resume Exam",
-        cancelLabel: "Start New",
-        variant: "neutral"
-      });
-
-      if (shouldResume) {
-        setSelectedPaper(paper);
-        setCurrentView('exam');
-        return;
-      } else {
-        StorageService.clearDraftAttempt();
-        setResumeAttempt(null);
-      }
+      setResumeDialog({ isOpen: true, paper });
+      return;
     }
 
     setSelectedPaper(paper);
     setResumeAttempt(null);
     setCurrentView('exam');
+  };
+
+  const handleResumeConfirm = () => {
+    if (!resumeDialog.paper) return;
+    setSelectedPaper(resumeDialog.paper);
+    setCurrentView('exam');
+    setResumeDialog({ isOpen: false, paper: null });
+  };
+
+  const handleStartNewConfirm = () => {
+    if (!resumeDialog.paper) return;
+    StorageService.clearDraftAttempt();
+    setResumeAttempt(null);
+    setSelectedPaper(resumeDialog.paper);
+    setCurrentView('exam');
+    setResumeDialog({ isOpen: false, paper: null });
   };
 
   const handleExamFinish = (attempt: ExamAttempt) => {
@@ -262,6 +275,20 @@ const AppContent: React.FC = () => {
     setActiveJobs(prev => prev.filter(j => j.id !== id));
   };
 
+  const handleAddSamplePaper = (paper: ExamPaper) => {
+    StorageService.savePaper(paper);
+    setPapers(StorageService.getPapers());
+    toast.success("Added to Library", { description: "You can now start this exam from 'My Papers'." });
+  };
+
+  const handleSaveTemplate = (paper: ExamPaper) => {
+    ContentService.saveToLibrary(paper);
+    setLibrary(ContentService.getAllPapers());
+    toast.success("Saved to Library", { description: "Added to your personal collection." });
+  };
+
+
+
   const renderContent = () => {
     if (isLoading) {
       return (
@@ -289,6 +316,11 @@ const AppContent: React.FC = () => {
             onResumeJob={(job) => startBackgroundParsing(undefined, {}, job.id)}
             onDeleteJob={(id) => setActiveJobs(prev => prev.filter(j => j.id !== id))}
             onViewAttempt={handleViewAttemptDetail}
+            onAddSamplePaper={handleAddSamplePaper}
+            onSaveTemplate={handleSaveTemplate}
+            onSaveTemplate={handleSaveTemplate}
+            library={library}
+            userProfile={userProfile}
           />
         );
       case 'import':
@@ -302,6 +334,15 @@ const AppContent: React.FC = () => {
               setCurrentView('dashboard');
             }}
             onImportComplete={handleImportComplete}
+            papers={papers}
+            library={library}
+            onAddSamplePaper={handleAddSamplePaper}
+            onSaveTemplate={handleSaveTemplate}
+            onDeletePaper={(id) => {
+              StorageService.deletePaper(id);
+              setPapers(StorageService.getPapers());
+            }}
+            onStartExam={handleStartExam}
           />
         );
       case 'exam':
@@ -336,7 +377,7 @@ const AppContent: React.FC = () => {
       case 'ai-chat':
         return <AIChatPage />;
       case 'settings':
-        return <ProfilePage onBack={() => setCurrentView('dashboard')} />;
+        return <ProfilePage onBack={() => setCurrentView('dashboard')} onProfileUpdate={() => setUserProfile(UserService.getProfile())} />;
       default:
         return <Dashboard papers={papers} jobs={activeJobs} onStartExam={handleStartExam} onImportClick={() => setCurrentView('import')} onDeletePaper={() => { }} onReviewJob={handleReviewJob} onDeleteJob={handleDeleteJob} attempts={attempts} onViewAttempt={handleViewAttemptDetail} />;
     }
@@ -350,16 +391,39 @@ const AppContent: React.FC = () => {
           <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-lg shadow-md" />
           <h1 className="text-lg font-bold tracking-tight text-slate-800">TRE-Prep</h1>
         </div>
-        <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 border border-slate-200">
-          <span className="text-xs font-bold">U</span>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full border border-orange-100">
+            <Flame size={14} className="text-orange-500 fill-orange-500 animate-pulse" />
+            <span className="text-xs font-black text-orange-600">{streak} Day{streak !== 1 ? 's' : ''}</span>
+          </div>
+          <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 border border-slate-200">
+            <span className="text-xs font-bold">{userProfile.initials}</span>
+          </div>
         </div>
       </div>
 
       {currentView !== 'exam' && !isLoading && (
         <aside className="hidden md:flex w-72 bg-white flex-col shrink-0 transition-all p-4">
-          <div className="px-4 py-6 flex items-center gap-3 mb-6">
-            <img src="/logo.png" alt="TRE-Prep Logo" className="w-10 h-10 rounded-xl shadow-lg shadow-indigo-200" />
-            <h1 className="text-xl font-black tracking-tight text-slate-900">TRE-Prep</h1>
+          <div className="px-4 py-6 flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <img src="/logo.png" alt="TRE-Prep Logo" className="w-10 h-10 rounded-xl shadow-lg shadow-indigo-200" />
+              <h1 className="text-xl font-black tracking-tight text-slate-900">TRE-Prep</h1>
+            </div>
+          </div>
+
+          <div className="px-4 mb-6">
+            <div className="w-full bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-100 rounded-2xl p-4 flex items-center gap-4 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                <Flame size={48} className="rotate-12" />
+              </div>
+              <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center shrink-0">
+                <Flame size={20} className="text-orange-500 fill-orange-500 animate-pulse" />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase font-bold text-orange-400 tracking-wider">Study Streak</p>
+                <p className="text-lg font-black text-slate-800 leading-none mt-0.5">{streak} Day{streak !== 1 ? 's' : ''}</p>
+              </div>
+            </div>
           </div>
 
           <nav className="flex-1 px-4 space-y-1 py-4">
@@ -423,6 +487,13 @@ const AppContent: React.FC = () => {
         />
       )}
       <Toaster position="top-center" />
+      <ResumeConfirmDialog
+        isOpen={resumeDialog.isOpen}
+        paperTitle={resumeDialog.paper?.title || 'Exam'}
+        onResume={handleResumeConfirm}
+        onStartNew={handleStartNewConfirm}
+        onCancel={() => setResumeDialog({ isOpen: false, paper: null })}
+      />
     </div>
   );
 }
@@ -440,14 +511,6 @@ const NavItem: React.FC<{ active: boolean; icon: React.ReactNode; label: string;
   </button>
 );
 
-import ProfilePage from './components/ProfilePage';
 
-const App: React.FC = () => {
-  return (
-    <ConfirmProvider>
-      <AppContent />
-    </ConfirmProvider>
-  );
-};
 
 export default App;

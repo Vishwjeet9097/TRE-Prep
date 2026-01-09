@@ -1,6 +1,8 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
 
+import { UserService } from "../store";
+
 const responseSchema = {
   type: Type.OBJECT,
   properties: {
@@ -26,9 +28,10 @@ const responseSchema = {
           },
           correctOptionId: { type: Type.STRING },
           explanation_en: { type: Type.STRING },
-          explanation_hi: { type: Type.STRING }
+          explanation_hi: { type: Type.STRING },
+          topic: { type: Type.STRING, description: "History, Polity, Geography, Economy, Science, Math, Current Affairs, Bihar Special" }
         },
-        required: ["number", "content_en", "content_hi", "options", "correctOptionId", "explanation_en", "explanation_hi"]
+        required: ["number", "content_en", "content_hi", "options", "correctOptionId", "explanation_en", "explanation_hi", "topic"]
       }
     }
   },
@@ -45,7 +48,14 @@ export const extractQuestionBatch = async (
   rangeEnd: number,
   onProgress: (msg: string) => void
 ) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const profile = UserService.getProfile();
+  const apiKey = profile.apiKey || process.env.API_KEY;
+
+  if (!apiKey) {
+    throw new Error("Gemini API Key is missing. Please add it in Settings.");
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
 
   const systemInstruction = `
     You are a Professional BPSC TRE 4.0 Digitizer.
@@ -57,6 +67,7 @@ export const extractQuestionBatch = async (
     3. OPTIONS: BPSC papers usually have 5 options (A, B, C, D, E). Extract all.
     4. ACCURACY: Do not hallucinate. If a question in this range is missing, skip it.
     5. COMPACTNESS: Keep explanations to exactly one sentence to save space.
+    6. TOPIC TAGGING: Categorize every question into one of: 'History', 'Polity', 'Geography', 'Economy', 'Science', 'Math', 'Current Affairs', 'Bihar Special'. Use your best judgement based on content.
   `;
 
   try {
@@ -86,7 +97,8 @@ export const extractQuestionBatch = async (
         text: { en: o.text_en || "", hi: o.text_hi || "" }
       })),
       correctOptionId: (q.correctOptionId || "").toLowerCase(),
-      explanation: { en: q.explanation_en || "", hi: q.explanation_hi || "" }
+      explanation: { en: q.explanation_en || "", hi: q.explanation_hi || "" },
+      topic: q.topic || "General"
     }));
   } catch (error) {
     console.error(`Batch ${rangeStart}-${rangeEnd} failed:`, error);

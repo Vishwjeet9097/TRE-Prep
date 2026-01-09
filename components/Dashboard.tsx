@@ -1,8 +1,14 @@
 
 import React from 'react';
-import { Plus, Trash2, ArrowRight, BookOpen, Clock, FileText, Loader2, CheckCircle2, AlertCircle, ChevronRight, ChevronLeft, Activity, Calendar, Trophy, Play } from 'lucide-react';
+import { Plus, Trash2, ArrowRight, BookOpen, Clock, FileText, Loader2, CheckCircle2, AlertCircle, ChevronRight, ChevronLeft, Activity, Calendar, Trophy, Play, Bookmark } from 'lucide-react';
 import { ExamPaper, ParsingJob, ExamAttempt } from '../types';
 import { useConfirm } from '../context/ConfirmContext';
+import TopicAnalysis from './TopicAnalysis';
+import { SAMPLE_PAPERS } from '../data/samplePapers';
+
+import { LibraryPaper } from '../services/ContentService';
+
+import { UserProfile } from '../store';
 
 interface DashboardProps {
   papers: ExamPaper[];
@@ -15,6 +21,10 @@ interface DashboardProps {
   onDeleteJob: (id: string) => void;
   onViewAttempt: (attempt: ExamAttempt) => void;
   onResumeJob: (job: ParsingJob) => void;
+  onAddSamplePaper: (paper: ExamPaper) => void;
+  onSaveTemplate: (paper: ExamPaper) => void;
+  library: LibraryPaper[];
+  userProfile?: UserProfile;
 }
 
 const Dashboard: React.FC<DashboardProps> = ({
@@ -27,7 +37,11 @@ const Dashboard: React.FC<DashboardProps> = ({
   onReviewJob,
   onDeleteJob,
   onViewAttempt,
-  onResumeJob
+  onResumeJob,
+  onAddSamplePaper,
+  onSaveTemplate,
+  library,
+  userProfile
 }) => {
   const [viewDate, setViewDate] = React.useState(new Date());
   const { confirm } = useConfirm();
@@ -112,15 +126,24 @@ const Dashboard: React.FC<DashboardProps> = ({
   };
 
   const renderMobile = () => (
-    <div className="md:hidden space-y-6 pb-32">
+    <div className="md:hidden space-y-6 pb-32 px-4 pt-4 bg-[#F8F9FD] min-h-full select-none">
       {/* Header */}
-      <div className="flex flex-col gap-2">
-        <h2 className="text-2xl font-black text-slate-800 tracking-tight">Dashboard</h2>
+      <div className="flex flex-col gap-4">
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-2xl font-black text-slate-800 tracking-tight">Dashboard</h2>
+            <p className="text-slate-400 text-xs font-bold">
+              {userProfile ? `Welcome back, ${userProfile.name.split(' ')[0]}` : 'Manage your preparation'}
+            </p>
+          </div>
+
+        </div>
+
         <button
           onClick={onImportClick}
-          className="w-full flex items-center justify-center gap-2 px-5 py-3 bg-indigo-600 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-200"
+          className="w-full flex items-center justify-center gap-2 px-5 py-4 bg-indigo-600 text-white font-bold text-sm rounded-2xl shadow-lg shadow-indigo-200 active:scale-95 transition-all hover:bg-indigo-700"
         >
-          <Plus size={18} /> Import New Paper
+          <Plus size={20} /> Import New Paper
         </button>
       </div>
 
@@ -131,18 +154,42 @@ const Dashboard: React.FC<DashboardProps> = ({
         </div>
         {papers.length === 0 ? (
           <div className="p-8 text-center bg-white rounded-3xl border border-dashed border-slate-200">
-            <p className="text-slate-400 text-sm">No papers yet.</p>
+            <p className="text-slate-400 text-sm font-medium">No papers yet.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4">
             {papers.map(paper => (
-              <div key={paper.id} className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
-                <div className="flex justify-between items-start mb-2">
-                  <span className="px-2 py-1 bg-indigo-50 text-indigo-700 text-[10px] font-black uppercase tracking-widest rounded-lg">{paper.examType || 'Exam'}</span>
-                  <button onClick={() => handleDeletePaper(paper.id, paper.title)} className="text-slate-300 hover:text-rose-500"><Trash2 size={16} /></button>
+              <div
+                key={paper.id}
+                onClick={() => onStartExam(paper)}
+                className="bg-white p-5 rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-200/40 relative overflow-hidden group active:scale-95 transition-all cursor-pointer"
+              >
+                {/* Decorative Circle */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-50 rounded-bl-[100%] -mr-8 -mt-8 opacity-50 pointer-events-none"></div>
+
+                <div className="flex justify-between items-start mb-3 relative z-10">
+                  <span className="px-3 py-1 bg-indigo-50 text-indigo-600 text-[10px] font-black uppercase tracking-wider rounded-lg border border-indigo-100">{paper.examType || 'Exam'}</span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeletePaper(paper.id, paper.title);
+                    }}
+                    className="w-8 h-8 flex items-center justify-center bg-white rounded-full border border-slate-100 text-slate-300 hover:text-rose-500 hover:border-rose-100 hover:bg-rose-50 transition-all shadow-sm"
+                  >
+                    <Trash2 size={14} />
+                  </button>
                 </div>
-                <h4 className="font-bold text-slate-900 text-lg mb-4 line-clamp-2">{paper.title}</h4>
-                <button onClick={() => onStartExam(paper)} className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2">Start Exam <ArrowRight size={16} /></button>
+
+                <h4 className="font-black text-slate-900 text-xl mb-1 leading-tight">{paper.title}</h4>
+                <div className="flex items-center gap-3 text-xs font-bold text-slate-400 mb-6">
+                  <span>{paper.questions.length} Questions</span>
+                  <span className="w-1 h-1 rounded-full bg-slate-300"></span>
+                  <span>{paper.subject || 'General'}</span>
+                </div>
+
+                <div className="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-slate-200">
+                  Start Test <ArrowRight size={18} />
+                </div>
               </div>
             ))}
           </div>
@@ -162,13 +209,13 @@ const Dashboard: React.FC<DashboardProps> = ({
               const isPass = percentage >= 40;
               return (
                 <div key={`${attempt.id}-${i}`} onClick={() => onViewAttempt(attempt)} className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm active:scale-95 transition-all flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-sm text-white shadow-md ${isPass ? 'bg-emerald-500 shadow-emerald-200' : 'bg-rose-500 shadow-rose-200'}`}>
+                  <div className="flex items-center gap-4">
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-sm text-white shadow-md ${isPass ? 'bg-emerald-500 shadow-emerald-200' : 'bg-rose-500 shadow-rose-200'}`}>
                       {percentage}%
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-800 line-clamp-1">{paper?.title || 'Unknown Paper'}</h4>
-                      <span className="text-xs font-medium text-slate-400 flex items-center gap-1">
+                      <h4 className="font-bold text-slate-800 line-clamp-1 text-sm">{paper?.title || 'Unknown Paper'}</h4>
+                      <span className="text-[10px] font-bold text-slate-400 flex items-center gap-1 uppercase tracking-wider mt-0.5">
                         <Calendar size={10} />
                         {new Date(attempt.startTime).toLocaleDateString()}
                       </span>
@@ -198,7 +245,7 @@ const Dashboard: React.FC<DashboardProps> = ({
             <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
           </div>
           <div className="flex -space-x-2">
-            <div className="w-10 h-10 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-indigo-700 font-bold text-xs">JD</div>
+
           </div>
         </div>
       </div>
@@ -208,6 +255,52 @@ const Dashboard: React.FC<DashboardProps> = ({
 
         {/* Left Main (8 cols) */}
         <div className="col-span-8 flex flex-col gap-8">
+
+          {/* Recommended Section (Content Library) */}
+          {(() => {
+            // Filter out ones already in "My Papers" to avoid adding duplicate IDs
+            // The library prop already contains both Static and Local papers.
+            const visibleRecommended = library.filter(rec => !papers.some(p => p.id === rec.id));
+
+            if (visibleRecommended.length === 0) return null;
+
+            return (
+              <div>
+                <h3 className="font-bold text-slate-900 text-xl mb-4">Recommended / Library</h3>
+                <div className="grid grid-cols-1 gap-4">
+                  {visibleRecommended.map(paper => (
+                    <div key={paper.id} className="bg-white p-5 rounded-[2rem] border border-indigo-100 shadow-sm flex items-center justify-between group hover:border-indigo-300 transition-all relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-20 h-20 bg-indigo-50 rounded-bl-[4rem] -mr-4 -mt-4 opacity-50"></div>
+
+                      <div className="flex items-center gap-5 relative z-10">
+                        <div className="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                          <BookOpen size={28} />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="px-2 py-0.5 bg-amber-100 text-amber-700 text-[10px] font-black uppercase tracking-wider rounded-lg">Mock Test</span>
+                            {paper.source === 'LOCAL' && (
+                              <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 text-[10px] font-black uppercase tracking-wider rounded-lg">Saved</span>
+                            )}
+                            <span className="px-2 py-0.5 bg-slate-100 text-slate-500 text-[10px] font-bold uppercase tracking-wider rounded-lg">{paper.questions.length} Qs</span>
+                          </div>
+                          <h4 className="font-black text-slate-900 text-lg leading-tight">{paper.title}</h4>
+                          <p className="text-xs text-slate-500 font-medium mt-1">{paper.subject || 'General Studies'}</p>
+                        </div>
+                      </div>
+
+                      <button
+                        onClick={() => onAddSamplePaper(paper)}
+                        className="w-12 h-12 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-slate-200 hover:scale-105 active:scale-95 transition-all"
+                      >
+                        <Plus size={20} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
 
           {/* "Your Course" Section -> Active Papers List */}
           <div className="bg-transparent">
@@ -295,8 +388,33 @@ const Dashboard: React.FC<DashboardProps> = ({
                       <p className="text-xs font-bold text-slate-400 uppercase">Questions</p>
                       <p className="font-black text-slate-900">{paper.questions.length}</p>
                     </div>
-                    <div className="w-12 h-12 rounded-full border-2 border-slate-100 flex items-center justify-center text-slate-300 group-hover:border-indigo-600 group-hover:text-indigo-600 transition-all">
-                      <ArrowRight size={20} />
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSaveTemplate(paper);
+                        }}
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-indigo-500 hover:bg-indigo-50 transition-all"
+                        title="Save as Template"
+                      >
+                        <Bookmark size={18} />
+                      </button>
+
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeletePaper(paper.id, paper.title);
+                        }}
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-slate-300 hover:text-rose-500 hover:bg-rose-50 transition-all"
+                        title="Delete Paper"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                      <div className="w-12 h-12 rounded-full border-2 border-slate-100 flex items-center justify-center text-slate-300 group-hover:border-indigo-600 group-hover:text-indigo-600 transition-all">
+                        <ArrowRight size={20} />
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -378,6 +496,9 @@ const Dashboard: React.FC<DashboardProps> = ({
             </div>
           </div>
 
+          {/* Artificial Intelligence Analysis */}
+          <TopicAnalysis attempts={attempts} papers={papers} />
+
         </div>
 
         {/* Right Sidebar (4 cols) */}
@@ -441,8 +562,8 @@ const Dashboard: React.FC<DashboardProps> = ({
           </div>
 
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 
   return (

@@ -16,6 +16,7 @@ export interface Question {
   options: Option[];
   correctOptionId: string;
   explanation: Translation;
+  topic?: string;
 }
 
 export interface ExamPaper {

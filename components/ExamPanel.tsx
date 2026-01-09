@@ -202,7 +202,13 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
       {/* Submit Confirmation Overlay */}
       {showSubmitConfirm && (
         <div className="absolute inset-0 z-[60] flex items-center justify-center p-6 backdrop-blur-sm bg-slate-900/40 animate-in fade-in duration-300">
-          <div className="bg-white rounded-[2rem] shadow-2xl p-8 max-w-md w-full animate-in zoom-in-95 duration-200">
+          <div className="bg-white rounded-[2rem] shadow-2xl p-8 max-w-md w-full animate-in zoom-in-95 duration-200 relative">
+            <button
+              onClick={() => setShowSubmitConfirm(false)}
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-50 rounded-full transition-all"
+            >
+              <X size={20} />
+            </button>
             <div className="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
               <CheckCircle size={32} />
             </div>
