@@ -1,10 +1,11 @@
 
 import React, { useState, useCallback } from 'react';
-import { Upload, X, Check, Loader2, AlertCircle, Eye, Trash2, ArrowLeft, Languages, FileCheck, ChevronDown, BookOpen, Plus, Bookmark, FileText, Sparkles, LayoutGrid, List, Code2, PenTool } from 'lucide-react';
+import { Upload, X, Check, Loader2, AlertCircle, Eye, Trash2, ArrowLeft, Languages, FileCheck, ChevronDown, BookOpen, Plus, Bookmark, FileText, Sparkles, LayoutGrid, List, Code2, PenTool, FileSpreadsheet } from 'lucide-react';
 import { Question, ParsingJob, ExamPaper } from '../types';
 import { StorageService } from '../store';
 import { LibraryPaper } from '../services/ContentService';
 import ManualWizard from './ManualEntry/ManualWizard';
+import ExcelImportWizard from './ExcelImportWizard';
 
 interface ImportWizardProps {
   initialJob?: ParsingJob | null;
@@ -43,7 +44,7 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
     year: 2024,
     subject: 'General Studies'
   });
-  const [importMethod, setImportMethod] = useState<'pdf' | 'manual' | null>(null);
+  const [importMethod, setImportMethod] = useState<'pdf' | 'manual' | 'excel' | null>(null);
 
 
 
@@ -95,6 +96,10 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
 
   if (importMethod === 'manual') {
     return <ManualWizard onBack={() => setImportMethod(null)} onComplete={onSuccess} />;
+  }
+
+  if (importMethod === 'excel') {
+    return <ExcelImportWizard onBack={() => setImportMethod(null)} onComplete={onSuccess} />;
   }
 
   return (
@@ -172,18 +177,38 @@ const ImportWizard: React.FC<ImportWizardProps> = ({
               {/* Manual Entry Option */}
               <button
                 onClick={() => setImportMethod('manual')}
-                className="group relative bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-emerald-500/10 hover:border-emerald-200 transition-all text-left overflow-hidden"
+                className="flex flex-col items-center p-8 bg-white border border-slate-200 rounded-[2.5rem] hover:border-emerald-500 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all group h-[320px] justify-between relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-[100%] transition-transform group-hover:scale-110" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-[100%] -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-110"></div>
 
-                <div className="relative z-10">
-                  <div className="w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center text-white shadow-lg mb-6 group-hover:scale-105 transition-transform">
-                    <PenTool size={32} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Create Manually</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed">
-                    Build a fresh question bank from scratch or add questions to an existing set manually, one by one.
-                  </p>
+                <div className="w-20 h-20 bg-emerald-50 rounded-3xl flex items-center justify-center shrink-0 mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                  <PenTool size={32} className="text-emerald-600" />
+                </div>
+                <div className="text-center relative z-10">
+                  <h3 className="text-xl font-bold text-slate-800 mb-2">Create Manually</h3>
+                  <p className="text-slate-400 font-medium text-sm leading-relaxed">Type your questions directly. Perfect for custom quizzes.</p>
+                </div>
+                <div className="w-full mt-6 py-3 rounded-xl bg-slate-50 text-slate-600 font-bold text-sm group-hover:bg-emerald-600 group-hover:text-white transition-colors relative z-10">
+                  Start Typing
+                </div>
+              </button>
+
+              {/* Excel Import Option */}
+              <button
+                onClick={() => setImportMethod('excel')}
+                className="flex flex-col items-center p-8 bg-white border border-slate-200 rounded-[2.5rem] hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/10 transition-all group h-[320px] justify-between relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[100%] -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-110"></div>
+
+                <div className="w-20 h-20 bg-blue-50 rounded-3xl flex items-center justify-center shrink-0 mb-6 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                  <FileSpreadsheet size={32} className="text-blue-600" />
+                </div>
+                <div className="text-center relative z-10">
+                  <h3 className="text-xl font-bold text-slate-800 mb-2">Import Excel</h3>
+                  <p className="text-slate-400 font-medium text-sm leading-relaxed">Upload bulk questions using our standard template.</p>
+                </div>
+                <div className="w-full mt-6 py-3 rounded-xl bg-slate-50 text-slate-600 font-bold text-sm group-hover:bg-blue-600 group-hover:text-white transition-colors relative z-10">
+                  Upload Sheet
                 </div>
               </button>
             </div>
