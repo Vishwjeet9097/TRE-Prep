@@ -84,53 +84,57 @@ const Dashboard: React.FC<DashboardProps> = ({
 
   /* --- Helper Components for Charts --- */
   const BarChart = ({ data }: { data: ExamAttempt[] }) => {
-    const maxScore = 100;
-
     return (
       <div className="relative h-40 w-full pt-6 flex flex-col justify-end">
-        {/* Background Grid Lines for "Financial" Look */}
-        <div className="absolute inset-0 flex flex-col justify-between text-[9px] text-slate-300 font-bold z-0 pb-6 pointer-events-none">
+        {/* Background Grid Lines */}
+        <div className="absolute inset-0 flex flex-col justify-between text-[9px] text-slate-300 font-bold z-0 pb-6 pointer-events-none border-l border-slate-100 pl-2">
           <div className="w-full border-b border-dashed border-slate-100 flex items-center"><span className="absolute -left-0">100%</span></div>
           <div className="w-full border-b border-dashed border-slate-100 flex items-center"><span className="absolute -left-0">50%</span></div>
           <div className="w-full border-b border-dashed border-slate-100 flex items-center"><span className="absolute -left-0">0%</span></div>
         </div>
 
-        <div className="flex items-end gap-3 h-full w-full z-10 pl-6">
-          {data.map((attempt, i) => {
-            const paper = papers.find(p => p.id === attempt.paperId);
-            const pct = Math.round((attempt.score / (paper?.questions.length || 1)) * 100);
-            const height = Math.max(pct, 10); // min height for visibility
+        <div className="flex items-end gap-3 h-full w-full z-10 pl-6 relative">
+          {data.length > 0 ? (
+            data.map((attempt, i) => {
+              const paper = papers.find(p => p.id === attempt.paperId);
+              const pct = Math.round((attempt.score / (paper?.questions.length || 1)) * 100);
+              const height = Math.max(pct, 10);
 
-            return (
-              <div key={i} className="flex-1 flex flex-col items-center gap-2 group relative cursor-pointer" onClick={() => onViewAttempt(attempt)}>
-                {/* Tooltip on Hover */}
-                <div className="absolute bottom-full mb-2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20 shadow-xl">
-                  {paper?.title} • {pct}%
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
-                </div>
-
-                {/* Animated Gradient Bar */}
-                <div className="w-full bg-slate-50/50 rounded-t-xl relative overflow-hidden h-full group-hover:bg-slate-100 transition-colors">
-                  <div
-                    className="absolute bottom-0 left-0 right-0 rounded-t-xl transition-all duration-1000 ease-out shadow-[0_4px_20px_-4px_rgba(99,102,241,0.5)] bg-gradient-to-t from-indigo-600 to-indigo-400 group-hover:to-indigo-500"
-                    style={{ height: `${height}%` }}
-                  >
-                    {/* Inner shine effect */}
-                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/30"></div>
+              return (
+                <div key={i} className="flex-1 flex flex-col items-center gap-2 group relative cursor-pointer" onClick={() => onViewAttempt(attempt)}>
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full mb-2 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20 shadow-xl">
+                    {paper?.title} • {pct}%
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-900"></div>
                   </div>
+
+                  {/* Bar */}
+                  <div className="w-full bg-slate-50 rounded-t-xl relative overflow-hidden h-full group-hover:bg-slate-100 transition-colors">
+                    <div
+                      className="absolute bottom-0 left-0 right-0 rounded-t-xl transition-all duration-1000 ease-out shadow-[0_4px_20px_-4px_rgba(99,102,241,0.5)] bg-gradient-to-t from-indigo-600 to-indigo-400 group-hover:to-indigo-500"
+                      style={{ height: `${height}%` }}
+                    >
+                      <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/30"></div>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-bold text-slate-400 group-hover:text-indigo-600 transition-colors">
+                    {new Date(attempt.startTime).getDate()}
+                  </span>
                 </div>
-
-                {/* Date Label */}
-                <span className="text-[10px] font-bold text-slate-400 group-hover:text-indigo-600 transition-colors">
-                  {new Date(attempt.startTime).getDate()}
-                </span>
+              )
+            })
+          ) : (
+            // Premium Empty State - Ghost Bars
+            <div className="absolute inset-0 z-10 flex items-end gap-3 pl-6 opacity-30">
+              {[40, 65, 30, 80, 50, 20, 90].map((h, i) => (
+                <div key={i} className="flex-1 bg-slate-100 rounded-t-xl relative overflow-hidden" style={{ height: `${h}%` }}></div>
+              ))}
+              <div className="absolute inset-0 flex items-center justify-center z-20">
+                <div className="bg-white/90 backdrop-blur-sm border border-slate-100 px-4 py-2 rounded-xl shadow-lg text-xs font-bold text-slate-500 flex items-center gap-2">
+                  <Activity size={14} className="text-indigo-500" />
+                  Start your first exam to unlock analytics
+                </div>
               </div>
-            )
-          })}
-
-          {data.length === 0 && (
-            <div className="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold bg-slate-50/50 rounded-2xl border-2 border-dashed border-slate-100">
-              No activity data yet.
             </div>
           )}
         </div>
@@ -161,6 +165,47 @@ const Dashboard: React.FC<DashboardProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Recommended Section (Mobile) */}
+      {(() => {
+        const visibleRecommended = library.filter(rec => !papers.some(p => p.id === rec.id));
+        if (visibleRecommended.length === 0) return null;
+
+        return (
+          <div className="space-y-4">
+            <h3 className="text-base font-bold text-slate-800 tracking-tight">Recommended / Library</h3>
+            <div className="grid grid-cols-1 gap-3">
+              {visibleRecommended.map(paper => (
+                <div key={paper.id} className="bg-white p-4 rounded-[1.5rem] border border-indigo-50 shadow-sm flex items-center justify-between group active:scale-95 transition-all relative overflow-hidden">
+                  {/* Decorative Blob */}
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-indigo-50 rounded-bl-[3rem] -mr-4 -mt-4 opacity-50 pointer-events-none"></div>
+
+                  <div className="flex items-center gap-4 relative z-10">
+                    <div className="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 shadow-sm">
+                      <BookOpen size={20} />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="px-1.5 py-0.5 bg-amber-100 text-amber-700 text-[9px] font-bold uppercase tracking-wider rounded-md">Mock</span>
+                        <span className="px-1.5 py-0.5 bg-slate-100 text-slate-500 text-[9px] font-bold uppercase tracking-wider rounded-lg">{paper.questions.length} Qs</span>
+                      </div>
+                      <h4 className="font-bold text-slate-900 text-sm leading-tight line-clamp-1">{paper.title}</h4>
+                      <p className="text-[10px] text-slate-500 font-medium mt-0.5">{paper.subject || 'General'}</p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => onAddSamplePaper(paper)}
+                    className="w-10 h-10 bg-slate-900 text-white rounded-xl flex items-center justify-center shadow-lg shadow-slate-200 active:scale-90 transition-all shrink-0 ml-2"
+                  >
+                    <Plus size={18} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
@@ -557,9 +602,10 @@ const Dashboard: React.FC<DashboardProps> = ({
                 const today = new Date();
                 const isToday = dayNum === today.getDate();
 
-                const hasAttempt = recentAttempts.some(a => {
+                // Check entire history, not just recent 5
+                const hasAttempt = attempts.some(a => {
                   const d = new Date(a.startTime);
-                  return d.getDate() === dayNum && d.getMonth() === today.getMonth();
+                  return d.getDate() === dayNum && d.getMonth() === today.getMonth() && d.getFullYear() === today.getFullYear();
                 });
 
                 let tileClass = "text-slate-700 hover:bg-slate-50";

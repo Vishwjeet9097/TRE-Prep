@@ -29,6 +29,8 @@ import { Toaster, toast } from 'sonner';
 import { useConfirm } from './context/ConfirmContext';
 import ResumeConfirmDialog from './components/ResumeConfirmDialog';
 import ProfilePage from './components/ProfilePage';
+import { App as CapacitorApp } from '@capacitor/app';
+import Onboarding from './components/Onboarding';
 
 // --- Sub-components ---
 import Dashboard from './components/Dashboard';
@@ -58,8 +60,11 @@ const App: React.FC = () => {
   const [library, setLibrary] = useState<LibraryPaper[]>([]);
   const [resumeDialog, setResumeDialog] = useState<{ isOpen: boolean; paper: ExamPaper | null }>({ isOpen: false, paper: null });
   const [userProfile, setUserProfile] = useState<UserProfile>(UserService.getProfile());
+  const [showOnboarding, setShowOnboarding] = useState(!UserService.getProfile().isOnboarded);
 
   const { confirm } = useConfirm();
+
+
 
   useEffect(() => {
     setStreak(StreakService.checkStreak());
@@ -72,6 +77,33 @@ const App: React.FC = () => {
       setResumeAttempt(draft);
     }
   }, [currentView]);
+
+  useEffect(() => {
+    // Android Back Button Handling
+    const setupBackButton = async () => {
+      // Dynamic import to avoid SSR/web issues if any, though likely fine in standard React SPA
+
+      CapacitorApp.addListener('backButton', ({ canGoBack }) => {
+        if (resumeDialog.isOpen) {
+          setResumeDialog({ isOpen: false, paper: null });
+          return;
+        }
+
+        if (currentView === 'exam') {
+          // If in exam, maybe toast or just do nothing (prevent accidental exit)
+          toast("Finish or Pause exam to exit");
+          return;
+        }
+
+        if (currentView !== 'dashboard') {
+          setCurrentView('dashboard');
+        } else {
+          CapacitorApp.exitApp();
+        }
+      });
+    };
+    setupBackButton();
+  }, [currentView, resumeDialog.isOpen]);
 
   const handleStartExam = async (paper: ExamPaper) => {
     if (resumeAttempt && resumeAttempt.paperId === paper.id) {
@@ -399,117 +431,126 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen bg-slate-50 overflow-hidden font-sans">
-      {/* Mobile Header */}
-      <div className="md:hidden flex items-center justify-between p-4 bg-white border-b border-slate-100 shrink-0 z-40">
-        <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-lg shadow-md" />
-          <h1 className="text-lg font-bold tracking-tight text-slate-800">TRE-Prep</h1>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full border border-orange-100">
-            <Flame size={14} className="text-orange-500 fill-orange-500 animate-pulse" />
-            <span className="text-xs font-bold text-orange-600">{streak} Day{streak !== 1 ? 's' : ''}</span>
-          </div>
-          <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 border border-slate-200">
-            <span className="text-xs font-bold">{userProfile.initials}</span>
-          </div>
-        </div>
-      </div>
-
-      {currentView !== 'exam' && !isLoading && (
-        <aside className="hidden md:flex w-72 bg-white flex-col shrink-0 transition-all p-4">
-          <div className="px-4 py-6 flex items-center justify-between mb-2">
+    <>
+      {showOnboarding ? (
+        <Onboarding onComplete={() => {
+          setShowOnboarding(false);
+          setUserProfile(UserService.getProfile());
+        }} />
+      ) : (
+        <div className="flex flex-col md:flex-row h-screen bg-slate-50 overflow-hidden font-sans">
+          {/* Mobile Header */}
+          <div className="md:hidden flex items-center justify-between p-4 bg-white border-b border-slate-100 shrink-0 z-40">
             <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="TRE-Prep Logo" className="w-10 h-10 rounded-xl shadow-lg shadow-indigo-200" />
-              <h1 className="text-xl font-bold tracking-tight text-slate-900">TRE-Prep</h1>
+              <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-lg shadow-md" />
+              <h1 className="text-lg font-bold tracking-tight text-slate-800">TRE-Prep</h1>
             </div>
-          </div>
-
-          <div className="px-4 mb-6">
-            <div className="w-full bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-100 rounded-2xl p-4 flex items-center gap-4 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Flame size={48} className="rotate-12" />
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-orange-50 rounded-full border border-orange-100">
+                <Flame size={14} className="text-orange-500 fill-orange-500 animate-pulse" />
+                <span className="text-xs font-bold text-orange-600">{streak} Day{streak !== 1 ? 's' : ''}</span>
               </div>
-              <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center shrink-0">
-                <Flame size={20} className="text-orange-500 fill-orange-500 animate-pulse" />
-              </div>
-              <div>
-                <p className="text-[10px] uppercase font-bold text-orange-400 tracking-wider">Study Streak</p>
-                <p className="text-lg font-bold text-slate-800 leading-none mt-0.5">{streak} Day{streak !== 1 ? 's' : ''}</p>
+              <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 border border-slate-200">
+                <span className="text-xs font-bold">{userProfile.initials}</span>
               </div>
             </div>
           </div>
 
-          <nav className="flex-1 px-4 space-y-1 py-4">
-            <NavItem
-              active={currentView === 'dashboard'}
-              icon={<LayoutDashboard size={20} />}
-              label="Dashboard"
-              onClick={() => setCurrentView('dashboard')}
-            />
-            <NavItem
-              active={currentView === 'import'}
-              icon={<FileUp size={20} />}
-              label="Import Paper"
-              onClick={() => {
-                setReviewJob(null);
-                setCurrentView('import');
+          {currentView !== 'exam' && !isLoading && (
+            <aside className="hidden md:flex w-72 bg-white flex-col shrink-0 transition-all p-4">
+              <div className="px-4 py-6 flex items-center justify-between mb-2">
+                <div className="flex items-center gap-3">
+                  <img src="/logo.png" alt="TRE-Prep Logo" className="w-10 h-10 rounded-xl shadow-lg shadow-indigo-200" />
+                  <h1 className="text-xl font-bold tracking-tight text-slate-900">TRE-Prep</h1>
+                </div>
+              </div>
+
+              <div className="px-4 mb-6">
+                <div className="w-full bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-100 rounded-2xl p-4 flex items-center gap-4 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <Flame size={48} className="rotate-12" />
+                  </div>
+                  <div className="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center shrink-0">
+                    <Flame size={20} className="text-orange-500 fill-orange-500 animate-pulse" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase font-bold text-orange-400 tracking-wider">Study Streak</p>
+                    <p className="text-lg font-bold text-slate-800 leading-none mt-0.5">{streak} Day{streak !== 1 ? 's' : ''}</p>
+                  </div>
+                </div>
+              </div>
+
+              <nav className="flex-1 px-4 space-y-1 py-4">
+                <NavItem
+                  active={currentView === 'dashboard'}
+                  icon={<LayoutDashboard size={20} />}
+                  label="Dashboard"
+                  onClick={() => setCurrentView('dashboard')}
+                />
+                <NavItem
+                  active={currentView === 'import'}
+                  icon={<FileUp size={20} />}
+                  label="Import Paper"
+                  onClick={() => {
+                    setReviewJob(null);
+                    setCurrentView('import');
+                  }}
+                />
+                <NavItem
+                  active={currentView === 'ai-chat'}
+                  icon={<Sparkles size={20} />}
+                  label="AI Tutor"
+                  onClick={() => setCurrentView('ai-chat')}
+                />
+                <NavItem
+                  active={currentView === 'history'}
+                  icon={<HistoryIcon size={20} />}
+                  label="Attempt History"
+                  onClick={() => setCurrentView('history')}
+                />
+              </nav>
+
+              <div className="p-4 border-t border-slate-100">
+
+                <NavItem
+                  active={currentView === 'settings'}
+                  icon={<SettingsIcon size={20} />}
+                  label="Settings"
+                  onClick={() => setCurrentView('settings')}
+                />
+
+              </div>
+            </aside>
+          )}
+
+          <main className="flex-1 overflow-auto relative pb-24 md:pb-0">
+            {renderContent()}
+            {currentView !== 'exam' && currentView !== 'result' && currentView !== 'ai-chat' && !isLoading && (
+              <AIChatAssistant />
+            )}
+          </main>
+
+          {/* Mobile Bottom Navigation */}
+          {currentView !== 'exam' && !isLoading && (
+            <BottomNav
+              currentView={currentView}
+              onChangeView={(view) => {
+                if (view === 'import') setReviewJob(null);
+                setCurrentView(view);
               }}
             />
-            <NavItem
-              active={currentView === 'ai-chat'}
-              icon={<Sparkles size={20} />}
-              label="AI Tutor"
-              onClick={() => setCurrentView('ai-chat')}
-            />
-            <NavItem
-              active={currentView === 'history'}
-              icon={<HistoryIcon size={20} />}
-              label="Attempt History"
-              onClick={() => setCurrentView('history')}
-            />
-          </nav>
-
-          <div className="p-4 border-t border-slate-100">
-
-            <NavItem
-              active={currentView === 'settings'}
-              icon={<SettingsIcon size={20} />}
-              label="Settings"
-              onClick={() => setCurrentView('settings')}
-            />
-
-          </div>
-        </aside>
+          )}
+          <Toaster position="top-center" />
+          <ResumeConfirmDialog
+            isOpen={resumeDialog.isOpen}
+            paperTitle={resumeDialog.paper?.title || 'Exam'}
+            onResume={handleResumeConfirm}
+            onStartNew={handleStartNewConfirm}
+            onCancel={() => setResumeDialog({ isOpen: false, paper: null })}
+          />
+        </div>
       )}
-
-      <main className="flex-1 overflow-auto relative pb-24 md:pb-0">
-        {renderContent()}
-        {currentView !== 'exam' && currentView !== 'result' && currentView !== 'ai-chat' && !isLoading && (
-          <AIChatAssistant />
-        )}
-      </main>
-
-      {/* Mobile Bottom Navigation */}
-      {currentView !== 'exam' && !isLoading && (
-        <BottomNav
-          currentView={currentView}
-          onChangeView={(view) => {
-            if (view === 'import') setReviewJob(null);
-            setCurrentView(view);
-          }}
-        />
-      )}
-      <Toaster position="top-center" />
-      <ResumeConfirmDialog
-        isOpen={resumeDialog.isOpen}
-        paperTitle={resumeDialog.paper?.title || 'Exam'}
-        onResume={handleResumeConfirm}
-        onStartNew={handleStartNewConfirm}
-        onCancel={() => setResumeDialog({ isOpen: false, paper: null })}
-      />
-    </div>
+    </>
   );
 }
 

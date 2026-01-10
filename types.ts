@@ -67,4 +67,5 @@ export interface ExamAttempt {
   totalCorrect: number;
   totalIncorrect: number;
   totalUnattempted: number;
+  totalQuestions: number;
 }

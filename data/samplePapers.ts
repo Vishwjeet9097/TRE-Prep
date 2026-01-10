@@ -6135,8 +6135,8 @@ export const SAMPLE_PAPERS: ExamPaper[] = [
     },
     {
         "id": "6kpnfub1t",
-        "title": "TRE-2-NB-2023-12-15-26",
-        "examType": "TRE-2",
+        "title": "TRE-2",
+        "examType": "BPSC",
         "year": 2024,
         "subject": "Computer Science",
         "questions": [
@@ -13793,5 +13793,7666 @@ export const SAMPLE_PAPERS: ExamPaper[] = [
         ],
         "status": "published",
         "createdAt": 1767958854785
+    },
+    {
+        "id": "scl2017es",
+        "title": "TRE-3",
+        "examType": "BPSC",
+        "year": 2024,
+        "subject": "Computer Science",
+        "questions": [
+            {
+                "id": "mn7tc2khr",
+                "number": 1,
+                "content": {
+                    "en": "Why is Kerala just the place for you if you love variety?",
+                    "hi": "यदि आपको विविधता पसंद है तो केरल आपके लिए बिल्कुल सही जगह क्यों है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "There is something here to please everyone",
+                            "hi": "यहां हर किसी को खुश करने के लिए कुछ न कुछ है"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Kerala has magical backwaters",
+                            "hi": "केरल में जादुई बैकवाटर्स हैं"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Kerala is very boring",
+                            "hi": "केरल बहुत उबाऊ है"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Kerala is noted for its diversity and ability to please everyone.",
+                    "hi": "केरल अपनी विविधता और हर किसी को प्रसन्न करने की क्षमता के लिए जाना जाता है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "ls3vorkc0",
+                "number": 2,
+                "content": {
+                    "en": "Why should you take a trip to the spice gardens in the hills?",
+                    "hi": "आपको पहाड़ियों में मसालों के बगीचों की यात्रा क्यों करनी चाहिए?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "To count the spices that are grown there",
+                            "hi": "वहां उगाए जाने वाले मसालों की गिनती करने के लिए"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "To buy some spices",
+                            "hi": "कुछ मसाले खरीदने के लिए"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "To inhale the fragrance of fresh cardamoms",
+                            "hi": "ताजी इलायची की खुशबू लेने के लिए"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The passage mentions inhaling the fragrance of cardamoms in the hills.",
+                    "hi": "गद्यांश में पहाड़ियों में इलायची की सुगंध लेने का उल्लेख है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "a7r7g5zhy",
+                "number": 3,
+                "content": {
+                    "en": "What is Kerala's cuisine known for?",
+                    "hi": "केरल का व्यंजन किसके लिए जाना जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "For its bad taste",
+                            "hi": "अपने खराब स्वाद के लिए"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "For being bland",
+                            "hi": "बेस्वाद होने के लिए"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "For its spicy hot flavours",
+                            "hi": "अपने तीखे और गर्म स्वाद के लिए"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Kerala cuisine is specifically described as having spicy hot flavors.",
+                    "hi": "केरल के व्यंजनों को विशेष रूप से मसालेदार और तीखे स्वाद वाला बताया गया है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "6v5a1dly6",
+                "number": 4,
+                "content": {
+                    "en": "What gives sea food its pungency?",
+                    "hi": "समुद्री भोजन को उसका तीखापन क्या देता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Coconut and spices",
+                            "hi": "नारियल और मसाले"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Coconut & spices enhanced by tamarind",
+                            "hi": "इमली के साथ नारियल और मसाले"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Addition of cocacola",
+                            "hi": "कोका-कोला का मिलना"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Pungency in seafood is attributed to coconut, spices, and tamarind.",
+                    "hi": "समुद्री भोजन में तीखापन नारियल, मसालों और इमली के कारण होता है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "pi4s0r68u",
+                "number": 5,
+                "content": {
+                    "en": "Why would foreign bargain-hunter visitors never face a problem in Kerala?",
+                    "hi": "विदेशी मोलभाव करने वाले आगंतुकों को केरल में कभी समस्या क्यों नहीं होगी?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Many foreign languages are spoken in Kerala",
+                            "hi": "केरल में कई विदेशी भाषाएं बोली जाती हैं"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Hindi is the language of communication in the cities of kerala.",
+                            "hi": "केरल के शहरों में संचार की भाषा हिंदी है।"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "English is spoken and understood everywhere in Kerala.",
+                            "hi": "केरल में हर जगह अंग्रेजी बोली और समझी जाती है।"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The widespread use of English in Kerala makes it easy for foreign visitors.",
+                    "hi": "केरल में अंग्रेजी के व्यापक उपयोग से विदेशी आगंतुकों के लिए आसानी होती है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "4bhy0n2mg",
+                "number": 6,
+                "content": {
+                    "en": "If you reach _____ Airport on time, you will catch the flight.",
+                    "hi": "यदि आप समय पर _____ हवाई अड्डे पर पहुँच जाते हैं, तो आपको उड़ान मिल जाएगी।"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "a",
+                            "hi": "a"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "an",
+                            "hi": "an"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "the",
+                            "hi": "the"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The definite article 'the' is used before a specific location like an airport.",
+                    "hi": "हवाई अड्डे जैसे विशिष्ट स्थान से पहले निश्चित आर्टिकल 'the' का उपयोग किया जाता है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "ynt10z30y",
+                "number": 7,
+                "content": {
+                    "en": "You should go for ____ early morning walk.",
+                    "hi": "आपको सुबह की सैर पर ____ जाना चाहिए।"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "the",
+                            "hi": "the"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "an",
+                            "hi": "an"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "a",
+                            "hi": "a"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "The word 'early' starts with a vowel sound, requiring 'an'.",
+                    "hi": "'Early' शब्द स्वर ध्वनि से शुरू होता है, इसलिए 'an' की आवश्यकता होती है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "ukx837ibr",
+                "number": 8,
+                "content": {
+                    "en": "If 30th April is Tuesday, what day of the week would be 10th May?",
+                    "hi": "यदि 30 अप्रैल मंगलवार है, तो 10 मई को सप्ताह का कौन सा दिन होगा?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Monday",
+                            "hi": "सोमवार"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Thursday",
+                            "hi": "गुरुवार"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Saturday",
+                            "hi": "शनिवार"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "Adding 10 days to Tuesday results in Friday ($10 \\pmod 7 = 3$), which is not listed.",
+                    "hi": "मंगलवार में 10 दिन जोड़ने पर शुक्रवार आता है ($10 \\pmod 7 = 3$), जो विकल्पों में नहीं है।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "fp1c6j023",
+                "number": 9,
+                "content": {
+                    "en": "Why did Ratan want to run and stop Ajay?",
+                    "hi": "रतन ने दौड़कर अजय को क्यों रोकना चाहा?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Ratan loved Ajay",
+                            "hi": "रतन अजय से प्यार करता था"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Ratan and Ajay studied in the same school",
+                            "hi": "रतन और अजय एक ही स्कूल में पढ़ते थे"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Once Ajay was running away being angry with Ratan",
+                            "hi": "एक बार रतन से नाराज होकर अजय भाग रहा था"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Ajay was running away in anger, so Ratan tried to stop him.",
+                    "hi": "अजय गुस्से में भाग रहा था, इसलिए रतन ने उसे रोकने की कोशिश की।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "8ap1q0yw6",
+                "number": 10,
+                "content": {
+                    "en": "Why did Ratan advise Ajay to become a good student?",
+                    "hi": "रतन अजय को अच्छा छात्र बनने के लिए क्यों सलाह देता था?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Due to being close friends",
+                            "hi": "दिली दोस्त होने के कारण"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Due to studying in the same school",
+                            "hi": "एक स्कूल में पढ़ने के कारण"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Due to being brothers",
+                            "hi": "भाई होने के कारण"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Ratan and Ajay were very close friends, prompting the advice.",
+                    "hi": "रतन और अजय बहुत गहरे मित्र थे, इसी वजह से उसने सलाह दी।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "zrxl53qat",
+                "number": 11,
+                "content": {
+                    "en": "What kind of student was Ratan?",
+                    "hi": "रतन कैसा छात्र था?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Poor",
+                            "hi": "गरीब"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Fast in studies",
+                            "hi": "पढ़ने में तेज"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Intelligent",
+                            "hi": "समझदार"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Ratan was described as poor, smart, and excellent in studies.",
+                    "hi": "रतन को गरीब, समझदार और पढ़ाई में उत्कृष्ट बताया गया था।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "1odptlc3c",
+                "number": 12,
+                "content": {
+                    "en": "What were Ratan and Ajay to each other?",
+                    "hi": "रतन और अजय आपस में क्या थे?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Friends",
+                            "hi": "दोस्त"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Close friends",
+                            "hi": "दिली दोस्त"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Brothers",
+                            "hi": "भाई"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "The text explicitly identifies them as very close (heartfelt) friends.",
+                    "hi": "पाठ स्पष्ट रूप से उन्हें बहुत गहरे (दिली) मित्र के रूप में पहचानता है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "g7uvjohcr",
+                "number": 13,
+                "content": {
+                    "en": "Why were all teachers pleased with Ratan?",
+                    "hi": "सभी शिक्षक रतन से क्यों प्रसन्न रहते थे?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Due to Ratan's poverty",
+                            "hi": "रतन की निर्धनता के कारण"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Due to Ratan being hardworking",
+                            "hi": "रतन के परिश्रमी होने के कारण"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Due to Ratan's behavior",
+                            "hi": "रतन के व्यवहार के कारण"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Teachers favored Ratan primarily because of his good conduct.",
+                    "hi": "शिक्षक मुख्य रूप से रतन के अच्छे आचरण के कारण उसे पसंद करते थे।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "ftyvqv1oh",
+                "number": 14,
+                "content": {
+                    "en": "In what work did Ajay put more interest?",
+                    "hi": "अजय किस काम में अधिक मन लगाता था?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "In fighting",
+                            "hi": "झगड़ने में"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "In studying",
+                            "hi": "पढ़ने में"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "In running",
+                            "hi": "दौड़ने में"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "Ajay preferred playing and mischief over studying or the other options.",
+                    "hi": "अजय पढ़ाई या अन्य विकल्पों के बजाय खेल-कूद और शरारत पसंद करता था।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "ohzt67rvz",
+                "number": 15,
+                "content": {
+                    "en": "Besides being brave, what else was Shivaji?",
+                    "hi": "शिवाजी वीर होने के साथ और क्या थे?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "A good politician",
+                            "hi": "एक अच्छे राजनीतिज्ञ"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "A great thinker",
+                            "hi": "श्रेष्ठ विचारक"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "A skilled emperor",
+                            "hi": "कुशल सम्राट"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Shivaji was a brave warrior and a very capable politician.",
+                    "hi": "शिवाजी एक वीर योद्धा और एक बहुत ही सक्षम राजनीतिज्ञ थे।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "e768xxgxx",
+                "number": 16,
+                "content": {
+                    "en": "What feeling did Shivaji fill in the people?",
+                    "hi": "शिवाजी ने लोगों में कौन सी भावना भर दी?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Hindutva",
+                            "hi": "हिंदुत्व की"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Of one nation",
+                            "hi": "एक राष्ट्र की"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Of bravery",
+                            "hi": "वीरता की"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Shivaji inspired a sense of national unity among the people.",
+                    "hi": "शिवाजी ने लोगों के बीच राष्ट्रीय एकता की भावना पैदा की।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "9udspzs7p",
+                "number": 17,
+                "content": {
+                    "en": "Who was Shivaji?",
+                    "hi": "शिवाजी कौन थे?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "A brave warrior of India",
+                            "hi": "भारत का पराक्रमी योद्धा"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "One of the great heroes of India",
+                            "hi": "भारत के महान वीरों में से एक"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "A great emperor of India",
+                            "hi": "भारत का महान सम्राट"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Shivaji is recognized as a brave warrior, great hero, and emperor.",
+                    "hi": "शिवाजी को एक वीर योद्धा, महान नायक और सम्राट के रूप में मान्यता प्राप्त है।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "j83ylyhnz",
+                "number": 18,
+                "content": {
+                    "en": "Why did people respect Shivaji?",
+                    "hi": "लोग शिवाजी का आदर क्यों करते थे?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Because of his bravery",
+                            "hi": "उनकी वीरता के कारण"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Because of being a staunch Hindu",
+                            "hi": "कट्टर हिन्दू होने के कारण"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Because of his good qualities",
+                            "hi": "उनके अच्छे गुणों के कारण"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Shivaji's noble character and qualities earned him widespread respect.",
+                    "hi": "शिवाजी के नेक चरित्र और गुणों ने उन्हें व्यापक सम्मान दिलाया।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "0b4smt0md",
+                "number": 19,
+                "content": {
+                    "en": "The meaning of the word 'Politician' is -",
+                    "hi": "इनमें 'राजनीतिज्ञ' शब्द का अर्थ है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "The policy by which a state is managed",
+                            "hi": "वह नीति जिससे राज्य का संचालन होता है"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "The policy by which government is run",
+                            "hi": "वह नीति जिससे शासन का संचालन होता है"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Policy related to politics",
+                            "hi": "राजनीति से सम्बन्धित नीति"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "The term refers to one skilled in the art of governance and political policy.",
+                    "hi": "यह शब्द शासन और राजनीतिक नीति की कला में कुशल व्यक्ति को संदर्भित करता है।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "en6jrux4b",
+                "number": 20,
+                "content": {
+                    "en": "The title of this unseen passage is -",
+                    "hi": "इनमें अपठित गद्यांश का शीर्षक है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Shivaji's National Consciousness",
+                            "hi": "शिवाजी की राष्ट्रीय चेतना"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Life of Shivaji",
+                            "hi": "शिवाजी का जीवन"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Bravery of Shivaji",
+                            "hi": "शिवाजी का पराक्रम"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "The passage provides a comprehensive overview of Shivaji's life and values.",
+                    "hi": "गद्यांश शिवाजी के जीवन और मूल्यों का एक व्यापक अवलोकन प्रदान करता है।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "r0lytoyba",
+                "number": 21,
+                "content": {
+                    "en": "Which of these is a Proper Noun?",
+                    "hi": "इनमें व्यक्तिवाचक संज्ञा है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "River",
+                            "hi": "नदी"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Ganga",
+                            "hi": "गंगा"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Brahmaputra",
+                            "hi": "ब्रह्मपुत्र"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Both Ganga and Brahmaputra are specific names of rivers, making them proper nouns.",
+                    "hi": "गंगा और ब्रह्मपुत्र दोनों नदियों के विशिष्ट नाम हैं, जो उन्हें व्यक्तिवाचक संज्ञा बनाते हैं।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "k6ehmtfft",
+                "number": 22,
+                "content": {
+                    "en": "Which of these is a First Person Pronoun?",
+                    "hi": "इनमें उत्तमपुरुष सर्वनाम है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "I (Main)",
+                            "hi": "मैं"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "You (Tu)",
+                            "hi": "तू"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "He (Wah)",
+                            "hi": "वह"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "'Main' (I) is the pronoun used by the speaker for themselves.",
+                    "hi": "'मैं' वक्ता द्वारा स्वयं के लिए प्रयोग किया जाने वाला सर्वनाम है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "3bu8ucpin",
+                "number": 23,
+                "content": {
+                    "en": "Which case marker is used in 'Dukan par koi nahi tha'?",
+                    "hi": "'दुकान पर कोई नहीं था' वाक्य में किस कारक का चिह्न प्रयुक्त हुआ है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Ablative (Apadan)",
+                            "hi": "अपादानकारक"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Genitive (Sambandh)",
+                            "hi": "सम्बन्धकारक"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Locative (Adhikaran)",
+                            "hi": "अधिकरण कारक"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The marker 'par' indicates a location, which is the locative case.",
+                    "hi": "'पर' चिह्न स्थान को दर्शाता है, जो अधिकरण कारक है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "xqlybmd53",
+                "number": 24,
+                "content": {
+                    "en": "Which of these is a Tatsam word?",
+                    "hi": "इनमें तत्सम शब्द है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Bachcha",
+                            "hi": "बच्चा"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Pushp",
+                            "hi": "पुष्प"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Chaudah",
+                            "hi": "चौदह"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "'Pushp' is the original Sanskrit word used in Hindi, hence it is Tatsam.",
+                    "hi": "'पुष्प' संस्कृत का मूल शब्द है जो हिंदी में प्रयुक्त होता है, अतः यह तत्सम है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "7su32fd52",
+                "number": 25,
+                "content": {
+                    "en": "Which of these is the correct spelling?",
+                    "hi": "इनमें शुद्ध शब्द है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Niraparadhi",
+                            "hi": "निरपराधी"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Pramanik",
+                            "hi": "प्रमाणिक"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Mahattva",
+                            "hi": "महत्त्व"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "'Mahattva' is spelled correctly according to standard Hindi grammar.",
+                    "hi": "'महत्त्व' मानक हिंदी व्याकरण के अनुसार सही लिखा गया है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "5bz5tdcc2",
+                "number": 26,
+                "content": {
+                    "en": "What is the antonym of the word 'Utkrisht'?",
+                    "hi": "इनमें 'उत्कृष्ट' शब्द का विपरीतार्थक शब्द है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Nikrisht",
+                            "hi": "निकृष्ट"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Adham",
+                            "hi": "अधम"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Neech",
+                            "hi": "नीच"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "The opposite of excellent (Utkrisht) is inferior (Nikrisht).",
+                    "hi": "उत्कृष्ट का विलोम निकृष्ट होता है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "4yohtk99m",
+                "number": 27,
+                "content": {
+                    "en": "Which of these is a grammatically correct sentence?",
+                    "hi": "इनमें शुद्ध वाक्य है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Send any man",
+                            "hi": "किसी भी आदमी को भेज दो"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "We will surely go",
+                            "hi": "हम तो अवश्य जायेंगे"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "This poem expresses many emotions",
+                            "hi": "यह कविता अनेक भाव प्रकट करती है"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The sentence about the poem is structured correctly without redundant words.",
+                    "hi": "कविता वाला वाक्य बिना किसी फालतू शब्द के सही ढंग से गठित है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "hjz3o6byp",
+                "number": 28,
+                "content": {
+                    "en": "Which of these is a synonym for 'Jal'?",
+                    "hi": "इनमें 'जल' शब्द का पर्यायवाची शब्द है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Life (Jeevan)",
+                            "hi": "जीवन"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Nectar (Amrit)",
+                            "hi": "अमृत"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Water (Paani)",
+                            "hi": "पानी"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Water is referred to as Paani and often metaphorically as Life or Nectar.",
+                    "hi": "जल को पानी कहा जाता है और अक्सर रूपक के रूप में जीवन या अमृत भी कहा जाता है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "s7x5bglc8",
+                "number": 29,
+                "content": {
+                    "en": "A single word for the phrase 'Where people meet' is -",
+                    "hi": "'जहाँ लोगों का मिलन हो' वाक्यखण्ड के लिए एक शब्द है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Fair (Mela)",
+                            "hi": "मेला"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Conference (Sammelan)",
+                            "hi": "सम्मेलन"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Meeting (Mel)",
+                            "hi": "मेल"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "'Sammelan' refers to an organized gathering or conference of people.",
+                    "hi": "'सम्मेलन' लोगों के संगठित जमावड़े या सभा को संदर्भित करता है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "9wvng6mcu",
+                "number": 30,
+                "content": {
+                    "en": "What is the meaning of the idiom 'Khatai mein padna'?",
+                    "hi": "'खटाई में पड़ना' मुहावरे का अर्थ है -"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "To get into a mess",
+                            "hi": "झमेले में पड़ना"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "To get peace",
+                            "hi": "चैन मिलना"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Hinderance to occur",
+                            "hi": "विघ्न आना"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The idiom implies a delay or obstacle in the completion of a task.",
+                    "hi": "मुहावरे का तात्पर्य किसी कार्य के पूरा होने में देरी या बाधा से है।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "85qtbe4ai",
+                "number": 31,
+                "content": {
+                    "en": "Which of the following is the value of $(x+1/x)^2$ ?",
+                    "hi": "निम्नलिखित में से कौन सा $(x+1/x)^2$ का मान है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "$x^2 + 1/x^2$",
+                            "hi": "$x^2 + 1/x^2$"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "$x^2 - 1/x^2$",
+                            "hi": "$x^2 - 1/x^2$"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "$x^2 + 1/x^2 + 1$",
+                            "hi": "$x^2 + 1/x^2 + 1$"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "The expansion of $(x+1/x)^2$ is $x^2 + 2(x)(1/x) + (1/x)^2$, which simplifies to $x^2 + 1/x^2 + 2$, not matching any provided option.",
+                    "hi": "$(x+1/x)^2$ का विस्तार $x^2 + 2(x)(1/x) + (1/x)^2$ होता है, जो $x^2 + 1/x^2 + 2$ में बदल जाता है और किसी भी विकल्प से मेल नहीं खाता।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "av1f15ab9",
+                "number": 32,
+                "content": {
+                    "en": "An article is at 10% more than the CP. If discount of 10% is allowed then which of the following is right ?",
+                    "hi": "एक लेख सीपी से 10% अधिक पर है। यदि 10% की छूट की अनुमति है तो निम्नलिखित में से कौन सा सही है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "1% gain",
+                            "hi": "1% लाभ"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "1% loss",
+                            "hi": "1% हानि"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "no gain no loss",
+                            "hi": "न लाभ न हानि"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Successive changes of +10% and -10% result in a net change of $(10 - 10 - (10 \\times 10)/100) = -1\\%$, indicating a 1% loss.",
+                    "hi": "+10% और -10% के क्रमिक परिवर्तन के परिणामस्वरूप $(10 - 10 - (10 \\times 10)/100) = -1\\%$ का शुद्ध परिवर्तन होता है, जो 1% की हानि दर्शाता है।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "4buhadlp5",
+                "number": 33,
+                "content": {
+                    "en": "By what number should 81 be divided to get a perfect cube ?",
+                    "hi": "पूर्ण घन प्राप्त करने के लिए 81 को किस संख्या से विभाजित किया जाना चाहिए ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "3",
+                            "hi": "3"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "6",
+                            "hi": "6"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "7",
+                            "hi": "7"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Prime factorization of 81 is $3 \\times 3 \\times 3 \\times 3$, so dividing it by 3 leaves $3^3$, which is the perfect cube 27.",
+                    "hi": "81 का अभाज्य गुणनखंड $3 \\times 3 \\times 3 \\times 3$ है, इसलिए इसे 3 से विभाजित करने पर $3^3$ बचता है, जो कि पूर्ण घन 27 है।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "ev1eq6tsq",
+                "number": 34,
+                "content": {
+                    "en": "The difference between two whole numbers is 66. The ratio of the two numbers is 2:5. The two numbers are :",
+                    "hi": "दो पूर्ण संख्याओं के बीच का अंतर 66 है। दोनों संख्याओं का अनुपात 2:5 है। दोनों संख्याएं हैं :"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "60 and 6",
+                            "hi": "60 और 6"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "100 and 33",
+                            "hi": "100 और 33"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "110 and 44",
+                            "hi": "110 और 44"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "If numbers are $5x$ and $2x$, their difference is $3x = 66$, meaning $x = 22$, making the numbers $110$ and $44$.",
+                    "hi": "यदि संख्याएँ $5x$ और $2x$ हैं, तो उनका अंतर $3x = 66$ है, जिसका अर्थ है $x = 22$, जिससे संख्याएँ $110$ और $44$ हो जाती हैं।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "ggdrpclvy",
+                "number": 35,
+                "content": {
+                    "en": "In a parallelogram ABCD, angle A and angle B are in the ratio 1:2. Find the angle A.",
+                    "hi": "एक समांतर चतुर्भुज ABCD में, कोण A और कोण B का अनुपात 1:2 है। कोण A ज्ञात कीजिए।"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "30°",
+                            "hi": "30°"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "45°",
+                            "hi": "45°"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "60°",
+                            "hi": "60°"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "In a parallelogram, adjacent angles are supplementary, so $x + 2x = 180°$, which gives $x = 60°$ for angle A.",
+                    "hi": "समांतर चतुर्भुज में, आसन्न कोण संपूरक होते हैं, इसलिए $x + 2x = 180°$, जो कोण A के लिए $x = 60°$ देता है।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "uszw7i6z0",
+                "number": 36,
+                "content": {
+                    "en": "The height of a cylinder whose radius is 7 cm and the total surface area is 968 cm$^2$ is :",
+                    "hi": "एक बेलन की ऊंचाई जिसकी त्रिज्या 7 सेमी है और कुल सतह क्षेत्रफल 968 सेमी$^2$ है :"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "15 cm",
+                            "hi": "15 सेमी"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "17 cm",
+                            "hi": "17 सेमी"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "19 cm",
+                            "hi": "19 सेमी"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Using the formula $2\\pi r(r + h) = 968$, with $r = 7$, we solve $2 \\times (22/7) \\times 7 \\times (7 + h) = 968$ to find $h = 15$ cm.",
+                    "hi": "सूत्र $2\\pi r(r + h) = 968$ का उपयोग करते हुए, $r = 7$ के साथ, हम $h = 15$ सेमी खोजने के लिए $2 \\times (22/7) \\times 7 \\times (7 + h) = 968$ को हल करते हैं।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "h9cbir9z3",
+                "number": 37,
+                "content": {
+                    "en": "If $(-3)^{m+1} \\times (-3)^5 = (-3)^7$, then the value of $m$ is :",
+                    "hi": "यदि $(-3)^{m+1} \\times (-3)^5 = (-3)^7$, तो $m$ का मान है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "5",
+                            "hi": "5"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "7",
+                            "hi": "7"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "1",
+                            "hi": "1"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "According to the laws of exponents, $m + 1 + 5 = 7$, which simplifies to $m = 1$.",
+                    "hi": "घातांक के नियमों के अनुसार, $m + 1 + 5 = 7$, जो सरल होकर $m = 1$ हो जाता है।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "vntnyvn9c",
+                "number": 38,
+                "content": {
+                    "en": "If $x$ and $y$ are inversely proportional, then:",
+                    "hi": "यदि $x$ और $y$ व्युत्क्रमानुपाती हैं, तो:"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "$y/x = \\text{constant}$",
+                            "hi": "$y/x = \\text{स्थिरांक}$"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "$xy = \\text{constant}$",
+                            "hi": "$xy = \\text{स्थिरांक}$"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "$x/y = \\text{constant}$",
+                            "hi": "$x/y = \\text{स्थिरांक}$"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "For inverse proportionality, the product of the two variables remains constant, represented as $xy = k$.",
+                    "hi": "व्युत्क्रमानुपाती होने के लिए, दो चरों का गुणनफल स्थिर रहता है, जिसे $xy = k$ के रूप में दर्शाया जाता है।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "w4hmknhw9",
+                "number": 39,
+                "content": {
+                    "en": "A piece of wire of resistance $R$ is cut into 5 equal parts. These parts are then connected in parallel. If the equivalent resistance of the combination is $R'$, then the ratio $R/R'$ is ___",
+                    "hi": "प्रतिरोध $R$ के किसी तार के टुकड़े पांच बराबर भागों में काटे जाते हैं। इन टुकड़ों को फिर पार्श्व क्रम में संयोजित कर देते हैं। यदि संयोजन का तुल्य प्रतिरोध $R'$ है तो $R/R'$ अनुपात का मान क्या होगा ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "1/25",
+                            "hi": "1/25"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "1/5",
+                            "hi": "1/5"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "25",
+                            "hi": "25"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Each part has resistance $R/5$; connecting five $R/5$ resistors in parallel results in $R' = (R/5)/5 = R/25$, so $R/R' = 25$.",
+                    "hi": "प्रत्येक भाग का प्रतिरोध $R/5$ है; पांच $R/5$ प्रतिरोधों को पार्श्व क्रम में जोड़ने पर $R' = (R/5)/5 = R/25$ प्राप्त होता है, इसलिए $R/R' = 25$ है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "cg3823unv",
+                "number": 40,
+                "content": {
+                    "en": "An electric heater of resistance $8 \\Omega$ draws 15A current from a service mains for 2 Hrs. What will be the rate at which heat is developed in the heater ?",
+                    "hi": "$8 \\Omega$ प्रतिरोध का कोई विद्युत हीटर विद्युत मेन्स में 2 घंटे तक 15A विद्युतधारा लेता है। हीटर में उत्पन्न ऊष्मा की दर क्या होगी ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "220 watt",
+                            "hi": "220 watt"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "120 watt",
+                            "hi": "120 watt"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "210 watt",
+                            "hi": "210 watt"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "The rate of heat development is power $P = I^2R = 15^2 \\times 8 = 1800$ Watts, which is not listed in the options.",
+                    "hi": "ऊष्मा उत्पन्न होने की दर शक्ति $P = I^2R = 15^2 \\times 8 = 1800$ वाट है, जो विकल्पों में सूचीबद्ध नहीं है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "gm46ubgp9",
+                "number": 41,
+                "content": {
+                    "en": "Which of the following lenses would you prefer to use while reading small letters found in the dictionary ?",
+                    "hi": "किसी शब्दकोष में लिखे छोटे अक्षरों को पढ़ते समय आप निम्न में से कौन सा लेन्स पसन्द करेंगे ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "A convex lens of 50 cm focal length",
+                            "hi": "50 cm फोकस दूरी का उत्तल लेन्स"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "A concave lens of 50 cm focal length",
+                            "hi": "50 cm फोकस दूरी का अवतल लेन्स"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "A concave lens of 5 cm focal length",
+                            "hi": "5 cm फोकस दूरी का अवतल लेन्स"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "A convex lens with a short focal length (like 5 cm) is ideal for magnifying small letters, but such a convex lens is not provided in the options.",
+                    "hi": "छोटे अक्षरों को बड़ा करने के लिए कम फोकस दूरी वाला उत्तल लेंस (जैसे 5 सेमी) आदर्श है, लेकिन ऐसा उत्तल लेंस विकल्पों में प्रदान नहीं किया गया है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "8iumjohei",
+                "number": 42,
+                "content": {
+                    "en": "The human eye forms the image of an object at its ________",
+                    "hi": "निम्नलिखित में से किस भाग पर किसी वस्तु का प्रतिबिम्ब बनाते हैं ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Cornea",
+                            "hi": "कार्निया"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Iris",
+                            "hi": "परितारिका"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Retina",
+                            "hi": "दृष्टि पटल"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The retina is the light-sensitive layer at the back of the human eye where real and inverted images are formed.",
+                    "hi": "दृष्टि पटल मानव आँख के पिछले हिस्से में प्रकाश-संवेदनशील परत है जहाँ वास्तविक और उलटे चित्र बनते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "9at0lofvv",
+                "number": 43,
+                "content": {
+                    "en": "Which of the following is not a part of the female reproductive system in human beings ?",
+                    "hi": "निम्नलिखित में से कौन मादा जनन तंत्र का भाग नहीं है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Ovary",
+                            "hi": "अंडाशय"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Uterus",
+                            "hi": "गर्भाशय"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Vas deferens",
+                            "hi": "शुक्रवाहिका"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Vas deferens is a part of the male reproductive system used for transporting sperm, not the female reproductive system.",
+                    "hi": "शुक्रवाहिका पुरुष प्रजनन प्रणाली का एक हिस्सा है जिसका उपयोग शुक्राणु के परिवहन के लिए किया जाता है, न कि मादा प्रजनन प्रणाली का।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "s6xnwhbtt",
+                "number": 44,
+                "content": {
+                    "en": "The anther contains _________",
+                    "hi": "परागकोश में होते हैं ............"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Sepals",
+                            "hi": "वाह्यदल"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Ovules",
+                            "hi": "अंडाशय"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Pollen grains",
+                            "hi": "परागकण"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The anther is the part of the stamen where pollen grains are produced and stored.",
+                    "hi": "परागकोश पुंकेसर का वह भाग है जहाँ परागकण उत्पन्न और संग्रहित होते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "q9b1mbied",
+                "number": 45,
+                "content": {
+                    "en": "Asexual reproduction takes place through budding in ______",
+                    "hi": "अलैंगिक जनन मुकुलन द्वारा होता है ______"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Amoeba",
+                            "hi": "अमीबा में"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Yeast",
+                            "hi": "यीस्ट में"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Plasmodium",
+                            "hi": "प्लाज्मोडियम में"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Yeast reproduces asexually through budding, where a small bud develops and eventually detaches from the parent cell.",
+                    "hi": "यीस्ट मुकुलन के माध्यम से अलैंगिक रूप से प्रजनन करता है, जहाँ एक छोटी कली विकसित होती है और अंततः मूल कोशिका से अलग हो जाती है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "xu9g2jinz",
+                "number": 46,
+                "content": {
+                    "en": "Which one of the following types of medicines used for treating indigestion ?",
+                    "hi": "अपच का उपचार करने के लिए निम्न में से किस औषधि का उपयोग होता है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Antibiotic",
+                            "hi": "प्रतिजैविक"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Antacid",
+                            "hi": "प्रतिअम्ल"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Analgesic",
+                            "hi": "पीडाहारी"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Antacids are used to neutralize excess stomach acid and provide relief from indigestion and heartburn.",
+                    "hi": "प्रतिअम्ल का उपयोग पेट की अतिरिक्त अम्लता को बेअसर करने और अपच और सीने में जलन से राहत प्रदान करने के लिए किया जाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "lfo64zdxc",
+                "number": 47,
+                "content": {
+                    "en": "The task of processing citizenship applications under the CAA will be undertaken by",
+                    "hi": "CAA के अन्तर्गत नागरिकता प्रक्रिया के लिए आवेदन और निष्पादन किस के द्वारा किया जायेगा ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Postal Department",
+                            "hi": "डाक विभाग द्वारा"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Census Department",
+                            "hi": "जनगणना विभाग द्वारा"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Central Security IB",
+                            "hi": "केन्द्रीय सुरक्षा आई.बी. द्वारा"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "The Postal Department has been designated as a channel for handling applications under the Citizenship Amendment Act (CAA) implementation rules.",
+                    "hi": "नागरिकता संशोधन अधिनियम (CAA) कार्यान्वयन नियमों के तहत डाक विभाग को आवेदनों को संभालने के लिए एक माध्यम के रूप में नामित किया गया है।"
+                },
+                "topic": "Polity"
+            },
+            {
+                "id": "t40qnhnoj",
+                "number": 48,
+                "content": {
+                    "en": "In which of the following country India launched its UPI ?",
+                    "hi": "निम्न में से किस देश में भारत ने अपना UPI चालू किया है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Thailand",
+                            "hi": "थाईलैंड"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Myanmar",
+                            "hi": "म्यान्मार"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Mauritius",
+                            "hi": "मोरीसस"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "India launched Unified Payments Interface (UPI) services in Mauritius and Sri Lanka in February 2024.",
+                    "hi": "भारत ने फरवरी 2024 में मॉरीशस और श्रीलंका में यूनिफाइड पेमेंट्स इंटरफेस (UPI) सेवाएं शुरू कीं।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "ftm5urh1x",
+                "number": 49,
+                "content": {
+                    "en": "What is the name of space craft to be launched by ISRO in 2024 to carry astronauts ?",
+                    "hi": "इसरो द्वारा 2024 में अंतरिक्ष यात्रियों सहित भेजने वाले अंतरिक्षयान का नाम है ______"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Akashyan",
+                            "hi": "आकाशयान"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Gaganyan",
+                            "hi": "गगनयान"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Bhramyan",
+                            "hi": "ब्रह्मयान"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Gaganyaan is India's first human spaceflight mission, with unmanned tests scheduled leading up to the crewed launch.",
+                    "hi": "गगनयान भारत का पहला मानव अंतरिक्ष उड़ान मिशन है, जिसमें मानव रहित परीक्षणों के बाद मानव मिशन की योजना है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "d0m7619q8",
+                "number": 50,
+                "content": {
+                    "en": "Which country is not a member of G 7 ?",
+                    "hi": "कौन सा देश G 7 का सदस्य नहीं है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Russia",
+                            "hi": "रूस"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Canada",
+                            "hi": "कनाडा"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "USA",
+                            "hi": "यू.एस.ए"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Russia was suspended from the G8 in 2014, making it G7; members include Canada, France, Germany, Italy, Japan, UK, and USA.",
+                    "hi": "रूस को 2014 में G8 से निलंबित कर दिया गया था, जिससे यह G7 बन गया; सदस्यों में कनाडा, फ्रांस, जर्मनी, इटली, जापान, यूके और यूएसए शामिल हैं।"
+                },
+                "topic": "Current Affairs"
+            },
+            {
+                "id": "7sof3hjhy",
+                "number": 51,
+                "content": {
+                    "en": "The process involved in achieving Green hydrogen is",
+                    "hi": "हरित हाइड्रोजन प्राप्ति का कौन सा तरीका है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Electrolysis",
+                            "hi": "इलेक्ट्रोलायसिस"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Dehydrogenesis",
+                            "hi": "डीहाइड्रोजेनेसिस"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Dehydration",
+                            "hi": "निर्जलीकरण"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Green hydrogen is produced by the electrolysis of water using renewable energy sources.",
+                    "hi": "अक्षय ऊर्जा स्रोतों का उपयोग करके पानी के इलेक्ट्रोलिसिस द्वारा हरित हाइड्रोजन का उत्पादन किया जाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "jxilztdud",
+                "number": 52,
+                "content": {
+                    "en": "Which technology can be used to revise deceased individuals ?",
+                    "hi": "कौन सी तकनीक मृत को पुनर्जीवित दिखा सकती है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Deepfake",
+                            "hi": "डीपफेक"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "AI",
+                            "hi": "ए. आई"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Chatbot",
+                            "hi": "चैट बोट"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Deepfake technology uses artificial intelligence to create realistic digital replicas of people, including deceased individuals.",
+                    "hi": "डीपफेक तकनीक मृतकों सहित लोगों की यथार्थवादी डिजिटल प्रतिकृतियां बनाने के लिए कृत्रिम बुद्धिमत्ता का उपयोग करती है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "fiutnu5xc",
+                "number": 53,
+                "content": {
+                    "en": "In cost of living index parameter 2024 which country is better than India ?",
+                    "hi": "2024 के जीवित सूचकांक आकलन में कौन सा देश भारत से बेहतर है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Nigeria",
+                            "hi": "नाइजीरिया"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Pakistan",
+                            "hi": "पाकिस्तान"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Bangladesh",
+                            "hi": "बांग्लादेश"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "In several 2024 cost of living indices, countries like Pakistan and Bangladesh are ranked cheaper (better index) than India.",
+                    "hi": "कई 2024 जीवनयापन लागत सूचकांकों में, पाकिस्तान और बांग्लादेश जैसे देशों को भारत की तुलना में सस्ता (बेहतर सूचकांक) दर्जा दिया गया है।"
+                },
+                "topic": "Economy"
+            },
+            {
+                "id": "irjs5ej7f",
+                "number": 54,
+                "content": {
+                    "en": "Who supported Gandhiji in Champaran Satyagraha in 1917 in support of farmers ?",
+                    "hi": "किसानों के हित में गांधीजी ने 1917 में चम्पारण सत्याग्रह किसके सहयोग से किया था ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Birsa Munda",
+                            "hi": "बिरसा मुण्डा"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Rajendra Prasad",
+                            "hi": "राजेन्द्र प्रसाद"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Satya Narayan Sinha",
+                            "hi": "सत्यनारायण सिन्हा"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Dr. Rajendra Prasad was a key associate of Mahatma Gandhi during the Champaran Satyagraha of 1917.",
+                    "hi": "डॉ. राजेंद्र प्रसाद 1917 के चंपारण सत्याग्रह के दौरान महात्मा गांधी के प्रमुख सहयोगी थे।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "qau8oofqz",
+                "number": 55,
+                "content": {
+                    "en": "Which is the moon-like planet ?",
+                    "hi": "चन्द्रमा सदृश्य ग्रह कौन-सा है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Mercury",
+                            "hi": "बुध"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Mars",
+                            "hi": "मंगल"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Earth",
+                            "hi": "पृथ्वी"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Mercury is often compared to the Moon because it lacks a substantial atmosphere and is heavily cratered.",
+                    "hi": "बुध की तुलना अक्सर चंद्रमा से की जाती है क्योंकि इसमें पर्याप्त वातावरण की कमी है और यह भारी मात्रा में क्रेटर वाला है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "ffx59qluc",
+                "number": 56,
+                "content": {
+                    "en": "On the basis of fossils which is the origin place of man ?",
+                    "hi": "जीवाश्म के आधार पर मानव उत्पत्ति केन्द्र कौन-सा है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Rift valley of Africa",
+                            "hi": "अफ्रीका की रिफ्ट घाटी"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Central Asia",
+                            "hi": "मध्य एशिया"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Jerusalem",
+                            "hi": "जेरूसलम"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "The Rift Valley of Africa is considered the 'cradle of humanity' due to the discovery of many early human fossils there.",
+                    "hi": "अफ्रीका की रिफ्ट घाटी को वहां कई प्रारंभिक मानव जीवाश्मों की खोज के कारण 'मानवता का पालना' माना जाता है।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "cocfyoona",
+                "number": 57,
+                "content": {
+                    "en": "In India dry point settlement is found in",
+                    "hi": "भारत में शुष्क बिन्दु बस्ती मिलती है"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Flood prone area",
+                            "hi": "बाढ़ क्षेत्रों में"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Bikaner",
+                            "hi": "बिकानेर में"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Aravali region",
+                            "hi": "अरावली प्रदेश"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Dry point settlements are built on slightly elevated, well-drained grounds in flood-prone areas to avoid seasonal inundation.",
+                    "hi": "मौसमी जलभराव से बचने के लिए बाढ़ संभावित क्षेत्रों में थोड़े ऊँचे, अच्छी जल निकासी वाले मैदानों पर शुष्क बिंदु बस्तियाँ बनाई जाती हैं।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "fjyssemes",
+                "number": 58,
+                "content": {
+                    "en": "In which district of Bihar Paddy crop production is maximum ?",
+                    "hi": "बिहार के किस जिले में धान का उत्पादन सर्वाधिक होता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Bhojpur",
+                            "hi": "भोजपुर"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Rohtas",
+                            "hi": "रोहतास"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Nalanda",
+                            "hi": "नालन्दा"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Rohtas district is the highest producer of paddy (rice) in the state of Bihar.",
+                    "hi": "बिहार राज्य में रोहतास जिला धान (चावल) का सर्वाधिक उत्पादक है।"
+                },
+                "topic": "Bihar Special"
+            },
+            {
+                "id": "hxe3uhg3o",
+                "number": 59,
+                "content": {
+                    "en": "On which mountain is Tehran situated ?",
+                    "hi": "तेहरान किस पर्वत पर स्थित है ?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Alburz",
+                            "hi": "एलबुर्ज"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Zagros",
+                            "hi": "जेग्रोस"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Makran",
+                            "hi": "मकरान"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "The city of Tehran, Iran, is located at the foot of the Alburz mountain range.",
+                    "hi": "ईरान का तेहरान शहर एलबुर्ज पर्वत श्रृंखला की तलहटी में स्थित है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "56ovbz75w",
+                "number": 60,
+                "content": {
+                    "en": "The highest peak in the Eastern Ghats of India is :",
+                    "hi": "भारत के पूर्वी घाट की सबसे ऊँची चोटी है …"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Anai Mudi",
+                            "hi": "अनाई मुडी"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Kanchenjunga",
+                            "hi": "कंचनजंगा"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Mahendragiri",
+                            "hi": "महेन्द्रगिरि"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Mahendragiri is traditionally listed as the highest peak of the Eastern Ghats in many textbooks, though modern surveys cite Jindhagada.",
+                    "hi": "महेंद्रगिरि को पारंपरिक रूप से कई पाठ्यपुस्तकों में पूर्वी घाट की सबसे ऊंची चोटी के रूप में सूचीबद्ध किया गया है, हालांकि आधुनिक सर्वेक्षणों में जिंदागड़ा का उल्लेख है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "fzefb90y0",
+                "number": 61,
+                "content": {
+                    "en": "Which of these statements is not a valid reason for the depletion of flora and fauna?",
+                    "hi": "इनमें से कौन-सा कथन वनस्पतियों और जीवों की कमी का वैध कारण नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Agricultural expansion",
+                            "hi": "कृषिगत फैलाव"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Large scale development projects",
+                            "hi": "वृहद पैमाने पर योजनाओं का विकास"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Grazzing and fuel wood collection",
+                            "hi": "चराई और जलाने की लकड़ी का एकत्रीकरण"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "While agricultural expansion and development projects are primary causes of habitat loss, local grazing and fuel wood collection are often incorrectly blamed for large-scale depletion.",
+                    "hi": "जबकि कृषि विस्तार और विकास परियोजनाएं पर्यावास के नुकसान के प्राथमिक कारण हैं, बड़े पैमाने पर होने वाली कमी के लिए अक्सर स्थानीय चराई और जलाऊ लकड़ी के संग्रह को गलत तरीके से दोषी ठहराया जाता है।"
+                },
+                "topic": "Geography"
+            },
+            {
+                "id": "tpd8twbv4",
+                "number": 62,
+                "content": {
+                    "en": "In which district of Bihar silk textile production is maximum?",
+                    "hi": "बिहार के किस जिले में रेशमी वस्त्र का उत्पादन सर्वाधिक होता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Madhubani",
+                            "hi": "मधुबनी"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Bhagalpur",
+                            "hi": "भागलपुर"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Aurangabad",
+                            "hi": "औरंगाबाद"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Bhagalpur is famously known as the 'Silk City' of Bihar due to its high production of Tussar silk.",
+                    "hi": "भागलपुर को टसर रेशम के उच्च उत्पादन के कारण बिहार के 'सिल्क सिटी' के रूप में जाना जाता है।"
+                },
+                "topic": "Bihar Special"
+            },
+            {
+                "id": "enxygupl9",
+                "number": 63,
+                "content": {
+                    "en": "Who was the viceroy of India during the Jallianwala Bagh massacre?",
+                    "hi": "जलियांवाला बाग कांड के दौरान भारत का वायसराय कौन था?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Lord Curzon",
+                            "hi": "लॉर्ड कर्जन"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Lord Chelmsford",
+                            "hi": "लॉर्ड चेम्सफोर्ड"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Lord Irwin",
+                            "hi": "लॉर्ड इरविन"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Lord Chelmsford served as the Viceroy of India from 1916 to 1921, covering the period of the 1919 massacre.",
+                    "hi": "लॉर्ड चेम्सफोर्ड ने 1916 से 1921 तक भारत के वायसराय के रूप में कार्य किया, जिसमें 1919 के हत्याकांड की अवधि भी शामिल थी।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "utdqaf8el",
+                "number": 64,
+                "content": {
+                    "en": "The first President of the Indian National Congress was:",
+                    "hi": "भारतीय राष्ट्रीय कांग्रेस के पहले अध्यक्ष थे :"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Dadabhai Naoroji",
+                            "hi": "दादाभाई नौरोजी"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "W. C. Bonnerjee",
+                            "hi": "डब्ल्यू. सी. बनर्जी"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Badruddin Tyabji",
+                            "hi": "बदरुद्दीन तैयबजी"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Womesh Chandra Bonnerjee presided over the first session of the Indian National Congress in 1885 in Bombay.",
+                    "hi": "व्योमेश चन्द्र बनर्जी ने 1885 में बॉम्बे में भारतीय राष्ट्रीय कांग्रेस के पहले सत्र की अध्यक्षता की थी।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "bi0fjt19y",
+                "number": 65,
+                "content": {
+                    "en": "Who among the following is also known as the Grand old man of India?",
+                    "hi": "निम्नलिखित में से किसको 'ग्रैण्ड ओल्ड मैन ऑफ इंडिया' के नाम से भी जाना जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Bal Gangadhar Tilak",
+                            "hi": "बाल गंगाधर तिलक"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Dadabhai Naoroji",
+                            "hi": "दादाभाई नौरोजी"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Gopal Krishna Gokhale",
+                            "hi": "गोपाल कृष्ण गोखले"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Dadabhai Naoroji was given this title for his extensive contribution to the Indian freedom struggle and socio-economic analysis.",
+                    "hi": "दादाभाई नौरोजी को भारतीय स्वतंत्रता संग्राम और सामाजिक-आर्थिक विश्लेषण में उनके व्यापक योगदान के लिए यह उपाधि दी गई थी।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "ss6pvmbp0",
+                "number": 66,
+                "content": {
+                    "en": "Which of the following movements was started by M. K. Gandhi?",
+                    "hi": "निम्नलिखित में से कौन-से आंदोलन एम. के. गांधी द्वारा शुरू किए गए थे?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Quit India Movement",
+                            "hi": "भारत छोड़ो आंदोलन"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Non cooperation movement",
+                            "hi": "असहयोग आंदोलन"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Swadesi movement",
+                            "hi": "स्वदेशी आंदोलन"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Mahatma Gandhi led both the Non-Cooperation Movement in 1920 and the Quit India Movement in 1942.",
+                    "hi": "महात्मा गांधी ने 1920 में असहयोग आंदोलन और 1942 में भारत छोड़ो आंदोलन दोनों का नेतृत्व किया था।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "y8nmalkca",
+                "number": 67,
+                "content": {
+                    "en": "Who was the leader of the Bardoli Satyagraha?",
+                    "hi": "बारदोली सत्याग्रह का नेता कौन था?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Sardar Vallabhbhai Patel",
+                            "hi": "सरदार वल्लभ भाई पटेल"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Bal Gangadhar Tilak",
+                            "hi": "बाल गंगाधर तिलक"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Jawaharlal Nehru",
+                            "hi": "जवाहर लाल नेहरू"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Sardar Vallabhbhai Patel led the Bardoli Satyagraha in 1928, after which he was conferred the title 'Sardar'.",
+                    "hi": "सरदार वल्लभभाई पटेल ने 1928 में बारदोली सत्याग्रह का नेतृत्व किया, जिसके बाद उन्हें 'सरदार' की उपाधि दी गई।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "tjgqokvq0",
+                "number": 68,
+                "content": {
+                    "en": "Who among the following is not associated with Home rule movement?",
+                    "hi": "निम्नलिखित में से कौन होम रूल आंदोलन से सम्बद्ध नहीं था?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Annie Besant",
+                            "hi": "एनी बेसेंट"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Bal Gangadhar Tilak",
+                            "hi": "बाल गंगाधर तिलक"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Sarojini Naidu",
+                            "hi": "सरोजिनी नायडू"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The Home Rule Movement was primarily spearheaded by Annie Besant and Bal Gangadhar Tilak.",
+                    "hi": "होमरूल आंदोलन का नेतृत्व मुख्य रूप से एनी बेसेंट और बाल गंगाधर तिलक ने किया था।"
+                },
+                "topic": "History"
+            },
+            {
+                "id": "vs6k8ie1q",
+                "number": 69,
+                "content": {
+                    "en": "Who founded the Bihar provincial congress committee in 1920?",
+                    "hi": "किसने 1920 ई. में बिहार प्रादेशिक कांग्रेस कमेटी की स्थापना की थी?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Dr. Rajendra Prasad",
+                            "hi": "डॉ. राजेन्द्र प्रसाद"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Anugrah Narayan Sinha",
+                            "hi": "अनुग्रह नारायण सिन्हा"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Jai Prakash Narayan",
+                            "hi": "जयप्रकाश नारायण"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Dr. Rajendra Prasad was the first president and a key founder of the Bihar Provincial Congress Committee organized around that time.",
+                    "hi": "डॉ. राजेंद्र प्रसाद प्रथम अध्यक्ष थे और उस समय के आसपास आयोजित बिहार प्रांतीय कांग्रेस कमेटी के प्रमुख संस्थापक थे।"
+                },
+                "topic": "Bihar Special"
+            },
+            {
+                "id": "yryol3r8s",
+                "number": 70,
+                "content": {
+                    "en": "The All India Kisan Sabha (AIKS) was founded in 1936 in Bihar under the leadership of:",
+                    "hi": "1936 में अखिल भारतीय किसान सभा (ए.आई. के. एस.) की स्थापना बिहार में किसके नेतृत्व में हुई थी?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Dr. Rajendra Prasad",
+                            "hi": "डॉ. राजेन्द्र प्रसाद"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Jai Prakash Narayan",
+                            "hi": "जय प्रकाश नारायण"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Swami Sahajanand Saraswati",
+                            "hi": "स्वामी सहजानंद सरस्वती"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Swami Sahajanand Saraswati founded the AIKS in Lucknow in 1936 to organize peasants across India.",
+                    "hi": "स्वामी सहजानंद सरस्वती ने पूरे भारत में किसानों को संगठित करने के लिए 1936 में लखनऊ में अखिल भारतीय किसान सभा की स्थापना की थी।"
+                },
+                "topic": "Bihar Special"
+            },
+            {
+                "id": "hqx70it7m",
+                "number": 71,
+                "content": {
+                    "en": "Digital circuit can be made by the repeated use of the _________.",
+                    "hi": "डिजिटल सर्किट _______ के बार-बार उपयोग से बनाया जा सकता है।"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "NAND gate",
+                            "hi": "NAND gate"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "NOR gate",
+                            "hi": "NOR gate"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "AND gate",
+                            "hi": "AND gate"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "NAND and NOR gates are known as universal gates because any digital circuit can be constructed using only one type of these gates.",
+                    "hi": "NAND और NOR गेट्स को यूनिवर्सल गेट्स के रूप में जाना जाता है क्योंकि किसी भी डिजिटल सर्किट को केवल एक प्रकार के इन गेट्स का उपयोग करके बनाया जा सकता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "x54xip5wu",
+                "number": 72,
+                "content": {
+                    "en": "Which of the following is correct for Digital Circuits?",
+                    "hi": "डिजिटल सर्किट के लिए निम्नलिखित में से कौन सा सही है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "They use analog signals for communication",
+                            "hi": "वे एनालॉग सिग्नल का संचार में उपयोग करते हैं"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "They process information using continuous voltage levels",
+                            "hi": "निरंतर वोल्टेज स्तर, वे सूचना का उपयोग कर प्रक्रिया करते हैं"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "They are not suitable for high speed operations",
+                            "hi": "गति संचालन में वे उच्च के लिए उपयुक्त नहीं हैं"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "Digital circuits use discrete logic levels (usually 0 and 1) and are highly suitable for high-speed automated processing.",
+                    "hi": "डिजिटल सर्किट असतत लॉजिक स्तरों (आमतौर पर 0 और 1) का उपयोग करते हैं और उच्च गति स्वचालित प्रसंस्करण के लिए अत्यधिक उपयुक्त होते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "6eddhft4f",
+                "number": 73,
+                "content": {
+                    "en": "Which of the following is an example of a digital Electronic?",
+                    "hi": "निम्नलिखित में से कौन डिजिटल इलेक्ट्रॉनिक का उदाहरण है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Computers",
+                            "hi": "कम्प्यूटर"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Mobile phones",
+                            "hi": "मोबाइल फोन"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Digital cameras",
+                            "hi": "डिजिटल कैमरे"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Computers, mobile phones, and digital cameras all operate based on digital electronics and binary data processing.",
+                    "hi": "कंप्यूटर, मोबाइल फोन और डिजिटल कैमरे सभी डिजिटल इलेक्ट्रॉनिक्स और बाइनरी डेटा प्रोसेसिंग के आधार पर काम करते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "lj6fz49hn",
+                "number": 74,
+                "content": {
+                    "en": "An OR gate has 4 inputs. The number of words in truth table will be _______.",
+                    "hi": "OR गेट में 4 इनपुट होते हैं। सत्य तालिका में शब्दों की संख्या होगी _______"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "4",
+                            "hi": "4"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "8",
+                            "hi": "8"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "16",
+                            "hi": "16"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The number of combinations in a truth table for $n$ inputs is calculated as $2^n$, so for 4 inputs, it is $2^4 = 16$.",
+                    "hi": "$n$ इनपुट के लिए सत्य तालिका में संयोजनों की संख्या की गणना $2^n$ के रूप में की जाती है, इसलिए 4 इनपुट के लिए, यह $2^4 = 16$ है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "jz3g62ez0",
+                "number": 75,
+                "content": {
+                    "en": "When does a negative level triggered flip-flop in Digital Electronics changes its state?",
+                    "hi": "डिजिटल इलेक्ट्रॉनिक्स में नकारात्मक स्तर ट्रिगर फ्लिप-फ्लॉप अपनी स्थिति कब बदलता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "When the clock is Negative",
+                            "hi": "जब घड़ी निगेटिव हो"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "When the clock is Positive",
+                            "hi": "जब घड़ी सकारात्मक हो"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "When the inputs are all zero",
+                            "hi": "जब सभी इनपुट शून्य हो"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "A negative level-triggered flip-flop responds to the input signals when the clock pulse is at the logic low or negative level.",
+                    "hi": "एक नकारात्मक स्तर-ट्रिगर्ड फ्लिप-फ्लॉप तब इनपुट सिग्नल पर प्रतिक्रिया करता है जब क्लॉक पल्स लॉजिक लो या नकारात्मक स्तर पर होती है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "q848kulzx",
+                "number": 76,
+                "content": {
+                    "en": "What is the result of the operation 1010 AND 1100 in binary?",
+                    "hi": "बाइनरी में ऑपरेशन 1010 AND 1100 का परिणाम क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "1000",
+                            "hi": "1000"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "1110",
+                            "hi": "1110"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "100",
+                            "hi": "100"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "The logical AND operation on 1010 and 1100 results in 1000, as the bitwise AND is true only when both corresponding bits are 1.",
+                    "hi": "1010 और 1100 पर लॉजिकल AND ऑपरेशन का परिणाम 1000 होता है, क्योंकि बिटवाइज़ AND केवल तभी सही होता है जब दोनों संबंधित बिट्स 1 हों।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "yps3sigxf",
+                "number": 77,
+                "content": {
+                    "en": "In a half-adder circuit, what are the outputs?",
+                    "hi": "अर्ध-योजक सर्किट में आउटपुट क्या हैं?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Sum and Carry",
+                            "hi": "Sum and Carry"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Difference and Borrow",
+                            "hi": "Difference and Borrow"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Sum and Difference",
+                            "hi": "Sum and Difference"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "A half-adder is a digital circuit that adds two binary bits and produces two outputs: Sum and Carry.",
+                    "hi": "एक हाफ-एडर एक डिजिटल सर्किट है जो दो बाइनरी बिट्स जोड़ता है और दो आउटपुट उत्पन्न करता है: सम और कैरी।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "ivaiwdc3u",
+                "number": 78,
+                "content": {
+                    "en": "Which of the following is the type of Read Only Memory (ROM)?",
+                    "hi": "निम्नलिखित में से कौन सा रीड ओनली मेमोरी (ROM) का प्रकार है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "PROM",
+                            "hi": "PROM"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "EPROM",
+                            "hi": "EPROM"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "MROM",
+                            "hi": "MROM"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "PROM, EPROM, and MROM (Masked ROM) are all specific categories of non-volatile Read Only Memory.",
+                    "hi": "PROM, EPROM और MROM (मास्क्ड ROM) सभी नॉन-वोलेटाइल रीड ओनली मेमोरी की विशिष्ट श्रेणियां हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "kc06yuztd",
+                "number": 79,
+                "content": {
+                    "en": "What is a PLA?",
+                    "hi": "पीएलए (PLA) क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Programmable Logic Application",
+                            "hi": "प्रोग्रामेबल लॉजिक एप्लीकेशन"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Programmable Logic Array",
+                            "hi": "प्रोग्रामेबल लॉजिक एैरे"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Programmable Logic Architecture",
+                            "hi": "प्रोग्रामेबल लॉजिक आर्किटेक्चर"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "A PLA is a type of programmable logic device used to implement combinational logic circuits with a programmable AND plane and a programmable OR plane.",
+                    "hi": "PLA एक प्रकार का प्रोग्रामेबल लॉजिक डिवाइस है जिसका उपयोग प्रोग्रामेबल AND प्लेन और प्रोग्रामेबल OR प्लेन के साथ कॉम्बिनेशनल लॉजिक सर्किट को लागू करने के लिए किया जाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "xbjv0ikvh",
+                "number": 80,
+                "content": {
+                    "en": "How many select lines are required for an 8-to-1 multiplexer?",
+                    "hi": "8-टू-1 मल्टीप्लेक्सर (multiplexer) के लिए कितनी चयनित लाइनों की आवश्यकता होती है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "2",
+                            "hi": "2"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "3",
+                            "hi": "3"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "4",
+                            "hi": "4"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "An 8-to-1 MUX requires $n$ select lines such that $2^n = 8$, which gives $n = 3$.",
+                    "hi": "एक 8-टू-1 MUX के लिए $n$ चयन लाइनों की आवश्यकता होती है जैसे कि $2^n = 8$, जो $n = 3$ देता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "jd45sa99m",
+                "number": 81,
+                "content": {
+                    "en": "Convert the decimal number 1234 to binary, octal, and hexadecimal. Which of the following options correctly represents these conversions?",
+                    "hi": "दशमलव संख्या 1234 को बाइनरी, ऑक्टल और हेक्साडेसिमल में बदलें। निम्नलिखित में से कौन सा विकल्प इन रूपांतरणों को सही ढंग से दर्शाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Binary: 10011010010, Octal: 2322, Hexadecimal: 4D2",
+                            "hi": "बाइनरी : 10011010010, ऑक्टल : 2322, हेक्साडेसिमल : 4D2"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Binary: 11001110010, Octal: 1712, Hexadecimal: 72A",
+                            "hi": "बाइनरी : 11001110010, ऑक्टल : 1712, हेक्साडेसिमल : 72A"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Binary: 11100110010, Octal: 1642, Hexadecimal: 3CD",
+                            "hi": "बाइनरी : 11100110010, ऑक्टल : 1642, हेक्साडेसिमल : 3CD"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Decimal 1234 is calculated as $1024 + 128 + 64 + 16 + 2$ which corresponds to the binary 10011010010.",
+                    "hi": "दशमलव 1234 की गणना $1024 + 128 + 64 + 16 + 2$ के रूप में की जाती है जो बाइनरी 10011010010 के अनुरूप है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "oea1k81sv",
+                "number": 82,
+                "content": {
+                    "en": "What is Booth’s algorithm used for?",
+                    "hi": "बूथ एल्गोरिथ्म का उपयोग किस लिए किया जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Binary to decimal conversion",
+                            "hi": "बाइनरी से दशमलव रूपांतरण"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Decimal to binary conversion",
+                            "hi": "दशमलव से बाइनरी रूपांतरण"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Binary multiplication",
+                            "hi": "बाइनरी गुणन"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Booth’s multiplication algorithm is an efficient method for multiplying two signed binary numbers in two's complement form.",
+                    "hi": "बूथ का गुणन एल्गोरिथ्म टू-कॉम्प्लीमेंट रूप में दो हस्ताक्षरित बाइनरी संख्याओं को गुणा करने की एक कुशल विधि है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "5zq5jlzm3",
+                "number": 83,
+                "content": {
+                    "en": "Which of the following is error detection code used in digital logic?",
+                    "hi": "निम्नलिखित में से कौन सा डिजिटल लॉजिक में प्रयुक्त त्रुटि पहचान कोड है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Hamming code",
+                            "hi": "हैमिंग कोड"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Cyclic redundancy check (CRC)",
+                            "hi": "चक्रीय अतिरेक जांच (सीआरसी)"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Checksum",
+                            "hi": "चेकसम"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Hamming code, CRC, and Checksums are all valid techniques used for detecting errors in digital data transmission.",
+                    "hi": "हैमिंग कोड, सीआरसी और चेकसम सभी डिजिटल डेटा ट्रांसमिशन में त्रुटियों का पता लगाने के लिए उपयोग की जाने वाली वैध तकनीकें हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "iii1naqoy",
+                "number": 84,
+                "content": {
+                    "en": "When performing BCD addition, what is the maximum value that can be represented in a single BCD digit?",
+                    "hi": "बीसीडी जोड़ते समय, एकल बीसीडी अंक में अधिकतम कितना मान दर्शाया जा सकता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "2",
+                            "hi": "2"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "10",
+                            "hi": "10"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "15",
+                            "hi": "15"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "A single Binary Coded Decimal (BCD) digit can represent decimal values from 0 to 9; therefore, 9 is the maximum value.",
+                    "hi": "एकल बाइनरी कोडेड डेसीमल (BCD) अंक 0 से 9 तक के दशमलव मानों का प्रतिनिधित्व कर सकता है; इसलिए, 9 अधिकतम मान है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "vazjfxqrl",
+                "number": 85,
+                "content": {
+                    "en": "Convert the binary number 1011.1101 to its decimal equivalent. Which of the following is the correct decimal value?",
+                    "hi": "बाइनरी संख्या 1011.1101 को उसके दशमलव समकक्ष में बदलें। निम्नलिखित में से कौन सा सही दशमलव मान है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "11.75",
+                            "hi": "11.75"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "12.125",
+                            "hi": "12.125"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "13.5",
+                            "hi": "13.5"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "The calculation $1011_2 = 11_{10}$ and $.1101_2 = 0.5+0.25+0+0.0625 = 0.8125_{10}$ gives $11.8125$, which is not in the options.",
+                    "hi": "गणना $1011_2 = 11_{10}$ और $.1101_2 = 0.5+0.25+0+0.0625 = 0.8125_{10}$ से $11.8125$ प्राप्त होता है, जो विकल्पों में नहीं है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "s6humtshu",
+                "number": 86,
+                "content": {
+                    "en": "What is De Morgan’s theorem used for in digital logic?",
+                    "hi": "डिजिटल तर्क में डी मॉर्गन प्रमेय का उपयोग किस लिए किया जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Simplifying Boolean expressions",
+                            "hi": "बूलियन अभिव्यक्तियों को सरल बनाना"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Implementing NAND gates",
+                            "hi": "NAND गेट्स का कार्यान्वयन"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Performing binary addition",
+                            "hi": "बाइनरी जोड़ करना"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "De Morgan's theorems provide rules for the transformation and simplification of complex Boolean logical expressions.",
+                    "hi": "डी मॉर्गन के प्रमेय जटिल बूलियन लॉजिकल एक्सप्रेशन के परिवर्तन और सरलीकरण के लिए नियम प्रदान करते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "gcjfk8xc1",
+                "number": 87,
+                "content": {
+                    "en": "What is the purpose of the “don’t care” condition in digital logic?",
+                    "hi": "डिजिटल तर्क में \"डोंट केयर\" स्थिति का उद्देश्य क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "To indicate that the value of a variable does not affect the output",
+                            "hi": "यह इंगित करने के लिए कि किसी चर का मान आउटपुट को प्रभावित नहीं करता है"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "To prioritize certain inputs over others",
+                            "hi": "कुछ इनपुट को दूसरों पर प्राथमिकता देना"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "To ensure that all possible input combinations are covered in truth tables",
+                            "hi": "यह सुनिश्चित करना कि सभी संभावित इनपुट संयोजन सत्य तालिकाओं में शामिल हैं"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Don't care conditions are used in logic minimization to represent input combinations whose output value does not matter for the circuit's operation.",
+                    "hi": "लॉजिक मिनिमाइजेशन में 'डोंट केयर' स्थितियों का उपयोग उन इनपुट संयोजनों को दर्शाने के लिए किया जाता है जिनके आउटपुट मान से सर्किट के संचालन पर कोई फर्क नहीं पड़ता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "cbj2axv1k",
+                "number": 88,
+                "content": {
+                    "en": "Which of the following data structures stores elements in a non-linear relationship?",
+                    "hi": "निम्नलिखित में से कौन सी डेटा संरचना तत्वों को गैर-रैखिक रूप में संबंध संग्रहीत करता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Stack",
+                            "hi": "Stack"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Queue",
+                            "hi": "Queue"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Array",
+                            "hi": "Array"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "Stack, Queue, and Array are all linear data structures, whereas non-linear relationships are stored in structures like Trees and Graphs.",
+                    "hi": "स्टैक, क्यू और ऐरे सभी रैखिक डेटा संरचनाएं हैं, जबकि गैर-रैखिक संबंध ट्री और ग्राफ जैसी संरचनाओं में संग्रहीत किए जाते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "zl1kb7xqm",
+                "number": 89,
+                "content": {
+                    "en": "Which data structure is used for efficient searching, insertion, and deletion of elements?",
+                    "hi": "किस डेटा संरचना का उपयोग किया जाता है, कुशल खोज, सम्मिलन और तत्वों का विलोपन?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Stack",
+                            "hi": "Stack"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Queue",
+                            "hi": "Queue"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Hash Table",
+                            "hi": "Hash table"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Hash Tables provide an average time complexity of $O(1)$ for searching, inserting, and deleting elements.",
+                    "hi": "हेश टेबल तत्वों को खोजने, सम्मिलित करने और हटाने के लिए $O(1)$ की औसत समय जटिलता प्रदान करते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "iukcigpl4",
+                "number": 90,
+                "content": {
+                    "en": "In a binary search tree, which subtree of a node contains elements that are greater than the node’s value?",
+                    "hi": "बाइनरी सर्च ट्री में, कौन सा उपवृक्ष एक नोड में ऐसे तत्व होते हैं जो नोड के मान से अधिक हैं?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Left subtree",
+                            "hi": "बायां उपवृक्ष"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Right subtree",
+                            "hi": "दायां उपवृक्ष"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Both subtrees",
+                            "hi": "दोनों उपवृक्ष"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "By definition, the right subtree of any node in a Binary Search Tree (BST) contains only nodes with keys greater than the node's key.",
+                    "hi": "परिभाषा के अनुसार, बाइनरी सर्च ट्री (BST) में किसी भी नोड का दायां सबट्री केवल नोड की कुंजी से बड़ी कुंजियों वाले नोड्स को समाहित करता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "7ugnxzi2w",
+                "number": 91,
+                "content": {
+                    "en": "The result evaluating the postfix expression $10 \\ 5 \\ + \\ 60 \\ 6 \\ / \\ * \\ 8$ is:",
+                    "hi": "पोस्टफिक्स अभिव्यक्ति $10 \\ 5 \\ + \\ 60 \\ 6 \\ / \\ * \\ 8$ का मूल्यांकन करने वाला परिणाम है:"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "142",
+                            "hi": "142"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "213",
+                            "hi": "213"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "284",
+                            "hi": "284"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "The evaluation $(10+5) \\times (60/6)$ results in 150, and without a final operator for 8, the expression is incomplete.",
+                    "hi": "मूल्यांकन $(10+5) \\times (60/6)$ का परिणाम 150 होता है, और 8 के लिए अंतिम ऑपरेटर के बिना, अभिव्यक्ति अधूरी है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "1pn2umsc9",
+                "number": 92,
+                "content": {
+                    "en": "In a balanced binary tree, the height of two sub-trees of every node can not differ by more than:",
+                    "hi": "एक संतुलित बाइनरी वृक्ष में, प्रत्येक नोड के दो उप-वृक्षों की ऊँचाई में इससे अधिक का अंतर नहीं हो सकता है:"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "2",
+                            "hi": "2"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "1",
+                            "hi": "1"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "0",
+                            "hi": "0"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "A balanced binary tree like an AVL tree maintains a height balance property where the difference is at most one.",
+                    "hi": "AVL ट्री जैसे संतुलित बाइनरी ट्री में ऊंचाई संतुलन गुण होता है जहां अंतर अधिकतम एक होता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "96sw8mdgx",
+                "number": 93,
+                "content": {
+                    "en": "Write the output of the following program: ```c int a[] = {1,2,3}; int *p = a; printf(\"%d\", p[2]); ``` (Simplified from image context)",
+                    "hi": "निम्नलिखित प्रोग्राम का आउटपुट लिखें: ```c int a[] = {1,2,3}; int *p = a; printf(\"%d\", p[2]); ``` (छवि संदर्भ से सरल)"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Junk value",
+                            "hi": "जंक वैल्यू"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "3",
+                            "hi": "3"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Runtime error",
+                            "hi": "रनटाइम त्रुटि"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "The pointer p points to the start of the array, so p[2] accesses the third element which is 3.",
+                    "hi": "पॉइंटर p सरणी की शुरुआत की ओर इशारा करता है, इसलिए p[2] तीसरे तत्व तक पहुँचता है जो कि 3 है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "lwsnz1utt",
+                "number": 94,
+                "content": {
+                    "en": "A queue has configuration a, b, c, d. If you want to get the configuration d, c, b, a, you need a minimum of:",
+                    "hi": "कतार में विन्यास a, b, c, d है। यदि आप विन्यास d, c, b, a प्राप्त करना चाहते हैं, तो आपको कम से कम:"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "2 deletions and 3 additions",
+                            "hi": "2 विलोपन और 3 जोड़"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "3 deletions and 3 additions",
+                            "hi": "3 विलोपन और 3 जोड़"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "4 deletions and 4 additions",
+                            "hi": "4 विलोपन और 4 जोड़"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "To reverse a queue's order entirely using standard queue operations, you typically need an auxiliary data structure like a stack.",
+                    "hi": "मानक कतार संचालन का उपयोग करके कतार के क्रम को पूरी तरह से उलटने के लिए, आपको आमतौर पर स्टैक जैसे सहायक डेटा संरचना की आवश्यकता होती है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "yv02ph7y8",
+                "number": 95,
+                "content": {
+                    "en": "The order of the binary search algorithm is:",
+                    "hi": "बाइनरी सर्च एल्गोरिथम का क्रम है:"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "N",
+                            "hi": "N"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "N log n",
+                            "hi": "N log n"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "$N^2$",
+                            "hi": "$N^2$"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "The correct time complexity for a binary search algorithm is $O(\\log N)$, which is not explicitly listed.",
+                    "hi": "बाइनरी सर्च एल्गोरिथम के लिए सही समय जटिलता $O(\\log N)$ है, जो स्पष्ट रूप से सूचीबद्ध नहीं है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "1gbfyd4tp",
+                "number": 96,
+                "content": {
+                    "en": "The preorder traversal of a binary search tree is 15, 10, 12, 11, 20, 18, 16, 19. Which one of the following is the postorder traversal of the tree?",
+                    "hi": "बाइनरी सर्च ट्री का प्रीऑर्डर ट्रैवर्सल 15, 10, 12, 11, 20, 18, 16, 19 है। निम्नलिखित में से कौन सा ट्री का पोस्टऑर्डर ट्रैवर्सल है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "20, 19, 18, 16, 15, 12, 11, 10",
+                            "hi": "20, 19, 18, 16, 15, 12, 11, 10"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "11, 12, 10, 16, 19, 18, 20, 15",
+                            "hi": "11, 12, 10, 16, 19, 18, 20, 15"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "19, 16, 18, 20, 11, 12, 10, 15",
+                            "hi": "19, 16, 18, 20, 11, 12, 10, 15"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "By re-constructing the BST and performing postorder traversal, we get 11, 12, 10, 16, 19, 18, 20, 15.",
+                    "hi": "BST का पुनर्गठन करके और पोस्टऑर्डर ट्रैवर्सल करके, हमें 11, 12, 10, 16, 19, 18, 20, 15 प्राप्त होता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "f52s2lg6q",
+                "number": 97,
+                "content": {
+                    "en": "How many distinct binary search trees can be created out of 4 distinct keys?",
+                    "hi": "4 अलग-अलग कुंजियों से कितने अलग-अलग बाइनरी सर्च ट्री बनाए जा सकते हैं?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "8",
+                            "hi": "8"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "24",
+                            "hi": "24"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "14",
+                            "hi": "14"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The number of distinct BSTs is given by the 4th Catalan number: $\\frac{1}{4+1} \\binom{2 \\times 4}{4} = 14$.",
+                    "hi": "विशिष्ट BST की संख्या चौथे कैटलन नंबर द्वारा दी गई है: $\\frac{1}{4+1} \\binom{2 \\times 4}{4} = 14$।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "vjl5tlohc",
+                "number": 98,
+                "content": {
+                    "en": "Identify the output of the C program: ```c #include <stdio.h> int main() { int i = 5, j = 10, k = 15; printf(\"%d \", sizeof(k /= i+j)); printf(\"%d\", k); return 0; } ```",
+                    "hi": "C प्रोग्राम के आउटपुट को पहचानें: ```c #include <stdio.h> int main() { int i = 5, j = 10, k = 15; printf(\"%d \", sizeof(k /= i+j)); printf(\"%d\", k); return 0; } ```"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "2 1",
+                            "hi": "2 1"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "4 1",
+                            "hi": "4 1"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "4 15",
+                            "hi": "4 15"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The expression inside `sizeof` is not evaluated at runtime, so k remains 15, and `sizeof(int)` is typically 4.",
+                    "hi": "`sizeof` के अंदर की अभिव्यक्ति रनटाइम पर मूल्यांकित नहीं होती है, इसलिए k 15 रहता है, और `sizeof(int)` आमतौर पर 4 होता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "54gqrwfk3",
+                "number": 99,
+                "content": {
+                    "en": "Which of the following statements is true about Big-O notation?",
+                    "hi": "बिग-ओ नोटेशन के बारे में निम्नलिखित में से कौन सा कथन सत्य है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "It represents the lower bound of an algorithm’s runtime.",
+                            "hi": "यह एल्गोरिथम के रनटाइम की निचली सीमा का प्रतिनिधित्व करता है।"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "It represents the upper bound of an algorithm’s runtime.",
+                            "hi": "यह एल्गोरिथम के रनटाइम की ऊपरी सीमा का प्रतिनिधित्व करता है।"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "It represents the average runtime of an algorithm.",
+                            "hi": "यह एक एल्गोरिथम के औसत रनटाइम का प्रतिनिधित्व करता है।"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Big-O notation describes an asymptotic upper bound for the magnitude of a function.",
+                    "hi": "बिग-ओ नोटेशन किसी फलन के परिमाण के लिए स्पर्शोन्मुख ऊपरी सीमा का वर्णन करता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "4w7r5qobi",
+                "number": 100,
+                "content": {
+                    "en": "Which of the following is NOT a step in the Divide and Conquer algorithm?",
+                    "hi": "निम्नलिखित में से कौन सा डिवाइड एंड कॉन्कर एल्गोरिथम का चरण नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Combine",
+                            "hi": "संयोजित"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Conquer",
+                            "hi": "जीतना"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Divide",
+                            "hi": "विभाजित करें"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "Divide, Conquer, and Combine are the three fundamental steps of the Divide and Conquer strategy.",
+                    "hi": "डिवाइड, कॉन्कर और कंबाइन डिवाइड एंड कॉन्कर रणनीति के तीन मूलभूत चरण हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "5xwpf1pg5",
+                "number": 101,
+                "content": {
+                    "en": "Merge Sort is an example of which algorithm design paradigm?",
+                    "hi": "Merge sort किस एल्गोरिथम डिजाइन प्रतिमान का एक उदाहरण है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Greedy",
+                            "hi": "Greedy"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Divide and Conquer",
+                            "hi": "Divide and Conquer"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Dynamic Programming",
+                            "hi": "Dynamic Programming"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Merge Sort recursively divides an array, sorts the sub-arrays, and then merges them back together.",
+                    "hi": "मर्ज सॉर्ट पुनरावर्ती रूप से एक सरणी को विभाजित करता है, उप-सरणी को सॉर्ट करता है, और फिर उन्हें वापस एक साथ मिला देता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "9vikunt6p",
+                "number": 102,
+                "content": {
+                    "en": "How many edges does a spanning tree of a graph with N vertices have?",
+                    "hi": "N शीर्षों वाले ग्राफ के फैले हुए वृक्ष में कितने किनारे होते हैं?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "N",
+                            "hi": "N"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "N - 1",
+                            "hi": "N - 1"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "N(N - 1)/2",
+                            "hi": "N(N - 1)/2"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "By definition, a spanning tree of a connected graph with $N$ vertices contains exactly $N-1$ edges.",
+                    "hi": "परिभाषा के अनुसार, $N$ शीर्षों वाले एक जुड़े हुए ग्राफ के स्पैनिंग ट्री में बिल्कुल $N-1$ किनारे होते हैं।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "zn7u88yhe",
+                "number": 103,
+                "content": {
+                    "en": "Which of the following is NOT a graph traversal algorithm?",
+                    "hi": "निम्नलिखित में से कौन ग्राफ ट्रैवर्सल एल्गोरिथ्म नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Greedy",
+                            "hi": "Greedy"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Divide and Conquer",
+                            "hi": "Divide and Conquer"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Dynamic Programming",
+                            "hi": "Dynamic Programming"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Standard graph traversal algorithms are BFS and DFS; Greedy, Divide and Conquer, and Dynamic Programming are general design paradigms.",
+                    "hi": "मानक ग्राफ ट्रैवर्सल एल्गोरिदम BFS और DFS हैं; लालची, डिवाइड एंड कॉन्कर, और डायनेमिक प्रोग्रामिंग सामान्य डिजाइन प्रतिमान हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "pfmr7u32s",
+                "number": 104,
+                "content": {
+                    "en": "Which of the following is NOT an NP-Complete problem?",
+                    "hi": "निम्नलिखित में से कौन सी NP-पूर्ण समस्या नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Traveling Salesman Problem",
+                            "hi": "ट्रैवलिंग सेल्समैन समस्या"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Boolean Satisfiability Problem",
+                            "hi": "बूलियन संतुष्टि समस्या"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Shortest Path Problem",
+                            "hi": "लघुत्तम पथ समस्या"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The Shortest Path Problem (specifically single-source) can be solved in polynomial time using algorithms like Dijkstra's.",
+                    "hi": "लघुत्तम पथ समस्या (विशेष रूप से सिंगल-सोर्स) को डिज्क्स्ट्रा जैसे एल्गोरिदम का उपयोग करके बहुपद समय में हल किया जा सकता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "1exdw7rbp",
+                "number": 105,
+                "content": {
+                    "en": "Which of the following is an advantage of using arrays?",
+                    "hi": "निम्नलिखित में से कौन सा ऐरे का उपयोग करने का लाभ है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Constant time insertion and deletion",
+                            "hi": "निरंतर समय प्रविष्टि और विलोपन"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Ability to store elements of different data types",
+                            "hi": "विभिन्न डेटा प्रकारों के तत्वों को संग्रहीत करने की क्षमता"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Random access to elements using an index",
+                            "hi": "इंडेक्स का उपयोग करके तत्वों तक यादृच्छिक पहुंच"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Arrays provide $O(1)$ time complexity for accessing any element directly if its index is known.",
+                    "hi": "यदि इंडेक्स ज्ञात है, तो ऐरे किसी भी तत्व को सीधे एक्सेस करने के लिए $O(1)$ समय जटिलता प्रदान करते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "ie6idio22",
+                "number": 106,
+                "content": {
+                    "en": "Which of the following is NOT a basic operation performed on a data structure?",
+                    "hi": "निम्नलिखित में से कौन सा डेटा संरचना पर किया जाने वाला मूल ऑपरेशन नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Encryption",
+                            "hi": "एन्क्रिप्शन"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Deletion",
+                            "hi": "विलोपन"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Insertion",
+                            "hi": "सम्मिलन"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "While encryption is a security process, basic data structure operations include insertion, deletion, and traversal.",
+                    "hi": "जबकि एन्क्रिप्शन एक सुरक्षा प्रक्रिया है, बुनियादी डेटा संरचना संचालन में प्रविष्टि, विलोपन और ट्रैवर्सल शामिल हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "xe98nh8rm",
+                "number": 107,
+                "content": {
+                    "en": "Which of the following is a type of operating system?",
+                    "hi": "निम्नलिखित में से कौन ऑपरेटिंग सिस्टम का एक प्रकार है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Real-time operating system",
+                            "hi": "Real-time operating system"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Embedded operating system",
+                            "hi": "Embedded operating system"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Network operating system",
+                            "hi": "Network operating system"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "All three choices (Real-time, Embedded, and Network) are valid classifications of operating systems.",
+                    "hi": "तीनों विकल्प (रियल-टाइम, एम्बेडेड और नेटवर्क) ऑपरेटिंग सिस्टम के मान्य वर्गीकरण हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "v0m2xbcrs",
+                "number": 108,
+                "content": {
+                    "en": "Which of the following is NOT a memory management technique used by operating systems?",
+                    "hi": "निम्नलिखित में से कौन सी ऑपरेटिंग सिस्टम द्वारा उपयोग की जाने वाली मेमोरी प्रबंधन तकनीक नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Paging",
+                            "hi": "पेजिंग"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Segmentation",
+                            "hi": "विभाजन"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Fragmentation",
+                            "hi": "विखंडन"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Fragmentation is an undesirable condition or side-effect, not a memory management technique.",
+                    "hi": "विखंडन एक अवांछनीय स्थिति या दुष्प्रभाव है, मेमोरी प्रबंधन तकनीक नहीं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "wlja5oael",
+                "number": 109,
+                "content": {
+                    "en": "Which of the following is a file system commonly used in operating systems?",
+                    "hi": "निम्नलिखित में से कौन सा फाइल सिस्टम सामान्यतः ऑपरेटिंग सिस्टम में उपयोग किया जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "NTFS",
+                            "hi": "NTFS"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "FAT32",
+                            "hi": "FAT32"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "HFS+",
+                            "hi": "HFS+"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "NTFS is used by Windows, FAT32 is widely compatible, and HFS+ is used by macOS.",
+                    "hi": "NTFS का उपयोग विंडोज द्वारा किया जाता है, FAT32 व्यापक रूप से संगत है, और HFS+ का उपयोग macOS द्वारा किया जाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "txb64ed07",
+                "number": 110,
+                "content": {
+                    "en": "Which of the following is NOT a type of interrupt?",
+                    "hi": "निम्नलिखित में से कौन सा इंटरप्ट का प्रकार नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Hardware interrupt",
+                            "hi": "हार्डवेयर इंटरप्ट"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Memory interrupt",
+                            "hi": "मेमोरी इंटरप्ट"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Software interrupt",
+                            "hi": "सॉफ्टवेयर इंटरप्ट"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Standard categories of interrupts are typically divided into hardware and software; 'memory interrupt' is not a standard type.",
+                    "hi": "इंटरप्ट की मानक श्रेणियों को आमतौर पर हार्डवेयर और सॉफ्टवेयर में विभाजित किया जाता है; 'मेमोरी इंटरप्ट' एक मानक प्रकार नहीं है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "095ptsaty",
+                "number": 111,
+                "content": {
+                    "en": "What is a page in paging?",
+                    "hi": "पेजिंग में पेज क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "A fixed-size block of virtual memory",
+                            "hi": "वर्चुअल मेमोरी का एक निश्चित आकार का ब्लॉक"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "A fixed-size block of physical memory",
+                            "hi": "भौतिक मेमोरी का एक निश्चित आकार का ब्लॉक"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "A type of memory allocation",
+                            "hi": "मेमोरी आवंटन का एक प्रकार"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "In memory management, a page refers to a fixed-length contiguous block of virtual memory.",
+                    "hi": "मेमोरी प्रबंधन में, एक पेज वर्चुअल मेमोरी के एक निश्चित लंबाई के सन्निहित ब्लॉक को संदर्भित करता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "wd565vwiq",
+                "number": 112,
+                "content": {
+                    "en": "In a system with a page size of $4 \\text{ KB}$ and a physical address space of $64 \\text{ GB}$, what is the number of bits required for the page offset?",
+                    "hi": "$4 \\text{ KB}$ पृष्ठ आकार और $64 \\text{ GB}$ भौतिक पता स्थान वाले सिस्टम में, पृष्ठ ऑफसेट के लिए आवश्यक बिट्स की संख्या क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "10 bits",
+                            "hi": "10 बिट्स"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "12 bits",
+                            "hi": "12 बिट्स"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "14 bits",
+                            "hi": "14 बिट्स"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Since $4 \\text{ KB} = 2^{12}$ bytes, $12$ bits are required to address every location within the page.",
+                    "hi": "चूंकि $4 \\text{ KB} = 2^{12}$ बाइट्स, पेज के भीतर हर स्थान को संबोधित करने के लिए $12$ बिट्स की आवश्यकता होती है।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "ai8eer6lh",
+                "number": 113,
+                "content": {
+                    "en": "What is a segment base in segmentation?",
+                    "hi": "विभाजन में खंड आधार क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "The starting address of a segment in physical memory",
+                            "hi": "भौतिक मेमोरी में किसी खंड का प्रारंभिक पता"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "The starting address of a segment in virtual memory",
+                            "hi": "वर्चुअल मेमोरी में एक सेगमेंट का प्रारंभिक पता"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "The ending address of a segment in physical memory",
+                            "hi": "भौतिक मेमोरी में किसी खंड का अंतिम पता"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "The segment base is the base physical address where a segment resides in memory.",
+                    "hi": "सेगमेंट बेस वह बेस फिजिकल एड्रेस होता है जहाँ मेमोरी में एक सेगमेंट रहता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "agz3td527",
+                "number": 114,
+                "content": {
+                    "en": "What causes thrashing to occur?",
+                    "hi": "Thrashing किस कारण से होती है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Excessive paging activity",
+                            "hi": "अत्यधिक पेजिंग गतिविधि"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Insufficient disk space",
+                            "hi": "अपर्याप्त डिस्क स्थान"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Hardware failures",
+                            "hi": "हार्डवेयर विफलता"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Thrashing occurs when the operating system spends more time swapping pages in and out than executing actual processes.",
+                    "hi": "थ्रैशिंग तब होती है जब ऑपरेटिंग सिस्टम वास्तविक प्रक्रियाओं को निष्पादित करने के बजाय पेजों को अंदर और बाहर स्वैप करने में अधिक समय व्यतीत करता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "nh0oina4v",
+                "number": 115,
+                "content": {
+                    "en": "Consider a system with total physical memory of $8 \\text{ GB}$ and total virtual memory of $16 \\text{ GB}$. If the system is using $6 \\text{ GB}$ of physical memory and $10 \\text{ GB}$ of virtual memory, how much memory is being swapped out?",
+                    "hi": "एक सिस्टम पर विचार करें जिसमें कुल भौतिक मेमोरी $8 \\text{ GB}$ और कुल वर्चुअल मेमोरी $16 \\text{ GB}$ है। यदि सिस्टम $6 \\text{ GB}$ भौतिक मेमोरी और $10 \\text{ GB}$ वर्चुअल मेमोरी का उपयोग कर रहा है, तो कितनी मेमोरी स्वैप की जा रही है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "2 GB",
+                            "hi": "2 जीबी"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "4 GB",
+                            "hi": "4 जीबी"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "6 GB",
+                            "hi": "6 जीबी"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "The amount swapped out is the part of used virtual memory not currently in physical RAM: $10 \\text{ GB} - 6 \\text{ GB} = 4 \\text{ GB}$.",
+                    "hi": "स्वैप आउट की गई मात्रा उपयोग की गई वर्चुअल मेमोरी का वह हिस्सा है जो वर्तमान में भौतिक रैम में नहीं है: $10 \\text{ GB} - 6 \\text{ GB} = 4 \\text{ GB}$।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "jbdlj6m74",
+                "number": 116,
+                "content": {
+                    "en": "How is the TLB typically organized?",
+                    "hi": "TLB का आयोजन सामान्यतः किस प्रकार किया जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "As a direct-mapped cache",
+                            "hi": "प्रत्यक्ष-मैप किए गए कैश के रूप में"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "As an associative cache",
+                            "hi": "एक सहयोगी कैश के रूप में"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "As a set-associative cache",
+                            "hi": "सेट-एसोसिएटिव कैश के रूप में"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "A Translation Lookaside Buffer (TLB) is usually fully associative to allow for quick lookups of page table entries.",
+                    "hi": "एक ट्रांसलेशन लुकसाइड बफर (TLB) आमतौर पर पेज टेबल प्रविष्टियों की त्वरित खोज की अनुमति देने के लिए पूरी तरह से सहयोगी होता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "vawclw4ab",
+                "number": 117,
+                "content": {
+                    "en": "Which of the following is a common file operation?",
+                    "hi": "निम्नलिखित में से कौन सा एक सामान्य फाइल ऑपरेशन है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Create",
+                            "hi": "बनाएं"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Delete",
+                            "hi": "हटाएं"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Rename",
+                            "hi": "नाम बदलना"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Create, Delete, and Rename are all fundamental operations provided by most file systems.",
+                    "hi": "अधिकांश फ़ाइल प्रणालियों द्वारा बनाएँ, हटाएँ और नाम बदलें सभी बुनियादी संचालन प्रदान किए जाते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "bawueg31g",
+                "number": 118,
+                "content": {
+                    "en": "Consider a disk queue initially at 53 with requests: 98, 183, 37, 122, 14, 124, 65, 67. The total head movement using FCFS is:",
+                    "hi": "प्रारंभ में 53 पर डिस्क कतार के अनुरोधों पर विचार करें: 98, 183, 37, 122, 14, 124, 65, 67। FCFS का उपयोग करके कुल हेड मूवमेंट है:"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "640",
+                            "hi": "640"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "620",
+                            "hi": "620"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "630",
+                            "hi": "630"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Summing the absolute differences between successive tracks results in a total movement of 640.",
+                    "hi": "क्रमिक ट्रैकों के बीच पूर्ण अंतरों को जोड़ने पर कुल 640 का संचलन प्राप्त होता है।"
+                },
+                "topic": "Math"
+            },
+            {
+                "id": "lvddqnjh6",
+                "number": 119,
+                "content": {
+                    "en": "Thread shares with other threads belonging to the same process its:",
+                    "hi": "Thread उसी प्रक्रिया से संबंधित अन्य threads के साथ अपनी जानकारी साझा करता है।"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "thread ID",
+                            "hi": "थ्रेड आईडी"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "program counter",
+                            "hi": "प्रोग्राम काउंटर"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "code section and data section",
+                            "hi": "कोड अनुभाग और डेटा अनुभाग"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Threads of the same process share common address space, including code, data, and OS resources.",
+                    "hi": "एक ही प्रक्रिया के थ्रेड सामान्य पता स्थान साझा करते हैं, जिसमें कोड, डेटा और ओएस संसाधन शामिल होते हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "rhkvpcbga",
+                "number": 120,
+                "content": {
+                    "en": "Which of the following is NOT a type of DBMS?",
+                    "hi": "निम्नलिखित में से कौन सा DBMS का प्रकार नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Relational DBMS",
+                            "hi": "Relational DBMS"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Object-Oriented DBMS",
+                            "hi": "Object-Oriented DBMS"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Sequential DBMS",
+                            "hi": "Sequential DBMS"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Relational and Object-Oriented are standard DBMS types; 'Sequential' is not a standard category for modern database systems.",
+                    "hi": "रिलेशनल और ऑब्जेक्ट-ओरिएंटेड मानक DBMS प्रकार हैं; आधुनिक डेटाबेस सिस्टम के लिए 'सिक्वेंशियल' एक मानक श्रेणी नहीं है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "kh9zuup3u",
+                "number": 121,
+                "content": {
+                    "en": "In a relational database, what is a primary key?",
+                    "hi": "रिलेशनल डेटाबेस में प्राथमिक कुंजी क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "A key used to uniquely identify each record in a table",
+                            "hi": "विशिष्ट पहचान के लिए उपयोग की जाने वाली कुंजी तालिका में प्रत्येक रिकॉर्ड"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "A key used to establish relationships between tables",
+                            "hi": "स्थापित करने के लिए उपयोग की जाने वाली कुंजी तालिकाओं के बीच संबंध"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "A key used to sort records in a table",
+                            "hi": "एक कुंजी जिसका उपयोग रिकॉर्ड्स को सॉर्ट करने के लिए किया जाता है"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "A primary key is a field or set of fields that uniquely identifies each row in a table.",
+                    "hi": "प्राथमिक कुंजी एक क्षेत्र या क्षेत्रों का समूह है जो तालिका में प्रत्येक पंक्ति को विशिष्ट रूप से पहचानता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "7g2qc0sn2",
+                "number": 122,
+                "content": {
+                    "en": "Which normal form ensures that every non-prime attribute in a table is fully functionally dependent on the primary key?",
+                    "hi": "कौन सा सामान्य रूप यह सुनिश्चित करता है कि तालिका में प्रत्येक गैर-प्रधान विशेषता प्राथमिक कुंजी पर पूरी तरह कार्यात्मक रूप से निर्भर है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "First Normal Form (1NF)",
+                            "hi": "पहला सामान्य रूप (1NF)"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Second Normal Form (2NF)",
+                            "hi": "दूसरा सामान्य रूप (2NF)"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Third Normal Form (3NF)",
+                            "hi": "तीसरा सामान्य रूप (3NF)"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Second Normal Form (2NF) eliminates partial functional dependency by ensuring all non-prime attributes depend on the entire primary key.",
+                    "hi": "द्वितीय सामान्य रूप (2NF) यह सुनिश्चित करके आंशिक कार्यात्मक निर्भरता को समाप्त करता है कि सभी गैर-प्रधान विशेषताएं पूरी प्राथमिक कुंजी पर निर्भर करती हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "72dvylpks",
+                "number": 123,
+                "content": {
+                    "en": "Which SQL command is used to add new rows to a database table?",
+                    "hi": "डेटाबेस तालिका में नई पंक्तियाँ जोड़ने के लिए किस SQL कमांड का उपयोग किया जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "ADD",
+                            "hi": "जोड़ें"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "CREATE",
+                            "hi": "बनाएं"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "INSERT",
+                            "hi": "सम्मिलित करें"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The INSERT INTO statement is used to insert new records in a table.",
+                    "hi": "INSERT INTO कथन का उपयोग तालिका में नए रिकॉर्ड डालने के लिए किया जाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "9q6tc1rl1",
+                "number": 124,
+                "content": {
+                    "en": "Which of the following is a disadvantage of using a distributed database system?",
+                    "hi": "निम्नलिखित में से कौन सा वितरित डेटाबेस सिस्टम का उपयोग करने का नुकसान है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Improved data accessibility",
+                            "hi": "बेहतर डेटा पहुंच"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Increased data security",
+                            "hi": "बढ़ी हुई डेटा सुरक्षा"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Data inconsistency",
+                            "hi": "डेटा असंगति"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Distributed databases can face issues with data consistency due to replication and network latency.",
+                    "hi": "प्रतिकृति और नेटवर्क विलंबता के कारण वितरित डेटाबेस को डेटा स्थिरता के साथ समस्याओं का सामना करना पड़ सकता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "cqbh68iw9",
+                "number": 125,
+                "content": {
+                    "en": "What is the primary function of a router in a computer network?",
+                    "hi": "कंप्यूटर नेटवर्क में राउटर का प्राथमिक कार्य क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "To connect devices within the same network",
+                            "hi": "के भीतर उपकरणों को जोड़ने के लिए वही नेटवर्क"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "To connect multiple networks together",
+                            "hi": "एकाधिक नेटवर्क को जोड़ने के लिए एक साथ"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "To filter incoming traffic based on IP addresses",
+                            "hi": "आने वाले ट्रैफिक को फिल्टर करने के लिए आईपी पते"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "A router's main purpose is to forward data packets between different computer networks.",
+                    "hi": "राउटर का मुख्य उद्देश्य विभिन्न कंप्यूटर नेटवर्क के बीच डेटा पैकेट अग्रेषित करना है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "5nq91g38d",
+                "number": 126,
+                "content": {
+                    "en": "In the OSI model, which layer is responsible for routing and forwarding data packets?",
+                    "hi": "OSI model में, कौन सी परत डेटा पैकेट को रूट करने और अग्रेषित करने के लिए जिम्मेदार है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Data Link Layer",
+                            "hi": "डेटा लिंक परत"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Transport Layer",
+                            "hi": "ट्रांसपोर्ट लेयर"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Physical Layer",
+                            "hi": "भौतिक परत"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "Routing and forwarding are functions of the Network Layer, which is not listed among the main options.",
+                    "hi": "रूटिंग और फॉरवर्डिंग नेटवर्क लेयर के कार्य हैं, जो मुख्य विकल्पों में सूचीबद्ध नहीं है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "f2lfjox57",
+                "number": 127,
+                "content": {
+                    "en": "Which device is used to connect multiple devices within the same local area network (LAN)?",
+                    "hi": "एक ही लोकल एरिया नेटवर्क (LAN) के भीतर कई डिवाइसों को जोड़ने के लिए किस डिवाइस का उपयोग किया जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Router",
+                            "hi": "राउटर"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Switch",
+                            "hi": "स्विच"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Bridge",
+                            "hi": "पुल"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "A network switch connects multiple devices together on a single computer network.",
+                    "hi": "एक नेटवर्क स्विच एक कंप्यूटर नेटवर्क पर कई उपकरणों को एक साथ जोड़ता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "t9flcizzj",
+                "number": 128,
+                "content": {
+                    "en": "Which protocol is used to send email over the Internet?",
+                    "hi": "इंटरनेट पर ईमेल भेजने के लिए किस प्रोटोकॉल का उपयोग किया जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "FTP",
+                            "hi": "FTP"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "SMTP",
+                            "hi": "SMTP"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "HTTP",
+                            "hi": "HTTP"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "SMTP (Simple Mail Transfer Protocol) is the standard protocol for sending emails across the Internet.",
+                    "hi": "SMTP (सिंपल मेल ट्रांसफर प्रोटोकॉल) इंटरनेट पर ईमेल भेजने के लिए मानक प्रोटोकॉल है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "x00m0sdxt",
+                "number": 129,
+                "content": {
+                    "en": "What is the purpose of a subnet mask in TCP/IP networking?",
+                    "hi": "TCP/IP नेटवर्किंग में सबनेट मास्क का उद्देश्य क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "To identify the network portion of an IP address",
+                            "hi": "के नेटवर्क हिस्से की पहचान करने के लिए एक आईपी पता"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "To identify the host portion of an IP address",
+                            "hi": "किसी वस्तु के मेजबान हिस्से की पहचान करना आईपी पता"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "To convert IP addresses into domain names",
+                            "hi": "आईपी पते को परिवर्तित करने के लिए कार्यक्षेत्र नाम"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "A subnet mask defines which part of an IP address refers to the network and which part refers to the host.",
+                    "hi": "एक सबनेट मास्क यह परिभाषित करता है कि आईपी पते का कौन सा हिस्सा नेटवर्क को संदर्भित करता है और कौन सा हिस्सा होस्ट को संदर्भित करता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "asdke67k1",
+                "number": 130,
+                "content": {
+                    "en": "What is the maximum data rate of Bluetooth version 5.0?",
+                    "hi": "ब्लूटूथ संस्करण 5.0 की अधिकतम डेटा दर क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "1 Mbps",
+                            "hi": "1 Mbps"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "2 Mbps",
+                            "hi": "2 Mbps"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "5 Mbps",
+                            "hi": "5 Mbps"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Bluetooth 5.0 introduced a high-speed mode that supports data rates up to $2$ Mbps.",
+                    "hi": "ब्लूटूथ 5.0 ने एक उच्च-गति मोड पेश किया जो $2$ Mbps तक की डेटा दरों का समर्थन करता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "4kta7u1ar",
+                "number": 131,
+                "content": {
+                    "en": "Which of the following is a software development life cycle model?",
+                    "hi": "निम्नलिखित में से कौन सा सॉफ्टवेयर विकास जीवन चक्र मॉडल है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Waterfall model",
+                            "hi": "झरना मॉडल"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Agile model",
+                            "hi": "एजाइल मॉडल"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Spiral model",
+                            "hi": "सर्पिल मॉडल"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Waterfall, Agile, and Spiral are all recognized models used in the software development life cycle.",
+                    "hi": "वॉटरफॉल, एजाइल और स्पाइरल सभी सॉफ्टवेयर विकास जीवन चक्र में उपयोग किए जाने वाले मान्यता प्राप्त मॉडल हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "cy78aoh02",
+                "number": 132,
+                "content": {
+                    "en": "Which of the following is NOT a software development requirement?",
+                    "hi": "निम्नलिखित में से कौन सी सॉफ्टवेयर विकास आवश्यकता नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Functional requirements",
+                            "hi": "कार्यात्मक आवश्यकताएँ"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "System requirements",
+                            "hi": "सिस्टम आवश्यकताएँ"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Physical requirements",
+                            "hi": "शारीरिक आवश्यकताएँ"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Software requirements typically categorize into functional and non-functional/system requirements, rather than 'physical'.",
+                    "hi": "सॉफ्टवेयर आवश्यकताएं आमतौर पर 'शारीरिक' के बजाय कार्यात्मक और गैर-कार्यात्मक/सिस्टम आवश्यकताओं में वर्गीकृत होती हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "01n4hxn41",
+                "number": 133,
+                "content": {
+                    "en": "What is the main difference between verification and validation in software testing?",
+                    "hi": "सॉफ्टवेयर परीक्षण में सत्यापन और वैधीकरण के बीच मुख्य अंतर क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Verification ensures that the software is bug-free, while validation ensures that it meets the requirements.",
+                            "hi": "सत्यापन यह सुनिश्चित करता है कि सॉफ्टवेयर बग-मुक्त है, जबकि सत्यापन यह सुनिश्चित करता है कि यह आवश्यकताओं को पूरा करता है"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Verification is done before coding, while validation is done after coding.",
+                            "hi": "सत्यापन पहले किया जाता है कोडिंग के बाद सत्यापन किया जाता है, जबकि सत्यापन कोडिंग के बाद किया जाता है"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Verification checks if the software is built right, while validation checks if the right software is built.",
+                            "hi": "सत्यापन जाँचता है कि क्या सॉफ्टवेयर सही तरीके से बनाया गया है, जबकि सत्यापन यह जाँचता है कि क्या सही सॉफ्टवेयर बनाया गया है"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Verification focuses on following the process correctly, while validation ensures the final product meets user needs.",
+                    "hi": "सत्यापन प्रक्रिया का सही ढंग से पालन करने पर केंद्रित है, जबकि वैधीकरण सुनिश्चित करता है कि अंतिम उत्पाद उपयोगकर्ता की आवश्यकताओं को पूरा करता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "iuwwrbam7",
+                "number": 134,
+                "content": {
+                    "en": "What is the purpose of a software prototype?",
+                    "hi": "सॉफ्टवेयर प्रोटोटाइप का उद्देश्य क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "To serve as the final version of the software",
+                            "hi": "अंतिम संस्करण के रूप में कार्य करना सॉफ्टवेयर"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "To replace detailed documentation",
+                            "hi": "विस्तृत दस्तावेजीकरण को प्रतिस्थापित करने के लिए"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "To speed up the software development process",
+                            "hi": "सॉफ्टवेयर की गति बढ़ाने के लिए विकास की प्रक्रिया"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "A prototype is used to visualize requirements and gather feedback early to streamline development.",
+                    "hi": "एक प्रोटोटाइप का उपयोग आवश्यकताओं की कल्पना करने और विकास को सुव्यवस्थित करने के लिए जल्दी फीडबैक प्राप्त करने के लिए किया जाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "x7d5s6m0q",
+                "number": 135,
+                "content": {
+                    "en": "What is the primary goal of software engineering?",
+                    "hi": "सॉफ्टवेयर इंजीनियरिंग का प्राथमिक लक्ष्य क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "To write code efficiently",
+                            "hi": "कुशलतापूर्वक कोड लिखना"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "To develop software that meets user requirements within budget and schedule constraints",
+                            "hi": "ऐसे सॉफ्टवेयर का विकास करना जो बजट के भीतर उपयोगकर्ता की आवश्यकताएं और शेड्यूल संबंधी बाधाएं"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "To develop software with the latest technologies",
+                            "hi": "सॉफ्टवेयर विकसित करना नवीनतम तकनीकें"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Software engineering aims to produce high-quality software reliably and economically.",
+                    "hi": "सॉफ्टवेयर इंजीनियरिंग का उद्देश्य विश्वसनीय और आर्थिक रूप से उच्च गुणवत्ता वाले सॉफ्टवेयर का उत्पादन करना है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "nbu7dn4n2",
+                "number": 136,
+                "content": {
+                    "en": "Which of the following is a pillar of OOP?",
+                    "hi": "निम्नलिखित में से कौन OOP का एक स्तंभ है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Inheritance",
+                            "hi": "Inheritance"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Encapsulation",
+                            "hi": "Encapsulation"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Abstraction",
+                            "hi": "Abstraction"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Inheritance, Encapsulation, Abstraction, and Polymorphism are the four main pillars of Object-Oriented Programming.",
+                    "hi": "इनहेरिटेंस, एनकैप्सुलेशन, एब्स्ट्रैक्शन और पॉलीमॉर्फिज्म ऑब्जेक्ट-ओरिएंटेड प्रोग्रामिंग के चार मुख्य स्तंभ हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "k0gtolwro",
+                "number": 137,
+                "content": {
+                    "en": "Which keyword is used in Java to implement inheritance?",
+                    "hi": "Java में inheritance को लागू करने के लिए किस कीवर्ड का उपयोग किया जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "extends",
+                            "hi": "extends"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "inherits",
+                            "hi": "inherits"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "implements",
+                            "hi": "implements"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "The 'extends' keyword is used in Java to create a subclass from a superclass.",
+                    "hi": "'extends' कीवर्ड का उपयोग जावा में सुपरक्लास से सबक्लास बनाने के लिए किया जाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "anwrnbift",
+                "number": 138,
+                "content": {
+                    "en": "What is the access specifier used to make members of a class accessible only within the same package?",
+                    "hi": "किसी class के member को केवल उसी पैकेज के भीतर ही पहुँच योग्य बनाने के लिए किस एक्सेस स्पेसिफायर का उपयोग किया जाता है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "private",
+                            "hi": "private"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "public",
+                            "hi": "public"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "package-private",
+                            "hi": "package-private"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "In Java, the default access level (often called package-private) restricts visibility to the same package.",
+                    "hi": "जावा में, डिफ़ॉल्ट एक्सेस स्तर (जिसे अक्सर पैकेज-प्राइवेट कहा जाता है) दृश्यता को उसी पैकेज तक सीमित रखता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "vj13xpc88",
+                "number": 139,
+                "content": {
+                    "en": "Inheritance in OOP allows a class to:",
+                    "hi": "OOP में inheritance एक वर्ग को यह करने की अनुमति देता है:"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Inherit properties and behavior from another class",
+                            "hi": "Inherit properties and behavior from another class"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Create instances of another class",
+                            "hi": "Create instances of another class"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Override methods of another class",
+                            "hi": "Override methods of another class"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Inheritance allows a subclass to inherit attributes and methods while also enabling method overriding.",
+                    "hi": "इनहेरिटेंस एक सबक्लास को विशेषताओं और विधियों को विरासत में लेने की अनुमति देता है जबकि विधि ओवरराइडिंग को भी सक्षम बनाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "3nn3yp0ad",
+                "number": 140,
+                "content": {
+                    "en": "What is the purpose of HTML in a web application?",
+                    "hi": "वेब एप्लिकेशन में HTML का उद्देश्य क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "To define the structure of web pages",
+                            "hi": "Web pages की संरचना को परिभाषित करना"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "To style web pages",
+                            "hi": "Web pages को स्टाइल करने के लिए"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "To add interactivity to web pages",
+                            "hi": "Web pages में अन्तर्क्रियाशीलता जोड़ने के लिए"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "HTML (HyperText Markup Language) provides the fundamental structure and content of a webpage.",
+                    "hi": "HTML (हाइपरटेक्स्ट मार्कअप लैंग्वेज) वेबपेज की मौलिक संरचना और सामग्री प्रदान करता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "4jo50g62t",
+                "number": 141,
+                "content": {
+                    "en": "Which of the following is an example of a server-side scripting language commonly used in web applications?",
+                    "hi": "निम्नलिखित में से कौन सा web अनुप्रयोगों में सामान्यतः उपयोग की जाने वाली server-side scripting भाषा का उदाहरण है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "HTML",
+                            "hi": "HTML"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "CSS",
+                            "hi": "CSS"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "C++",
+                            "hi": "C++"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "While C++ can be used on servers, typical web scripting languages like PHP, Python, or Ruby are not listed.",
+                    "hi": "हालांकि C++ का उपयोग सर्वर पर किया जा सकता है, लेकिन PHP, पायथन या रूबी जैसी सामान्य वेब स्क्रिप्टिंग भाषाएं सूचीबद्ध नहीं हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "4uyprpl9m",
+                "number": 142,
+                "content": {
+                    "en": "What is the computational complexity of the halting problem?",
+                    "hi": "हॉल्टिंग समस्या की कम्प्यूटेशनल जटिलता क्या है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "O(1)",
+                            "hi": "O(1)"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "O(n)",
+                            "hi": "O(n)"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Not computable",
+                            "hi": "Not computable"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "The halting problem is a classic example of an undecidable problem in computer science.",
+                    "hi": "हॉल्टिंग समस्या कंप्यूटर विज्ञान में एक अनिर्णीत समस्या का एक उत्कृष्ट उदाहरण है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "3c38k010f",
+                "number": 143,
+                "content": {
+                    "en": "Which of the following is NOT a component of a Turing machine?",
+                    "hi": "निम्नलिखित में से कौन ट्यूरिंग मशीन का घटक नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Input tape",
+                            "hi": "इनपुट टेप"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Output tape",
+                            "hi": "आउटपुट टेप"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Control unit",
+                            "hi": "नियंत्रण इकाई"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "A standard Turing machine uses a single infinite tape for both input and output operations.",
+                    "hi": "एक मानक ट्यूरिंग मशीन इनपुट और आउटपुट दोनों कार्यों के लिए एक ही अनंत टेप का उपयोग करती है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "g194fyks5",
+                "number": 144,
+                "content": {
+                    "en": "Which wireless communication technology is commonly used in IoT devices for short-range communication?",
+                    "hi": "कौन सी वायरलेस संचार तकनीक आमतौर पर छोटी दूरी के संचार के लिए IoT उपकरणों में उपयोग की जाती है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Bluetooth",
+                            "hi": "ब्लूटूथ"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Wi-Fi",
+                            "hi": "वाई-फाई"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "4G LTE",
+                            "hi": "4जी एलटीई"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Bluetooth Low Energy (BLE) is widely used for short-range wireless connectivity in IoT sensors.",
+                    "hi": "ब्लूटूथ लो एनर्जी (BLE) का व्यापक रूप से IoT सेंसर में कम दूरी की वायरलेस कनेक्टिविटी के लिए उपयोग किया जाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "7iarkes5g",
+                "number": 145,
+                "content": {
+                    "en": "Which of the following is an example of an IoT protocol used for device communication?",
+                    "hi": "निम्नलिखित में से कौन सा डिवाइस संचार के लिए उपयोग किए जाने वाले IoT प्रोटोकॉल का एक उदाहरण है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "HTTP",
+                            "hi": "HTTP"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "FTP",
+                            "hi": "FTP"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "MQTT",
+                            "hi": "MQTT"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "MQTT (Message Queuing Telemetry Transport) is a lightweight messaging protocol designed for IoT.",
+                    "hi": "MQTT (मेसेज क्यूइंग टेलीमेट्री ट्रांसपोर्ट) एक हल्का मैसेजिंग प्रोटोकॉल है जिसे IoT के लिए डिज़ाइन किया गया है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "tf7klfhf2",
+                "number": 146,
+                "content": {
+                    "en": "Which of the following is a subfield of AI?",
+                    "hi": "निम्नलिखित में से कौन सा AI का उपक्षेत्र है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Machine Learning",
+                            "hi": "मशीन लर्निंग"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Robotics",
+                            "hi": "रोबोटिक्स"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Natural Language Processing",
+                            "hi": "प्राकृतिक भाषा प्रसंस्करण (NLP)"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "d",
+                "explanation": {
+                    "en": "Artificial Intelligence encompasses subfields like Machine Learning, Robotics, and NLP.",
+                    "hi": "आर्टिफिशियल इंटेलिजेंस में मशीन लर्निंग, रोबोटिक्स और एनएलपी जैसे उपक्षेत्र शामिल हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "eragpnhdu",
+                "number": 147,
+                "content": {
+                    "en": "Which of the following is a supervised learning algorithm?",
+                    "hi": "निम्नलिखित में से कौन सा पर्यवेक्षित (supervised) शिक्षण एल्गोरिदम है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Decision Tree",
+                            "hi": "Decision Tree"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "K-means Clustering",
+                            "hi": "K-means Clustering"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Reinforcement Learning",
+                            "hi": "Reinforcement Learning"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "a",
+                "explanation": {
+                    "en": "Decision trees are supervised learning algorithms used for both classification and regression tasks.",
+                    "hi": "डिसीजन ट्री पर्यवेक्षित शिक्षण एल्गोरिदम हैं जिनका उपयोग वर्गीकरण और प्रतिगमन दोनों कार्यों के लिए किया जाता है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "oibapz431",
+                "number": 148,
+                "content": {
+                    "en": "Which of the following is NOT a common type of E-Commerce model?",
+                    "hi": "निम्नलिखित में से कौन सा ई-कॉमर्स मॉडल का सामान्य प्रकार नहीं है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Business-to-Consumer (B2C)",
+                            "hi": "व्यवसाय से उपभोक्ता (बी2सी)"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Consumer-to-Business (C2B)",
+                            "hi": "उपभोक्ता से व्यवसाय (सी2बी)"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Consumer-to-Consumer (C2C)",
+                            "hi": "उपभोक्ता-से-उपभोक्ता (सी2सी)"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "e",
+                "explanation": {
+                    "en": "All the listed options (B2C, C2B, C2C) are standard and common types of e-commerce business models.",
+                    "hi": "सूचीबद्ध सभी विकल्प (B2C, C2B, C2C) ई-कॉमर्स बिजनेस मॉडल के मानक और सामान्य प्रकार हैं।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "wfcydz3uu",
+                "number": 149,
+                "content": {
+                    "en": "Which of the following is an example of a B2C E-Commerce website?",
+                    "hi": "निम्नलिखित में से कौन B2C ई-कॉमर्स वेबसाइट का उदाहरण है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Alibaba",
+                            "hi": "अलीबाबा"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Amazon",
+                            "hi": "अमेज़ॅन"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Google",
+                            "hi": "गूगल"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "b",
+                "explanation": {
+                    "en": "Amazon is a primary example of a Business-to-Consumer (B2C) platform selling directly to end users.",
+                    "hi": "अमेज़न सीधे अंतिम उपयोगकर्ताओं को बेचने वाले बिजनेस-टू-कंज्यूमर (B2C) प्लेटफॉर्म का एक प्राथमिक उदाहरण है।"
+                },
+                "topic": "Science"
+            },
+            {
+                "id": "423g7un9f",
+                "number": 150,
+                "content": {
+                    "en": "Which of the following is a multimedia authoring tool?",
+                    "hi": "निम्नलिखित में से कौन मल्टीमीडिया संलेखन उपकरण है?"
+                },
+                "options": [
+                    {
+                        "id": "a",
+                        "text": {
+                            "en": "Microsoft Word",
+                            "hi": "माइक्रोसॉफ्ट वर्ड"
+                        }
+                    },
+                    {
+                        "id": "b",
+                        "text": {
+                            "en": "Adobe Photoshop",
+                            "hi": "एडोब फोटोशॉप"
+                        }
+                    },
+                    {
+                        "id": "c",
+                        "text": {
+                            "en": "Adobe Flash",
+                            "hi": "एडोब फ्लैश"
+                        }
+                    },
+                    {
+                        "id": "d",
+                        "text": {
+                            "en": "More than one of the above",
+                            "hi": "उपर्युक्त में से एक से अधिक"
+                        }
+                    },
+                    {
+                        "id": "e",
+                        "text": {
+                            "en": "None of the above",
+                            "hi": "उपर्युक्त में से कोई नहीं"
+                        }
+                    }
+                ],
+                "correctOptionId": "c",
+                "explanation": {
+                    "en": "Adobe Flash (now Animate) was a widely used tool for creating interactive multimedia content.",
+                    "hi": "एडोब फ्लैश (अब एनिमेट) इंटरैक्टिव मल्टीमीडिया सामग्री बनाने के लिए व्यापक रूप से उपयोग किया जाने वाला उपकरण था।"
+                },
+                "topic": "Science"
+            }
+        ],
+        "status": "published",
+        "createdAt": 1768027442022
     }
 ];

@@ -220,9 +220,9 @@ const RichTextRenderer: React.FC<RichTextRendererProps> = ({ content, className 
                         );
                     },
                     pre: ({ children }) => <>{children}</>, // Let code component handle the wrapper
-                    p: ({ node, ...props }) => <p {...props} className="mb-2 last:mb-0 leading-relaxed text-slate-800" />,
-                    ul: ({ node, ...props }) => <ul {...props} className="list-disc pl-5 mb-4 space-y-1 text-slate-800" />,
-                    ol: ({ node, ...props }) => <ol {...props} className="list-decimal pl-5 mb-4 space-y-1 text-slate-800" />,
+                    p: ({ node, ...props }) => <p {...props} className="mb-2 last:mb-0 leading-relaxed text-inherit" />,
+                    ul: ({ node, ...props }) => <ul {...props} className="list-disc pl-5 mb-4 space-y-1 text-inherit" />,
+                    ol: ({ node, ...props }) => <ol {...props} className="list-decimal pl-5 mb-4 space-y-1 text-inherit" />,
                     li: ({ node, ...props }) => <li {...props} className="pl-1" />,
                     blockquote: ({ node, ...props }) => (
                         <div className="border-l-4 border-indigo-200 pl-4 py-1 my-4 bg-indigo-50/30 rounded-r-lg italic text-slate-600">

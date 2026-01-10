@@ -42,7 +42,8 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
   const [activeAIContext, setActiveAIContext] = useState<string | undefined>();
   const [selectedQuestion, setSelectedQuestion] = useState<Question | null>(null);
 
-  const percentage = Math.round((attempt.score / paper.questions.length) * 100);
+  const totalQuestionsSnapshot = attempt.totalQuestions || paper.questions.length;
+  const percentage = Math.round((attempt.score / totalQuestionsSnapshot) * 100);
   const accuracy = attempt.totalCorrect + attempt.totalIncorrect > 0
     ? Math.round((attempt.totalCorrect / (attempt.totalCorrect + attempt.totalIncorrect)) * 100)
     : 0;
@@ -310,7 +311,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
             </div>
 
             {/* Modal Content */}
-            <div className="p-5 md:p-8 space-y-6 md:space-y-10">
+            <div className="p-5 md:p-8 pb-32 space-y-6 md:space-y-10">
               {/* Question Text */}
               <div className="space-y-3 md:space-y-6">
                 {(langMode === 'en' || langMode === 'both') && (
@@ -385,13 +386,7 @@ const ResultView: React.FC<ResultViewProps> = ({ attempt, paper, onBack }) => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                      <button
-                        onClick={() => { setActiveAIContext(`Explain detailed logic for question ${selectedQuestion.number} (${selectedQuestion.content.en})`); }}
-                        className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl md:rounded-2xl font-bold flex items-center justify-center gap-2 md:gap-3 transition-colors shadow-lg shadow-indigo-900/50 text-xs md:text-sm group"
-                      >
-                        <MessageSquare size={16} className="group-hover:-translate-y-0.5 transition-transform" />
-                        <span>Chat with AI about this</span>
-                      </button>
+
                       <button onClick={() => setSelectedQuestion(null)} className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl md:rounded-2xl font-bold text-white transition-colors text-xs md:text-sm">
                         Close Details
                       </button>
@@ -439,20 +434,6 @@ const StatusCount = ({ label, count, color }: any) => (
   </div>
 );
 
-const MessageSquare = ({ size, className }: any) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-  </svg>
-);
+
 
 export default ResultView;

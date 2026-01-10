@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TRE Prep AI</string>
+    <string name="title_activity_main">TRE Prep AI</string>
+    <string name="package_name">com.treprep.app</string>
+    <string name="custom_url_scheme">com.treprep.app</string>
+</resources>

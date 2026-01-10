@@ -88,7 +88,8 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
         score: 0,
         totalCorrect: 0,
         totalIncorrect: 0,
-        totalUnattempted: 0
+        totalUnattempted: 0,
+        totalQuestions: paper.questions.length
       });
     }
   }, [responses, timeElapsed, paper.id, paper.questions, resumeAttempt]);
@@ -159,7 +160,8 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
         score: correct,
         totalCorrect: correct,
         totalIncorrect: incorrect,
-        totalUnattempted: unattempted
+        totalUnattempted: unattempted,
+        totalQuestions: paper.questions.length
       };
 
       onFinish(attempt);
@@ -284,6 +286,19 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
           </div>
 
           <div className="flex items-center gap-2 md:gap-4">
+            {/* Pause Button - Desktop & Mobile */}
+            <button
+              onClick={() => setIsPaused(!isPaused)}
+              disabled={isPaused}
+              className={`p-2.5 md:px-4 md:py-2.5 rounded-xl font-bold flex items-center gap-2 transition-all active:scale-95 ${isPaused
+                ? 'bg-amber-100 text-amber-600 cursor-not-allowed opacity-50'
+                : 'bg-white border border-slate-200 text-slate-600 hover:bg-amber-50 hover:text-amber-600 hover:border-amber-200 shadow-sm'}`}
+              title="Pause Exam"
+            >
+              <Pause size={18} className={isPaused ? "fill-current" : ""} />
+              <span className="hidden md:block">Pause</span>
+            </button>
+
             {/* Timer - Neumorphic Depth */}
             <div className={`flex items-center gap-2.5 px-4 py-2 md:px-5 md:py-2.5 rounded-2xl font-mono font-bold text-xs md:text-lg transition-all shadow-inner border border-white/20 ${isPaused
               ? 'bg-amber-50 text-amber-600 ring-1 ring-amber-200'
@@ -360,8 +375,19 @@ const ExamPanel: React.FC<ExamPanelProps> = ({ paper, resumeAttempt, onFinish, o
               </div>
             </div>
 
+            {/* Premium Slide Animation */}
+            <style>{`
+              @keyframes slideIn {
+                from { opacity: 0; transform: translateX(20px) scale(0.98); }
+                to { opacity: 1; transform: translateX(0) scale(1); }
+              }
+              .question-anim {
+                animation: slideIn 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+              }
+            `}</style>
+
             {/* Question Card Container */}
-            <div className="bg-white rounded-[2rem] md:rounded-[3rem] p-1 shadow-[0_2px_40px_-12px_rgba(0,0,0,0.08)] border border-slate-100/50">
+            <div key={currentIdx} className="question-anim bg-white rounded-[2rem] md:rounded-[3rem] p-1 shadow-[0_2px_40px_-12px_rgba(0,0,0,0.08)] border border-slate-100/50">
               {/* Action Bar */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-slate-100">
                 <div className="flex items-center gap-4">

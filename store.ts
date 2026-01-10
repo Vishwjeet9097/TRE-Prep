@@ -25,6 +25,15 @@ export const StorageService = {
     localStorage.setItem(STORAGE_KEYS.PAPERS, JSON.stringify(papers));
   },
 
+  updatePaper: (paperId: string, updates: Partial<ExamPaper>) => {
+    const papers = StorageService.getPapers();
+    const index = papers.findIndex(p => p.id === paperId);
+    if (index >= 0) {
+      papers[index] = { ...papers[index], ...updates };
+      localStorage.setItem(STORAGE_KEYS.PAPERS, JSON.stringify(papers));
+    }
+  },
+
   deletePaper: (id: string) => {
     const papers = StorageService.getPapers().filter(p => p.id !== id);
     localStorage.setItem(STORAGE_KEYS.PAPERS, JSON.stringify(papers));
@@ -119,18 +128,30 @@ export interface UserProfile {
   location: string;
   initials: string;
   isBilingual: boolean;
+  isOnboarded: boolean;
   apiKey?: string;
 }
 
 export const UserService = {
   getProfile: (): UserProfile => {
     const data = localStorage.getItem('tre_user_profile');
-    return data ? JSON.parse(data) : {
-      name: 'John Doe',
-      phone: '+91 98765 43210',
-      location: 'New Delhi, India',
-      initials: 'JD',
+    if (data) {
+      const profile = JSON.parse(data);
+      // Migration for existing users
+      if (typeof profile.isOnboarded === 'undefined') {
+        profile.isOnboarded = false; // Force onboarding for updated app
+      }
+      return profile;
+    }
+
+    // Default for fresh users
+    return {
+      name: '',
+      phone: '',
+      location: '',
+      initials: '',
       isBilingual: true,
+      isOnboarded: false,
       apiKey: ''
     };
   },
